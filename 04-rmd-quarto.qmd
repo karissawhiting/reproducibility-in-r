@@ -56,7 +56,7 @@ tbl_uvreg
 
 # Quarto {background-color="#007CBA" style="text-align: center;"}
 
-## WTF is Quarto?
+## What is Quarto?
 
 ::: {.incremental}
 
