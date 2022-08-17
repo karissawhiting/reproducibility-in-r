@@ -1,0 +1,100 @@
+##  {background-color="#007CBA" style="text-align: center;"}
+
+![](images/rerer_bstfun.png)
+
+## {bstfun}
+
+-   A [shared space]{.emphasized} for department members to add functions that may be useful to others
+
+-   Houses individual member's [project templates]{.emphasized} and function to start projects (`create_bst_project()`: will be discussed in further training)
+
+-   Diverse functions for various analysis-related tasks, [{bstfun} Reference Index]{.emphasized}: <https://www.danieldsjoberg.com/bstfun/reference/index.html>
+
+## {bstfun} Useful Functions
+
+## {bstfun} Useful Functions
+
+[style_tbl_compact()]{.emphasized}
+
+::: columns
+::: column
+**Before:**
+
+```{r}
+#| echo: true
+
+head(trial) %>%
+  gt::gt() %>%
+  bstfun::style_tbl_compact()
+```
+:::
+
+::: column
+**After:**
+
+```{r}
+#| echo: true
+head(trial) %>%
+  gt::gt() 
+```
+:::
+:::
+
+❗ Also see `tbl_listing()` for this functionality: <https://shannonpileggi.github.io/gtreg/reference/tbl_listing.html>
+
+## {bstfun} Useful Functions
+
+[clean_mrn()]{.emphasized}
+
+MRNs follows specific formatting rules:
+
+-   Must be character
+
+-   Must contain only numeric components
+
+-   Must be eight characters long and include leading zeros.
+
+This function converts numeric MRNs to character and ensures it follows MRN conventions. Character MRNs can also be passed, and leading zeros will be appended and checked for consistency.
+
+```{r}
+#| echo: true
+
+fake_mrn <- c("00100", "100", "0100")
+
+fake_mrn %>%
+  bstfun::clean_mrn()
+```
+
+## {bstfun} Useful Functions
+
+[use_varnames_as_labels()]{.emphasized}
+
+Automatically add labels to your data based on column names
+
+::: columns
+::: column
+**Before:**
+
+```{r}
+#| echo: true
+
+mtcars %>%
+  select(mpg, cyl, vs, am) %>%
+  tbl_summary() 
+```
+:::
+
+::: column
+**After:**
+
+```{r}
+#| echo: true
+
+mtcars %>%
+  select(mpg, cyl, vs, am) %>%
+  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %>%
+  tbl_summary()
+
+```
+:::
+:::

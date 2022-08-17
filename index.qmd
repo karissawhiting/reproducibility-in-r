@@ -1,0 +1,187 @@
+---
+format: 
+  revealjs: 
+    theme:  [default, style.scss]
+    transition: fade
+    slide-number: true
+execute:
+  echo: true 
+  output: asis
+editor: source
+--- 
+
+# Intro to {biostatR} {background-color="#007CBA" style="text-align: center;"}
+
+```{r}
+#| echo: false
+#| results: false
+
+knitr::opts_chunk$set(echo = TRUE, results = 'asis')
+
+library(tidyverse)
+library(gtsummary)
+
+sm_trial <-
+  trial %>% 
+  select(trt, age, grade, response)
+
+
+knit_print.gtsummary <- function(x, ...) {
+   gtsummary::as_gt(x) |>
+     gt::as_raw_html()
+}
+
+knit_print.gt_tbl <- function(x, ...) {
+  gt::as_raw_html(x)
+} 
+
+
+registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
+registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
+
+# fill for font awesome icons
+fa_fill <- "#606060"
+```
+
+(And a Few R Markdown/Quarto Tips!)
+
+![](images/hex-transparent.png)
+
+Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
+
+<br>
+
+`r fontawesome::fa("twitter", fill = "white")` [[\@karissawhiting](https://twitter.com/karissawhiting)]{style="color: white"}
+
+`r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
+
+## Agenda
+
+[**{biostatR}**]{.emphasized}
+
+-   **Intro & Installation**
+
+-   **Component Packages**
+
+    -   {gtsummary}
+    -   {lubridate}
+    -   {bstfun}
+
+-   **Extra Features**
+
+[**R Markdown & Quarto**]{.emphasized}
+
+-   **R Markdown** Advanced Tips
+-   **Quarto**
+
+## {biostatR}: The 'tidyverse' of Analytic Reporting
+
+::: columns
+::: {.column .incremental width="40%"}
+-   [**{biostatR}**]{.emphasized} is a set of packages to help you create and customize analysis reports
+
+-   Installs and loads 3 useful packages
+
+-   Also installs (without loading) additional packages to improve your workflow (meaning you'll need to load these 'extra packages' explicitly with `library()`).
+:::
+
+::: {.column width="60%"}
+![](images/biostatrumbrella.png)
+:::
+:::
+
+## Install {biostatR}
+
+## Install {biostatR}
+
+1.  [**Set up MSK RStudio Package Manager:**]{.emphasized}
+
+Run the following installation code outside of an RStudio project (you only need to do this once!)
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("rstudio.prefs")
+rstudio.prefs::use_rstudio_secondary_repo(
+  MSK_RSPM = "http://rspm.mskcc.org/MSKREPO/latest"
+)
+```
+
+## Install {biostatR}
+
+1.  [**Set up MSK RStudio Package Manager:**]{.emphasized}
+
+Run the following installation code outside of an RStudio project (you only need to do this once!)
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("rstudio.prefs")
+rstudio.prefs::use_rstudio_secondary_repo(
+  MSK_RSPM = "http://rspm.mskcc.org/MSKREPO/latest"
+)
+```
+
+2.  [**Install {biostatR} From RSPM**]{.emphasized}
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("renv")
+renv::install(c("biostatR"))
+```
+
+## Three Main Component Packages
+
+## Three Main Component Packages {auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
+:::
+
+::: column
+![](images/rerer_gtsummary.png)
+:::
+:::
+
+## Three Main Component Packages {auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
+
+2. [**{bstfun}**]{.emphasized} - A miscellaneous collection of functions for our department
+:::
+
+::: column
+![](images/rerer_bstfun.png)
+:::
+:::
+ 
+## Three Main Component Packages {auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
+
+2. [**{bstfun}**]{.emphasized} - A miscellaneous collection of functions for our department
+
+3. [**{lubridate}**]{.emphasized} - Tools to work with date-times in R
+:::
+
+::: column
+![](images/rerer_lubridate.png)
+:::
+:::
+
+{{< include 01-gtsummary.qmd >}}
+
+{{< include 02-bstfun.qmd >}}
+
+{{< include 03-lubridate-and-bonus.qmd >}}
+
+{{< include 04-rmd-quarto.qmd >}}

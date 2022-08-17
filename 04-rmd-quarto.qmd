@@ -1,0 +1,201 @@
+
+# R Markdown Tips {background-color="#007CBA" style="text-align: center;"}
+
+## Report Reproducbile Statistics with gtsummary::inline_text()
+
+-   Tables are important, but we often need to report results in-line in a report.
+
+-   Any statistic reported in a {gtsummary} table can be extracted and reported in-line in an R Markdown document with the `inline_text()` function.
+
+-   The pattern of what is reported can be modified with the `pattern =` argument.
+
+-   Default is `pattern = "{estimate} ({conf.level*100}% CI {conf.low}, {conf.high}; {p.value})"`
+
+
+
+## Report Reproducbile Statistics with gtsummary::inline_text()
+
+
+```{r }
+#| echo: true
+#| cache: false
+#| output-location: "column"
+
+library(gtsummary)
+
+tbl_uvreg <- sm_trial %>% 
+  tbl_uvregression(
+    method = glm,
+    y = response,
+    method.args = list(family = binomial),
+    exponentiate = TRUE
+  ) %>%
+  bold_labels()
+
+tbl_uvreg
+
+```
+
+**In Code:** The odds ratio for age is '`inline_text(tbl_uvreg, variable = age)`'
+
+**In Report:** The odds ratio for age is `r inline_text(tbl_uvreg, variable = age)`
+
+
+## Add Tabs to Your Report
+
+::::{.columns}
+:::{.column}
+![](images/tab_code.png)
+:::
+
+
+:::{.column}
+![](images/tab_image.png)
+:::
+::::
+
+# Quarto {background-color="#007CBA" style="text-align: center;"}
+
+## WTF is Quarto?
+
+::: {.incremental}
+
+-   [Quarto]{.emphasized} is a multi-language, next generation version of R Markdown from RStudio
+
+-   Like R Markdown, Quarto uses Knitr to execute R code, therefore it can render most existing Rmd files with few changes
+
+-   The [latest release](https://rstudio.com/products/rstudio/download/) of RStudio (v2022.07) includes support for editing and preview of Quarto documents.
+
+:::
+
+## Quarto Features: Flexible Layouts
+
+You can now easily organize your report using various layouts including column formats
+
+![](images/quarto1.png)
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Speed and Stopping Distances of Cars"
+#|   - "Vapor Pressure of Mercury as a Function of Temperature"
+#| echo: true
+
+plot(cars)
+plot(pressure)
+```
+
+## Quarto Features 
+
+- You can execute R and Python code in the same file
+- Auto-fill YAML options for easy, fool-proof YAML coding
+- Cleaner organization (e.g. Global chunk options can now go in YAML header)
+
+## Moving From R Markdown: YAML Header
+
+[YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+::::{ .columns}
+
+::: {.column}
+
+**R Markdown:**
+
+``` yaml
+#| code-line-numbers: "2"
+
+title: "My Document"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    css: styles.css
+```
+:::
+
+::: {.column}
+
+**Quarto:**
+
+``` yaml
+#| code-line-numbers: "2"
+
+title: "My Document"
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
+```
+:::
+
+::::
+
+## Moving From R Markdown: YAML Header
+
+[Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+:::: { .columns}
+
+::: {.column}
+
+**R Markdown:**
+
+
+![](images/r_setup.png)
+:::
+
+::: {.column}
+
+**Quarto:**
+
+```yaml
+title: "My-Title"
+subtitle: "Until now!"
+execute:
+  echo: false
+```
+
+:::
+
+::::
+
+## Moving From R Markdown: YAML Chunk Options
+
+[Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`). 
+
+:::: { .columns}
+
+::: {.column}
+
+**R Markdown:**
+
+
+![](images/ind_chunks.png)
+:::
+
+::: {.column}
+
+**Quarto:**
+
+![](images/quarto_chunk.png)
+
+:::
+
+::::
+
+
+# Thank You!!!
+
+[Questions?]{.large}
+
+## Resources
+
+- {biostaR} - <https://github.mskcc.org/pages/datadojo/biostatR/index.html>
+- {gtsummary} - <https://www.danieldsjoberg.com/gtsummary/>
+- {bstfun} - <https://www.danieldsjoberg.com/bstfun/index.html>
+- Departmental Resource Guide - <https://rconnect.mskcc.org/resource-guide/>
+- Quarto Docs - <https://quarto.org/docs/guide/>
+- Quarto Blog Post by Alison Hill - <https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/>
+
+

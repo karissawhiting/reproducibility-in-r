@@ -1,0 +1,424 @@
+##  {background-color="#007CBA" style="text-align: center;"}
+
+![](images/rerer_gtsummary.png)
+
+## {gtsummary} overview
+
+::: columns
+::: {.column width="60%"}
+-   Create [**tabular summaries**]{.emphasized} including:
+    -   "Table 1"
+    -   Cross-tabulation
+    -   Regression models summaries
+    -   Survival data summaries
+-   Report statistics from {gtsummary} tables [inline]{.emphasized} in R Markdown
+-   [Stack or merge]{.emphasized} any table type
+-   Use [themes]{.emphasized} to standardize across tables
+-   Choose from different [print engines]{.emphasized}
+:::
+
+::: {.column width="40%"}
+<img src="images/gtsummary_logo.png" width="80%"/>
+:::
+:::
+
+## Basic tbl_summary()
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+
+sm_trial <- trial %>% 
+  select(trt, age, grade, response)
+
+sm_trial %>%
+  select(-trt) %>%
+  tbl_summary()
+```
+:::
+
+::: {.column width="50%"}
+-   Four types of summaries: `continuous`, `continuous2`, `categorical`, and `dichotomous`
+
+-   Variables coded `0/1`, `TRUE/FALSE`, `Yes/No` treated as dichotomous
+
+-   Statistics are `median (IQR)` for continuous, `n (%)` for categorical/dichotomous
+
+-   Lists `NA` values under "Unknown"
+
+-   Label attributes are printed automatically
+:::
+:::
+
+## Customize tbl_summary() Using Arguments
+
+```{r}
+#| output-location: "column"
+#| #| echo: true
+
+tbl_summary(
+  sm_trial,
+  by = trt,
+  type = age ~ "continuous2",
+  statistic = 
+    list(
+      age ~ c("{mean} ({sd})", 
+              "{min}, {max}"), 
+      response ~ "{n} / {N} ({p}%)"
+    ),
+  label = 
+    grade ~ "Pathologic tumor grade",
+  digits = age ~ 1
+)
+```
+
+## Customize tbl_summary() Using Arguments
+
+```{r}
+#| output-location: "column"
+#| echo: true
+tbl_summary(
+  sm_trial,
+  by = trt,
+  type = age ~ "continuous2",
+  statistic = 
+    list(
+      age ~ c("{mean} ({sd})", 
+              "{min}, {max}"), 
+      response ~ "{n} / {N} ({p}%)"
+    ),
+  label = 
+    grade ~ "Pathologic tumor grade",
+  digits = age ~ 1
+)
+```
+
+::: small
+::: columns
+::: {.column width="50%"}
+-   `by`: specifies a column variable for cross-tabulation
+
+-   `type`: specifies the summary type
+
+-   `statistic`: customize the reported statistics
+
+-   `label`: change or customize variable labels
+
+-   `digits`: specify the number of decimal places for rounding
+:::
+
+::: {.column width="50%"}
+:::
+:::
+:::
+
+## {gtsummary} + formulas
+
+<p align="center">
+
+<img src="https://raw.githubusercontent.com/ddsjoberg/gtsummary-weill-cornell-presentation/5887c81b58f4ed0c76f6ae458243e9c2a2fbbcd2/Images/Dan-SummaryTables-5.png" width="95%"/>
+
+</p>
+
+## Customize Using Add-on Functions
+
+Summary tables can be further updated using [helper functions]{.emphasized}:
+
+::: incremental
+-   [add\_\*()]{.emphasized} add additional column of statistics or information, e.g. p-values, q-values, overall statistics, treatment differences, N obs., and more
+
+-   [modify\_\*()]{.emphasized} modify table headers, spanning headers, footnotes, and more
+
+-   [bold\_*()/italicize\_*()]{.emphasized} style labels, variable levels, significant p-values
+:::
+
+## Update tbl_summary() with add\_\*()
+
+```{r}
+#| output-location: "column"
+#| echo: true
+#| code-line-numbers: "5,6"
+sm_trial %>%
+  tbl_summary(
+    by = trt
+  ) %>% 
+  add_p() %>% 
+  add_q(method = "fdr")
+```
+
+-   `add_p()`: adds a column of p-values
+
+-   `add_q()`: adds a column of p-values adjusted for multiple comparisons through a call to `p.adjust()`
+
+## Update tbl_summary() with add\_\*()
+
+```{r}
+#| output-location: "column"
+#| echo: true
+#| code-line-numbers: "6,7,8,9,10"
+sm_trial %>%
+  tbl_summary(
+    by = trt,
+    missing = "no"
+  ) %>% 
+  add_overall() %>% 
+  add_n() %>% 
+  add_stat_label(
+    label = all_categorical() ~ "No. (%)"
+  ) 
+```
+
+-   `add_overall()`: adds a column of overall statistics
+-   `add_n()`: adds a column with the sample size
+-   `add_stat_label()`: adds a description of the reported statistic
+
+## Update with bold\_\*() or italicize\_\*()
+
+```{r}
+#| output-location: "column"
+#| code-line-numbers: "6,7,8"
+#| echo: true
+sm_trial %>%
+  tbl_summary(
+    by = trt
+  ) %>%
+  add_p() %>% 
+  bold_labels() %>% 
+  italicize_levels() %>% 
+  bold_p(t = 0.8)
+```
+
+-   `bold_labels()`: bold the variable labels
+-   `italicize_levels()`: italicize the variable levels
+-   `bold_p()`: bold p-values according a specified threshold
+
+## Update tbl_summary() with modify\_\*()
+
+```{r}
+#| output-location: "column"
+#| echo: true
+sm_trial %>% 
+  tbl_summary(
+    by = trt, missing = "no"
+  ) %>%
+  modify_header(
+      stat_1 ~ "**Group A**",
+      stat_2 ~ "**Group B**"
+  ) %>% 
+  modify_spanning_header(
+    all_stat_cols() ~ "**Drug**") %>% 
+  modify_footnote(
+    all_stat_cols() ~ 
+      paste("median (IQR) for continuous;",
+            "n (%) for categorical")
+  )
+```
+
+-   Use `show_header_names()` to see the internal header names available for use in `modify_header()`
+
+## Customize Using Add-on Functions
+
+Many more customization available!
+
+<br>
+
+See the documentation at <http://www.danieldsjoberg.com/gtsummary/reference/index.html>
+
+And a detailed `tbl_summary()` vignette at <http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html>
+
+## Quick Code Exercise
+
+::: small
+::: columns
+::: {.column width="50%"}
+**1. Create new data frame** (`new_trial`) and select columns `age`, `stage`, `response`, `marker`
+
+**2. Make a basic `tbl_summary()`** summarizing by `response` variable and add the following customization:
+
+-   For `age` make `statistic` report the`"{mean} ({min}, {max})"`
+
+-   Use `missing` arg to remove display of missing values
+
+**3. Now apply the following customization:**
+
+-   add a p-value
+
+-   bold labels and p-values ≤ .05, italicize levels
+
+-   add an 'overall' column
+:::
+
+::: {.column width="50%" style="red"}
+See documentation for help: <https://www.danieldsjoberg.com/gtsummary/>
+:::
+:::
+:::
+
+## Quick Code Exercise {auto-animate="true"}
+
+::: small
+::: columns
+::: {.column width="50%"}
+**1. Create new data frame** (`new_trial`) and select columns `age`, `stage`, `response`, `marker`
+
+**2. Make a basic `tbl_summary()`** summarizing by `response` variable and add the following customization:
+
+-   For `age` make `statistic` report the`"{mean} ({min}, {max})"`
+
+-   Use `missing` arg to remove display of missing values
+
+**3. Now apply the following customization:**
+
+-   add a p-value
+
+-   bold labels and p-values ≤ .05, italicize levels
+
+-   add an 'overall' column
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+new_trial <- select(trial, age, stage, response, marker)
+```
+:::
+:::
+:::
+
+## Quick Code Exercise {auto-animate="true"}
+
+::: small
+::: columns
+::: {.column width="50%"}
+**1. Create new data frame** (`new_trial`) and select columns `age`, `stage`, `response`, `marker`
+
+**2. Make a basic `tbl_summary()`** summarizing by `response` variable and add the following customization:
+
+-   For `age` make `statistic` report the`"{mean} ({min}, {max})"`
+
+-   Use `missing` arg to remove display of missing values
+
+**3. Now apply the following customization:**
+
+-   add a p-value
+
+-   bold labels and p-values ≤ .05, italicize levels
+
+-   add an 'overall' column
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+new_trial <- select(trial, age, stage, response, marker)
+
+new_trial %>%
+  tbl_summary(by = response, 
+              statistic = age ~ "{mean} ({min}, {max})", 
+              missing = "no")
+```
+:::
+:::
+:::
+
+## Quick Code Exercise {auto-animate="true"}
+
+::: small
+::: columns
+::: {.column width="50%"}
+**1. Create new data frame** (`new_trial`) and select columns `age`, `stage`, `response`, `marker`
+
+**2. Make a basic `tbl_summary()`** summarizing by `response` variable and add the following customization:
+
+-   For `age` make `statistic` report the`"{mean} ({min}, {max})"`
+
+-   Use `missing` arg to remove display of missing values
+
+**3. Now apply the following customization:**
+
+-   add a p-value
+
+-   bold labels and p-values ≤ .05, italicize levels
+
+-   add an 'overall' column
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+new_trial <- select(trial, age, stage, response, marker)
+
+new_trial %>%
+  tbl_summary(by = response, 
+              statistic = age ~ "{mean} ({min}, {max})", 
+              missing = "no") %>%
+  add_p() %>%
+  bold_labels() %>%
+  bold_p() %>%
+  italicize_levels() %>%
+  add_overall() 
+```
+:::
+:::
+:::
+
+## Survival outcomes with tbl_survfit()
+
+```{r}
+#| echo: true
+library(survival)
+fit <- survfit(Surv(ttdeath, death) ~ trt, trial)
+tbl_survfit(
+  fit, 
+  times = c(12, 24),
+  label_header = "**{time} Month**"
+) %>%
+  add_p()
+```
+
+## Model Summaries with tbl_regression()
+
+```{r}
+#| echo: true
+m1 <- glm(
+  response ~ age + stage,
+  data = trial,
+  family = binomial(link = "logit")
+  )
+
+
+tbl_regression(
+    m1,
+    exponentiate = TRUE
+  ) %>% 
+  add_global_p() 
+
+```
+
+## Univariate models with tbl_uvregression()
+
+::: columns
+::: column
+```{r}
+#| echo: true
+
+tbl_uvreg <- sm_trial %>% 
+  tbl_uvregression(
+    method = glm,
+    y = response,
+    method.args = list(family = binomial),
+    exponentiate = TRUE
+  ) %>%
+  bold_labels()
+
+tbl_uvreg
+```
+:::
+
+::: column
+-   Specify model `method`, `method.args`, and the `response` variable
+
+-   Arguments and helper functions like `exponentiate`, `bold_*()`, `add_global_p()` can also be used with `tbl_uvregression()`
+:::
+:::
