@@ -1,7 +1,4 @@
 
-## {background-color="#007CBA"}
-
-![](images/rerer_lubridate.png)
 
 ## {lubridate}
 
@@ -31,16 +28,4 @@ year(bday) <- 2016
 wday(bday, label = TRUE)
 ```
 
-## {biostatR} Bonus Features
 
--   When you load {biostatR} it will:
-    -   Check if any packages are out of date
-    -   Check if RSPM is set up
-    -   Check if you are more than 2 versions behind the latest version of R
-    
--   It also installs some useful dependencies, including:
-    -   [{flextable}]{.emphasized} - Better defaults for knitting Rmd to word documents
-    -   [{styler}]{.emphasized} - Makes your code pretty
-    -   [{ragg}]{.emphasized} - Better graphics printing
-    -   [{mskRvis}]{.emphasized} - MSK color palettes
-    -   [{mskRutils}]{.emphasized} - Helpful functions for working with MSK github

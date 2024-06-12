@@ -10,7 +10,7 @@ execute:
 editor: source
 --- 
 
-# Intro to {biostatR} {background-color="#007CBA" style="text-align: center;"}
+# Computational Reproducibility in R {background-color="#007CBA" style="text-align: center;"}
 
 ```{r}
 #| echo: false
@@ -43,11 +43,14 @@ registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
 fa_fill <- "#606060"
 ```
 
-(And a Few R Markdown/Quarto Tips!)
 
-![](images/hex-transparent.png)
+Karissa Whiting <br> Research Biostatistician, Memorial Sloan Kettering <br>
 
-Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
+June 10th, 2024
+
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
+
 
 <br>
 
@@ -55,24 +58,281 @@ Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
 
 `r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
 
-## Agenda
 
-[**{biostatR}**]{.emphasized}
+## What is Reproducibility?
 
--   **Intro & Installation**
+::: incremental
 
--   **Component Packages**
+A data analysis is [reproducible]{.emphasized} if all the information (data, files, etc.) needed to compute results is available for someone else to re-do your entire analysis and get the same results. 
 
-    -   {gtsummary}
-    -   {lubridate}
-    -   {bstfun}
+- All data processing steps from `raw data` to `cleaned data` are available and documented
 
--   **Extra Features**
+- All analysis decisions made are documented and available in code
 
-[**R Markdown & Quarto**]{.emphasized}
+- Results don't depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)
 
--   **R Markdown** Advanced Tips
--   **Quarto**
+:::
+
+## Why is Reproducibility Important?
+
+::: incremental
+
+- Allows you to show evidence of your results
+
+- Encourages transparency about decisions made during analysis
+
+- Enables others to check and use/extend your methods and results
+
+- Enables FUTURE YOU to check and use/extend your methods and results
+
+
+
+
+***"You mostly collaborate with yourself, and me-from-two-months-ago never responds to email"***
+
+~ *Dr. Mark Holder, Computational Biologist*
+
+:::
+
+## Why is Reproducibility Important?
+
+
+Dangers of writing code that is hard to double-check or confirm:
+
+- [The Economist](https://www.economist.com/science-and-technology/2011/09/10/an-array-of-errors)
+- [The New York Times](https://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=0)
+
+<p align="center"><img src="images/nytimes.png"width=70%></p>
+<p align="center"><img src="images/nytimes2.png"width=70%></p>
+
+
+
+## How Do We Ensure Our Code is Reproducible?
+
+::: incremental
+
+- Have a clear project structure and defined workflow
+
+- Avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`)
+
+- Version control (document changes you make, or use git!)
+
+- Comment and document your code
+
+- **Avoid 'by hand' steps used in the analysis**
+
+:::
+
+## How Do We Ensure Our Code is Reproducible?
+
+- **Avoid 'by hand' steps used in the analysis**
+
+    - all steps should be done using code saved in scripts. 
+    - For example, you should use a script to clean data, rather than cleaning it by hand in Excel. 
+    - If any 'non-scriptable' steps are unavoidable, you should very clearly document those steps.
+    Use reproducible reporting practice (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+
+
+
+## Reproducible Reporting
+
+
+- R Markdown & Quarto are tools for integrating R code and narrative text into a single document, which can be rendered into various output formats (HTML, PDF, Word, and slides)
+
+- Integration of Code and Analysis- Combines code, output, and text in a single file. Documents automatically update when data or code changes, reducing errors and maintaining consistency.
+
+- Supports dynamic document generation-  results can be regenerated at any time.
+
+- Transparency-  Detailed code and data analysis steps are included, making it easier for others to verify and reproduce the results. providing a complete record of the research process.
+
+Version Control Compatibility-  Supports integration with version control systems like Git, facilitating collaboration and tracking changes.
+
+
+
+## R Markdown v.s Quarto
+
+::: incremental
+\-[YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+\-[Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+\-[Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+:::
+
+
+## Moving From R Markdown: YAML Header
+
+- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+## Moving From R Markdown: YAML Header
+
+- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+
+:::: columns
+::: column
+
+**R Markdown:**
+
+```{yaml}
+#| echo: TRUE
+#| code-line-numbers: "2"
+
+title: "My Document"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    css: styles.css
+```
+:::
+
+::: column
+
+**Quarto:**
+
+```{yaml}
+#| echo: TRUE
+#| code-line-numbers: "2"
+
+title: "My Document"
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
+```
+:::
+
+::::
+
+
+## Moving From R Markdown: YAML Header 2
+
+
+- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+## Moving From R Markdown: YAML Header 2
+
+
+- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+::: columns
+::: column
+**R Markdown:**
+
+```{r,setup,echo=TRUE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+:::
+
+::: column
+**Quarto:**
+
+``` yaml
+title: "My-Title"
+subtitle: "Until now!"
+execute:
+  echo: false
+```
+:::
+:::
+
+## Moving From R Markdown: YAML Chunk Options
+
+
+- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+
+
+## Moving From R Markdown: YAML Chunk Options
+
+
+- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+
+::: columns
+::: column
+**R Markdown:**
+
+```{r,echo=TRUE,result=FALSE,include=TRUE}
+print("hi")
+```
+:::
+
+::: column
+**Quarto:**
+
+```{r}
+#| echo: fenced
+#| include: True
+#| results: false
+print("hi")
+```
+:::
+:::
+
+## Quarto Features: Flexible Layouts With Multiple Columns
+
+How to specify multiple column layout: 
+
+![](images/multiple.columns.png)
+
+## Quarto flexible layout using {layout}
+
+![](images/quarto3.png)
+
+::: notes
+You can now easily organize your report using various layouts including column formats Here, we want the first image spans the entire first row and two equal sized figure in the second row
+
+The layout attribute is a 2-dimensional array where the first dimension defines rows and the second columns. In this case "layout="\[\[1,1\], \[1\]\]" translates to: create two rows, the first of which has two columns of equal size and the second of which has a single column.
+:::
+
+
+## Quarto flexible layout using {layout}
+
+![](images/Elephant.png)
+
+## Figures Layout Within the YAML Chunk Option
+
+```{r}
+#| echo: fenced
+#| include: True
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Speed and Stopping Distances of Cars"
+#|   - "Vapor Pressure of Mercury as a Function of Temperature"
+
+plot(cars)
+plot(pressure)
+
+```
+
+
+## Quarto Features: Callouts and Comments
+
+Sometimes you need to draw attention to something in your report. You can do this using `{.callout-note}`
+
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+```
+
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+```
+::: {.callout-warning}
+Here is an example of a warning
+:::
+```
+
+::: {.callout-warning}
+Here is an example of a warning 
+:::
+
 
 ## {biostatR}: The 'tidyverse' of Analytic Reporting
 
@@ -90,49 +350,6 @@ Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
 :::
 :::
 
-## Install {biostatR}
-
-## Install {biostatR}
-
-1.  [**Set up MSK RStudio Package Manager:**]{.emphasized}
-
-Run the following installation code outside of an RStudio project (you only need to do this once!)
-
-```{r}
-#| eval: false
-#| echo: true
-
-install.packages("rstudio.prefs")
-rstudio.prefs::use_rstudio_secondary_repo(
-  MSK_RSPM = "http://rspm.mskcc.org/MSKREPO/latest"
-)
-```
-
-## Install {biostatR}
-
-1.  [**Set up MSK RStudio Package Manager:**]{.emphasized}
-
-Run the following installation code outside of an RStudio project (you only need to do this once!)
-
-```{r}
-#| eval: false
-#| echo: true
-
-install.packages("rstudio.prefs")
-rstudio.prefs::use_rstudio_secondary_repo(
-  MSK_RSPM = "http://rspm.mskcc.org/MSKREPO/latest"
-)
-```
-
-2.  [**Install {biostatR} From RSPM**]{.emphasized}
-
-```{r}
-#| eval: false
-#| echo: true
-
-install.packages("renv")
-renv::install(c("biostatR"))
-```
 
 ## Three Main Component Packages
 
