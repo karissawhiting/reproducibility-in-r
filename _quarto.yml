@@ -1,5 +1,8 @@
 project:
-  title: "intro-to-biostatr"
+  title: "reproducibility-in-R"
+  type: website
+  output-dir: docs
 
-
-
+execute:
+  freeze: auto
+  error: true
