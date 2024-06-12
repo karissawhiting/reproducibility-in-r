@@ -1,6 +1,18 @@
-##  {background-color="#007CBA" style="text-align: center;"}
+
+# What Goes In Your Report? {background-color="#007CBA" style="text-align: center;"}
+
+
+## gtsummary {auto-animate="true"}
+
+
+- [**{gtsummary}**]{.emphasized} - Tools to create publication-ready analytical and summary tables using the R programming language. 
+
+- Summarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities.
 
 ![](images/rerer_gtsummary.png)
+
+
+
 
 ## {gtsummary} overview
 
@@ -423,7 +435,15 @@ tbl_uvreg
 :::
 :::
 
+## gtsummary Themes 
 
+-  Themes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.
+
+- The {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!
+
+- Most commonly used theme: `gtsummary::theme_gtsummary_compact()`
+
+- More info: [https://www.danieldsjoberg.com/gtsummary/articles/themes.html](https://www.danieldsjoberg.com/gtsummary/articles/themes.html)
 
 ## Report Reproducbile Statistics with gtsummary::inline_text()
 

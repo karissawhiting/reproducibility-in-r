@@ -1,0 +1,228 @@
+---
+title: "Example Statistical Analysis"
+author: "Karissa Whiting"
+execute:
+  freeze: true
+  echo: false
+  message: false
+  warning: false
+format:
+  html:
+    default: true
+    fig-align: "center"
+    fig-width: 12
+    fig-height: 10
+---
+
+
+```{r setup, include=FALSE}
+
+
+library(tidyverse)
+library(gtsummary)
+library(survival)
+library(survminer)
+library(here)
+library(labelled)
+
+load(file = here(
+  "data", "diabetes.RData"))
+
+
+```
+
+
+## Summarizing data 
+
+This is a common table 1 you would often see in manuscripts. Below I am staratifying the data by gender and adding a p value. The specific tests will be specified in the footnote. You can remove the p-values, and overall column if you do not want them there. 
+
+```{r}
+
+tbl_summary(df
+            ,include = -id
+            ,by = gender) %>% 
+  bold_labels() %>% 
+  add_overall() %>% 
+  add_p()
+      
+
+```
+
+### Summarize continious data
+
+Another common way to summarize data would be to summarize a continuous variable by one or more categorical variables. 
+
+```{r}
+tbl_continuous(df,
+               variable = stabilized_glucose,
+               by = gender,
+               include = location)
+
+
+```
+
+
+### Reporting data with ggplot2
+
+`ggplot2` is one of the most common ways to visualize data in R. 
+<br>
+Components of ggplot:
+<br>
+- data: data.frame/tibble 
+- geom_* :type of plot (* means there are multiple options [e.g - geom_bar, geom_point])
+  - these geometric objects tell ggplot what kind of graph you are building 
+  - scatter plot, box plot, bar plot, etc...
+- aesthetics (aes): tells ggplot how to represent the data
+- stats: can transform data to be plotted 
+- theme: handles general graphing options (color background, font sizes)
+- scale: controls options between data and aes, plot limits, colors, line types, etc...
+<br>
+Necessary components of ggplot
+<br>
+- only need data, geom_* and aesthetics to make a graph, the rest are augments of this base plot 
+
+```{r}
+
+sumdf <- df %>% 
+          group_by(location, gender) %>% 
+          summarise(age = mean(age, na.rm = TRUE)) %>% 
+          ungroup() %>% 
+          mutate(var = paste(location, gender, sep  = " ")) %>% 
+          filter(!is.na(location))
+
+
+ggplot(sumdf) +
+    geom_bar(aes(x= var, y = age, fill = var),stat = "identity") +
+    scale_x_discrete(" ") +
+    scale_fill_manual(" ", values = c("black","blue","grey","red"))+
+    scale_y_continuous("Age", limits = c(0,60)) +
+    theme_bw()
+
+```
+
+You can also represent the data in a more sophisticated way with facets. 
+
+
+```{r}
+
+ggplot(sumdf) +
+    geom_bar(aes(x= location, y = age, fill = location),stat = "identity") +
+    facet_grid(.~gender)+
+    scale_x_discrete(" ") +
+    scale_fill_manual(" ", values = c("black","blue"))+
+    scale_y_continuous("Age", limits = c(0,60)) +
+    theme_bw()
+
+```
+
+
+There are many types of geom_* and it is best to look at them from the https://ggplot2.tidyverse.org/ website. 
+
+
+
+## Generating univariate statistics 
+
+Sometimes it is important to test your outcome of interest against many covariates. We can use gtsummary to help with this instead of writing several models out all at once. The code below you can input all the covariates and the outcome, specify the method type and the outcome and it will generate a table of unviariate models neatly displayed. 
+
+```{r}
+
+df %>% 
+    select(-id) %>% 
+tbl_uvregression(method = lm,
+                 y = stabilized_glucose
+)
+
+
+```
+<br>
+Similarly we can do this for many different model types. Here is an example with logistic regression.
+<br>
+```{r}
+
+df <- df %>% 
+    mutate(gluc_di = ifelse(stabilized_glucose < median(stabilized_glucose, na.rm = TRUE),0,1))
+
+df %>% 
+    select(-stabilized_glucose,-id) %>% 
+    tbl_uvregression(method = glm,
+                     y = gluc_di,
+                     method.args = list(family = binomial),
+                     exponentiate = TRUE)
+
+```
+
+
+## Multivariate statistics 
+<br>
+Lets predict stabilized glucose from a few predictors. 
+<br>
+```{r}
+#will use weight, ratio_chol_hdl, age
+var_label(df$age) <- "Age"
+var_label(df$weight) <- "Weight (lbs)"
+var_label(df$ratio_chol_hdl) <- "Ratio Chol/HDL"
+
+mod1 <- lm(stabilized_glucose ~ age + weight + ratio_chol_hdl, data = df)
+
+tmod1 <- tbl_regression(mod1) %>% 
+    bold_labels()
+
+tmod1
+```
+<br>
+We can also look at this with a logistic model
+<br>
+```{r}
+
+mod2 <- glm(gluc_di ~ age + weight + ratio_chol_hdl, data = df, family = binomial)
+
+tmod2 <- tbl_regression(mod2, exponentiate = TRUE) %>% 
+    bold_labels()
+
+tmod2
+```
+<br>
+Lets combine the results
+
+```{r}
+
+
+tbl_merge(list(tmod1,tmod2), tab_spanner = c("Linear","Logistic"))
+
+```
+
+
+
+## Switching gears to a survival model
+
+### Generating survival curves
+
+Using the `survfit` with `Surv` will create Kaplan-Meier estimates. From these estimates we can create Kaplan-Meier survival curves. The `survminer` package provides a simple interface to create these curves. 
+
+```{r}
+
+cfit <- survfit(Surv(time, status) ~ sex,lung)
+
+#cfit
+
+ggsurvplot(cfit, data = lung,
+           pval = TRUE,
+           legend.labs = c("Male", "Female"),
+           legend.title = "",
+           palette = c("red","blue"))
+
+```
+
+## Cox model
+
+
+```{r}
+
+coxmod <- coxph(Surv(time,status) ~ age + sex, data =lung)
+
+
+tbl_regression(coxmod, exponentiate = TRUE)
+
+
+```
+

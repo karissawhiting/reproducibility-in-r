@@ -10,37 +10,6 @@
 
 -   Diverse functions for various analysis-related tasks, [{bstfun} Reference Index]{.emphasized}: <https://www.danieldsjoberg.com/bstfun/reference/index.html>
 
-## {bstfun} Useful Functions
-
-## {bstfun} Useful Functions
-
-[style_tbl_compact()]{.emphasized}
-
-::: columns
-::: column
-**Before:**
-
-```{r}
-#| echo: true
-
-head(trial) %>%
-  gt::gt() %>%
-  bstfun::style_tbl_compact()
-```
-:::
-
-::: column
-**After:**
-
-```{r}
-#| echo: true
-head(trial) %>%
-  gt::gt() 
-```
-:::
-:::
-
-❗ Also see `tbl_listing()` for this functionality: <https://shannonpileggi.github.io/gtreg/reference/tbl_listing.html>
 
 ## {bstfun} Useful Functions
 
@@ -98,3 +67,22 @@ mtcars %>%
 ```
 :::
 :::
+
+
+
+## Other Useful Functions
+
+[tbl_listing()]{.emphasized}
+
+
+Problem: You <3  {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.
+ 
+Solution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report.
+
+![](images/tbl_listing.png)
+
+## Other Useful Functions
+
+[gtreg::tbl_listing()]{.emphasized}
+
+![](images/tbl_listing2.png)

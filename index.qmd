@@ -7,10 +7,11 @@ format:
 execute:
   echo: true 
   output: asis
+  error: true
 editor: source
 --- 
 
-# Computational Reproducibility in R {background-color="#007CBA" style="text-align: center;"}
+# Reproducibility Analyses in R {background-color="#007CBA" style="text-align: center;"}
 
 ```{r}
 #| echo: false
@@ -44,7 +45,7 @@ fa_fill <- "#606060"
 ```
 
 
-Karissa Whiting <br> Research Biostatistician, Memorial Sloan Kettering <br>
+Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
 
 June 10th, 2024
 
@@ -99,11 +100,10 @@ A data analysis is [reproducible]{.emphasized} if all the information (data, fil
 
 Dangers of writing code that is hard to double-check or confirm:
 
-- [The Economist](https://www.economist.com/science-and-technology/2011/09/10/an-array-of-errors)
 - [The New York Times](https://www.nytimes.com/2011/07/08/health/research/08genes.html?_r=0)
 
-<p align="center"><img src="images/nytimes.png"width=70%></p>
-<p align="center"><img src="images/nytimes2.png"width=70%></p>
+<p align="center"><img src="images/nytimes.png"width=50%></p>
+<p align="center"><img src="images/nytimes2.png"width=60%></p>
 
 
 
@@ -111,53 +111,88 @@ Dangers of writing code that is hard to double-check or confirm:
 
 ::: incremental
 
-- Have a clear project structure and defined workflow
+- Have a clear project structure and defined workflow - **Discussed in Part 1**
 
-- Avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`)
+- Avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`) - **Discussed in Part 1**
 
-- Version control (document changes you make, or use git!)
+- Version control (document changes you make, or use git!) - **Discussed in Part 1**
 
 - Comment and document your code
 
-- **Avoid 'by hand' steps used in the analysis**
+- [Avoid 'by hand' steps used in the analysis]{.emphasized}
 
 :::
 
 ## How Do We Ensure Our Code is Reproducible?
 
-- **Avoid 'by hand' steps used in the analysis**
+[Avoid 'by hand' steps used in the analysis]{.emphasized}
 
-    - all steps should be done using code saved in scripts. 
-    - For example, you should use a script to clean data, rather than cleaning it by hand in Excel. 
-    - If any 'non-scriptable' steps are unavoidable, you should very clearly document those steps.
-    Use reproducible reporting practice (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+- All analysis steps should be done using code and saved in well-documented scripts (e.g. you should use a script to clean data, rather than cleaning it by hand in Excel)
+    
+- If any 'non-scriptable' steps are unavoidable, document those steps very clearly
 
+- Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
 
+# Reproducible Reporting {background-color="#007CBA" style="text-align: center;"}
 
 ## Reproducible Reporting
 
+::: incremental
 
-- R Markdown & Quarto are tools for integrating R code and narrative text into a single document, which can be rendered into various output formats (HTML, PDF, Word, and slides)
+- [R Markdown]{.emphasized} & [Quarto]{.emphasized} are tools for integrating R code and narrative text into a single executable document
 
-- Integration of Code and Analysis- Combines code, output, and text in a single file. Documents automatically update when data or code changes, reducing errors and maintaining consistency.
+- Can be rendered into various **output formats** (HTML, PDF, Word, and slides)
 
-- Supports dynamic document generation-  results can be regenerated at any time.
+- Detailed code and data analysis steps are included in one document, encouraging **transparency** and providing a complete record of the research process 
 
-- Transparency-  Detailed code and data analysis steps are included, making it easier for others to verify and reproduce the results. providing a complete record of the research process.
+- Documents automatically update when data or code changes, **reducing errors** and **maintaining consistency**.
 
-Version Control Compatibility-  Supports integration with version control systems like Git, facilitating collaboration and tracking changes.
+- Version-control compatible 
+:::
 
+## Quick Aside: R Markdown vs. Quarto?
 
+- **RStudio is Now Posit**, aiming to broaden their scope to include software for other programming languages (e.g Python, Julia)
 
-## R Markdown v.s Quarto
+-   New publishing system called Quarto (already launched) is part of this multilanguage effort
+
+![](images/rstudio-posit.png)
+
+## What is Quarto?
 
 ::: incremental
+-   [Quarto]{.emphasized} is a multi-language, next generation version of R Markdown from RStudio
+
+-   [This change shouldn't affect R users much]{.emphasized} - it can render most existing Rmd files with few changes
+
+-  Do I Have to Switch From R Markdown? [Nope!]{.emphasized} R Markdown is not going away and will continue to be supported
+
+- However, Quarto has some exciting features (some shown today) and will continue to develop and mature.
+
+![](images/rmd-quarto.png){fig-align="center"}
+
+
+:::
+
+
+## Moving From R Markdown
+
+::: incremental
+
+Quarto documents end in `.qmd` instead of `.rmd` and have some minimal required formatting changes:
+
+<br>
+
 \-[YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
 
 \-[Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
 
 \-[Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
 :::
+
+
+
+
 
 
 ## Moving From R Markdown: YAML Header
@@ -251,11 +286,13 @@ execute:
 
 ::: columns
 ::: column
+
 **R Markdown:**
 
-```{r,echo=TRUE,result=FALSE,include=TRUE}
+```{{r}}
 print("hi")
 ```
+
 :::
 
 ::: column
@@ -291,21 +328,6 @@ The layout attribute is a 2-dimensional array where the first dimension defines 
 
 ![](images/Elephant.png)
 
-## Figures Layout Within the YAML Chunk Option
-
-```{r}
-#| echo: fenced
-#| include: True
-#| layout-ncol: 2
-#| fig-cap: 
-#|   - "Speed and Stopping Distances of Cars"
-#|   - "Vapor Pressure of Mercury as a Function of Temperature"
-
-plot(cars)
-plot(pressure)
-
-```
-
 
 ## Quarto Features: Callouts and Comments
 
@@ -334,66 +356,21 @@ Here is an example of a warning
 :::
 
 
-## {biostatR}: The 'tidyverse' of Analytic Reporting
 
-::: columns
-::: {.column .incremental width="40%"}
--   [**{biostatR}**]{.emphasized} is a set of packages to help you create and customize analysis reports
 
--   Installs and loads 3 useful packages
+## Quarto Features: Tabs
 
--   Also installs (without loading) additional packages to improve your workflow (meaning you'll need to load these 'extra packages' explicitly with `library()`).
-:::
-
-::: {.column width="60%"}
-![](images/biostatrumbrella.png)
-:::
+::::{.columns}
+:::{.column}
+![](images/tab_code.png)
 :::
 
 
-## Three Main Component Packages
-
-## Three Main Component Packages {auto-animate="true"}
-
-::: columns
-::: {.column width="50%"}
-1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
+:::{.column}
+![](images/tab_image.png)
 :::
+::::
 
-::: column
-![](images/rerer_gtsummary.png)
-:::
-:::
-
-## Three Main Component Packages {auto-animate="true"}
-
-::: columns
-::: {.column width="50%"}
-1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
-
-2. [**{bstfun}**]{.emphasized} - A miscellaneous collection of functions for our department
-:::
-
-::: column
-![](images/rerer_bstfun.png)
-:::
-:::
- 
-## Three Main Component Packages {auto-animate="true"}
-
-::: columns
-::: {.column width="50%"}
-1. [**{gtsummary}**]{.emphasized} - Tools for creating publication-ready statistical summary tables
-
-2. [**{bstfun}**]{.emphasized} - A miscellaneous collection of functions for our department
-
-3. [**{lubridate}**]{.emphasized} - Tools to work with date-times in R
-:::
-
-::: column
-![](images/rerer_lubridate.png)
-:::
-:::
 
 {{< include 01-gtsummary.qmd >}}
 
@@ -401,4 +378,16 @@ Here is an example of a warning
 
 {{< include 03-lubridate-and-bonus.qmd >}}
 
-{{< include 04-rmd-quarto.qmd >}}
+# Thank You!!!
+
+[Questions?]{.large}
+
+## Resources
+
+- {biostaR} - <https://github.mskcc.org/pages/datadojo/biostatR/index.html>
+- {gtsummary} - <https://www.danieldsjoberg.com/gtsummary/>
+- {bstfun} - <https://www.danieldsjoberg.com/bstfun/index.html>
+- Departmental Resource Guide - <https://rconnect.mskcc.org/resource-guide/>
+- Quarto Docs - <https://quarto.org/docs/guide/>
+- Quarto Blog Post by Alison Hill - <https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/>
+

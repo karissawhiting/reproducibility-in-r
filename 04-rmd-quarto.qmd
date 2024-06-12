@@ -1,18 +1,4 @@
 
-# R Markdown Tips {background-color="#007CBA" style="text-align: center;"}
-
-## Add Tabs to Your Report
-
-::::{.columns}
-:::{.column}
-![](images/tab_code.png)
-:::
-
-
-:::{.column}
-![](images/tab_image.png)
-:::
-::::
 
 # Quarto {background-color="#007CBA" style="text-align: center;"}
 
