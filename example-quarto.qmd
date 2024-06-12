@@ -2,10 +2,10 @@
 title: "Example Statistical Analysis"
 author: "Karissa Whiting"
 execute:
-  freeze: true
   echo: false
   message: false
   warning: false
+  error: true
 format:
   html:
     default: true
