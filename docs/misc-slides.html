@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>bstfun – reproducibility-in-R</title>
+<title>misc-slides – reproducibility-in-R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,66 +117,245 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="section" class="level2" data-background-color="#007CBA" style="text-align: center;">
-<h2 data-background-color="#007CBA" style="text-align: center;" class="anchored" data-anchor-id="section"></h2>
-<p><img src="images/rerer_bstfun.png" class="img-fluid"></p>
-</section>
-<section id="bstfun" class="level2">
-<h2 class="anchored" data-anchor-id="bstfun">{bstfun}</h2>
+<section id="quick-aside-r-markdown-vs.-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quick-aside-r-markdown-vs.-quarto">Quick Aside: R Markdown vs.&nbsp;Quarto?</h2>
 <ul>
-<li><p>A <span class="emphasized">shared space</span> for department members to add functions that may be useful to others</p></li>
-<li><p>Houses individual member’s <span class="emphasized">project templates</span> and function to start projects (<code>create_bst_project()</code>: will be discussed in further training)</p></li>
-<li><p>Diverse functions for various analysis-related tasks, <span class="emphasized">{bstfun} Reference Index</span>: <a href="https://mskcc-epi-bio.github.io/bstfun/" class="uri">https://mskcc-epi-bio.github.io/bstfun/</a></p></li>
+<li><p><strong>RStudio is Now Posit</strong>, aiming to broaden their scope to include software for other programming languages (e.g Python, Julia)</p></li>
+<li><p>New publishing system called Quarto (already launched) is part of this multilanguage effort</p></li>
 </ul>
+<p><img src="images/rstudio-posit.png" class="img-fluid"></p>
 </section>
-<section id="bstfun-useful-functions" class="level2">
-<h2 class="anchored" data-anchor-id="bstfun-useful-functions">{bstfun} Useful Functions</h2>
-<p><span class="emphasized">clean_mrn()</span></p>
-<p>MRNs follows specific formatting rules:</p>
-<ul>
-<li><p>Must be character</p></li>
-<li><p>Must contain only numeric components</p></li>
-<li><p>Must be eight characters long and include leading zeros.</p></li>
+<section id="what-is-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
+<div class="incremental">
+<ul class="incremental">
+<li><p><span class="emphasized">Quarto</span> is a multi-language, next generation version of R Markdown from RStudio</p></li>
+<li><p><span class="emphasized">This change shouldn’t affect R users much</span> - it can render most existing Rmd files with few changes</p></li>
+<li><p>Do I Have to Switch From R Markdown? <span class="emphasized">Nope!</span> R Markdown is not going away and will continue to be supported</p></li>
+<li><p>However, Quarto has some exciting features (some shown today) and will continue to develop and mature.</p></li>
 </ul>
-<p>This function converts numeric MRNs to character and ensures it follows MRN conventions. Character MRNs can also be passed, and leading zeros will be appended and checked for consistency.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fake_mrn <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"00100"</span>, <span class="st">"100"</span>, <span class="st">"0100"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fake_mrn <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  bstfun<span class="sc">::</span><span class="fu">clean_mrn</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in fake_mrn %&gt;% bstfun::clean_mrn(): could not find function "%&gt;%"</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rmd-quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 </div>
 </section>
-<section id="bstfun-useful-functions-1" class="level2">
-<h2 class="anchored" data-anchor-id="bstfun-useful-functions-1">{bstfun} Useful Functions</h2>
-<p><span class="emphasized">use_varnames_as_labels()</span></p>
-<p>Automatically add labels to your data based on column names</p>
+<section id="moving-from-r-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown">Moving From R Markdown</h2>
+<div class="incremental">
+<p>Quarto documents end in <code>.qmd</code> instead of <code>.rmd</code> and have some minimal required formatting changes:</p>
+<p><br></p>
+<p>-<span class="emphasized">YAML Header</span> now uses <code>format</code> instead of <code>output</code> and allows auto-complete to make editing the YAML more fool-proof.</p>
+<p>-<span class="emphasized">Global chunk options</span> are set in YAML header using <code>execute</code> instead of in a knitr setup chunk.</p>
+<p>-<span class="emphasized">Individual chunk options</span> are also set in YAML in each chunk as needed, using the “hashpipe” (<code>#|</code>).</p>
+</div>
+</section>
+<section id="moving-from-r-markdown-yaml-header" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-header">Moving From R Markdown: YAML Header</h2>
+<ul>
+<li><span class="emphasized">YAML Header</span> now uses <code>format</code> instead of <code>output</code> and allows auto-complete to make editing the YAML more fool-proof.</li>
+</ul>
+</section>
+<section id="moving-from-r-markdown-yaml-header-1" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-header-1">Moving From R Markdown: YAML Header</h2>
+<ul>
+<li><span class="emphasized">YAML Header</span> now uses <code>format</code> instead of <code>output</code> and allows auto-complete to make editing the YAML more fool-proof.</li>
+</ul>
 <div class="columns">
 <div class="column">
-<p><strong>Before:</strong></p>
+<p><strong>R Markdown:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, cyl, vs, am) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in mtcars %&gt;% select(mpg, cyl, vs, am) %&gt;% tbl_summary(): could not find function "%&gt;%"</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column">
-<p><strong>After:</strong></p>
+<p><strong>Quarto:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, cyl, vs, am) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  bstfun<span class="sc">::</span><span class="fu">use_varnames_as_labels</span>(<span class="at">caps =</span> <span class="fu">c</span>(mpg, vs), <span class="at">exclude =</span> cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="moving-from-r-markdown-yaml-header-2" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-header-2">Moving From R Markdown: YAML Header 2</h2>
+<ul>
+<li><span class="emphasized">Global chunk options</span> are set in YAML header using <code>execute</code> instead of in a knitr setup chunk.</li>
+</ul>
+</section>
+<section id="moving-from-r-markdown-yaml-header-2-1" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-header-2-1">Moving From R Markdown: YAML Header 2</h2>
+<ul>
+<li><span class="emphasized">Global chunk options</span> are set in YAML header using <code>execute</code> instead of in a knitr setup chunk.</li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><strong>R Markdown:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<p><strong>Quarto:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My-Title"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Until now!"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="moving-from-r-markdown-yaml-chunk-options" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-chunk-options">Moving From R Markdown: YAML Chunk Options</h2>
+<ul>
+<li><span class="emphasized">Individual chunk options</span> are also set in YAML in each chunk as needed, using the “hashpipe” (<code>#|</code>).</li>
+</ul>
+</section>
+<section id="moving-from-r-markdown-yaml-chunk-options-1" class="level2">
+<h2 class="anchored" data-anchor-id="moving-from-r-markdown-yaml-chunk-options-1">Moving From R Markdown: YAML Chunk Options</h2>
+<ul>
+<li><span class="emphasized">Individual chunk options</span> are also set in YAML in each chunk as needed, using the “hashpipe” (<code>#|</code>).</li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><strong>R Markdown:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">print("hi")</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p><strong>Quarto:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| include: True</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| results: false</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="in">print("hi")</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quarto-features-flexible-layouts-with-multiple-columns" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-features-flexible-layouts-with-multiple-columns">Quarto Features: Flexible Layouts With Multiple Columns</h2>
+<p>How to specify multiple column layout:</p>
+<p><img src="images/multiple.columns.png" class="img-fluid"></p>
+</section>
+<section id="quarto-flexible-layout-using-layout" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-flexible-layout-using-layout">Quarto flexible layout using {layout}</h2>
+<p><img src="images/quarto3.png" class="img-fluid"></p>
+<div class="notes">
+<p>You can now easily organize your report using various layouts including column formats Here, we want the first image spans the entire first row and two equal sized figure in the second row</p>
+<p>The layout attribute is a 2-dimensional array where the first dimension defines rows and the second columns. In this case “layout=”[[1,1], [1]]” translates to: create two rows, the first of which has two columns of equal size and the second of which has a single column.</p>
+</div>
+</section>
+<section id="quarto-flexible-layout-using-layout-1" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-flexible-layout-using-layout-1">Quarto flexible layout using {layout}</h2>
+<p><img src="images/Elephant.png" class="img-fluid"></p>
+</section>
+<section id="customize-tbl_summary-using-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="customize-tbl_summary-using-arguments">Customize tbl_summary() Using Arguments</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  sm_trial,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> trt,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> age <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      age <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{mean} ({sd})"</span>, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">"{min}, {max}"</span>), </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      response <span class="sc">~</span> <span class="st">"{n} / {N} ({p}%)"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    grade <span class="sc">~</span> <span class="st">"Pathologic tumor grade"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> age <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in mtcars %&gt;% select(mpg, cyl, vs, am) %&gt;% bstfun::use_varnames_as_labels(caps = c(mpg, : could not find function "%&gt;%"</code></pre>
+<pre><code>Error in tbl_summary(sm_trial, by = trt, type = age ~ "continuous2", statistic = list(age ~ : could not find function "tbl_summary"</code></pre>
+</div>
+</div>
+<div class="small">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p><code>by</code>: specifies a column variable for cross-tabulation</p></li>
+<li><p><code>type</code>: specifies the summary type</p></li>
+<li><p><code>statistic</code>: customize the reported statistics</p></li>
+<li><p><code>label</code>: change or customize variable labels</p></li>
+<li><p><code>digits</code>: specify the number of decimal places for rounding</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+
 </div>
 </div>
 </div>
+</section>
+<section id="update-tbl_summary-with-add_" class="level2">
+<h2 class="anchored" data-anchor-id="update-tbl_summary-with-add_">Update tbl_summary() with add_*()</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sm_trial <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">by =</span> trt</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">add_q</span>(<span class="at">method =</span> <span class="st">"fdr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sm_trial %&gt;% tbl_summary(by = trt) %&gt;% add_p() %&gt;% add_q(method = "fdr"): could not find function "%&gt;%"</code></pre>
 </div>
+</div>
+<ul>
+<li><p><code>add_p()</code>: adds a column of p-values</p></li>
+<li><p><code>add_q()</code>: adds a column of p-values adjusted for multiple comparisons through a call to <code>p.adjust()</code></p></li>
+</ul>
+</section>
+<section id="update-tbl_summary-with-add_-1" class="level2">
+<h2 class="anchored" data-anchor-id="update-tbl_summary-with-add_-1">Update tbl_summary() with add_*()</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>sm_trial <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">by =</span> trt,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">missing =</span> <span class="st">"no"</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">add_n</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">add_stat_label</span>(</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="at">label =</span> <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"No. (%)"</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sm_trial %&gt;% tbl_summary(by = trt, missing = "no") %&gt;% add_overall() %&gt;% : could not find function "%&gt;%"</code></pre>
+</div>
+</div>
+<ul>
+<li><code>add_overall()</code>: adds a column of overall statistics</li>
+<li><code>add_n()</code>: adds a column with the sample size</li>
+<li><code>add_stat_label()</code>: adds a description of the reported statistic</li>
+</ul>
+</section>
+<section id="update-with-bold_-or-italicize_" class="level2">
+<h2 class="anchored" data-anchor-id="update-with-bold_-or-italicize_">Update with bold_*() or italicize_*()</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>sm_trial <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">by =</span> trt</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">add_p</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">italicize_levels</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">bold_p</span>(<span class="at">t =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sm_trial %&gt;% tbl_summary(by = trt) %&gt;% add_p() %&gt;% bold_labels() %&gt;% : could not find function "%&gt;%"</code></pre>
+</div>
+</div>
+<ul>
+<li><code>bold_labels()</code>: bold the variable labels</li>
+<li><code>italicize_levels()</code>: italicize the variable levels</li>
+<li><code>bold_p()</code>: bold p-values according a specified threshold</li>
+</ul>
 
 
 </section>

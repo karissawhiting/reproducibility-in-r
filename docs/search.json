@@ -21,6 +21,20 @@
     "text": "Why is Reproducibility Important?\nDangers of writing code that is hard to double-check or confirm:\n\nThe New York Times"
   },
   {
+    "objectID": "index.html#updated-nih-guidelines",
+    "href": "index.html#updated-nih-guidelines",
+    "title": "reproducibility-in-R",
+    "section": "Updated NIH Guidelines",
+    "text": "Updated NIH Guidelines\nNIH Data Management & Sharing Policy Updates\n\nEffective Date: January 25, 2023\nPurpose: Enhance data sharing to advance research transparency & reproducibility\n\n\nKey Requirements:\n\nAs of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)\nThis plan will likely requires sharing of research data, and in some cases, code.\nYou may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant."
+  },
+  {
+    "objectID": "index.html#five-pillars-of-reproducibility",
+    "href": "index.html#five-pillars-of-reproducibility",
+    "title": "reproducibility-in-R",
+    "section": "Five Pillars Of Reproducibility",
+    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
+  },
+  {
     "objectID": "index.html#how-do-we-ensure-our-code-is-reproducible",
     "href": "index.html#how-do-we-ensure-our-code-is-reproducible",
     "title": "reproducibility-in-R",
@@ -28,95 +42,18 @@
     "text": "How Do We Ensure Our Code is Reproducible?\n\nCompute Environment Control\n\nVirtual environments, avoid absolute file paths (e.g. ~/Users/Whiting/Projects...)\n\nCode Version Control\n\nDocument changes you make, or use git/Github\n\nDocumentation\n\nComment and document your code\nInvest in a good README.md\n\nData Integrity - more details later\nLiterate Programming\n\nHave a clear project structure, avoid ‘by hand’ steps"
   },
   {
-    "objectID": "index.html#how-do-we-ensure-our-code-is-reproducible-1",
-    "href": "index.html#how-do-we-ensure-our-code-is-reproducible-1",
+    "objectID": "index.html#literate-programming",
+    "href": "index.html#literate-programming",
     "title": "reproducibility-in-R",
-    "section": "How Do We Ensure Our Code is Reproducible?",
-    "text": "How Do We Ensure Our Code is Reproducible?\nAvoid ‘by hand’ steps used in the analysis\n\nAll analysis steps should be done using code and saved in well-documented scripts (e.g. you should use a script to clean data, rather than cleaning it by hand in Excel)\nIf any ‘non-scriptable’ steps are unavoidable, document those steps very clearly\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)"
+    "section": "Literate Programming",
+    "text": "Literate Programming\nAvoid ‘by hand’ steps used in the analysis\n\nDon’t clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.\nIf any ‘non-scriptable’ steps are unavoidable, document those steps very clearly\nDNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)"
   },
   {
-    "objectID": "index.html#reproducible-reporting",
-    "href": "index.html#reproducible-reporting",
+    "objectID": "index.html#reproducible-reporting-1",
+    "href": "index.html#reproducible-reporting-1",
     "title": "reproducibility-in-R",
     "section": "Reproducible Reporting",
-    "text": "Reproducible Reporting\n\n\nR Markdown & Quarto are tools for integrating R code and narrative text into a single document\nThese can can be rendered into various output formats (HTML, PDF, Word, and slides)\nTransparency- Detailed code and data analysis steps are included, making it easier for others to verify and reproduce the results. providing a complete record of the research process.\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion control compatible. Integrates with Git for tracking changes."
-  },
-  {
-    "objectID": "index.html#r-markdown-v.s-quarto",
-    "href": "index.html#r-markdown-v.s-quarto",
-    "title": "reproducibility-in-R",
-    "section": "R Markdown v.s Quarto",
-    "text": "R Markdown v.s Quarto\n\n-YAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof.\n-Global chunk options are set in YAML header using execute instead of in a knitr setup chunk.\n-Individual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|)."
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header",
-    "href": "index.html#moving-from-r-markdown-yaml-header",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header",
-    "text": "Moving From R Markdown: YAML Header\n\nYAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof."
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header-1",
-    "href": "index.html#moving-from-r-markdown-yaml-header-1",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header",
-    "text": "Moving From R Markdown: YAML Header\n\nYAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof.\n\n\n\nR Markdown:\ntitle: \"My Document\"\noutput:\n  html_document:\n    toc: true\n    number_sections: true\n    css: styles.css\n\nQuarto:\ntitle: \"My Document\"\nformat:\n  html:\n    toc: true\n    number-sections: true\n    css: styles.css"
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header-2",
-    "href": "index.html#moving-from-r-markdown-yaml-header-2",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header 2",
-    "text": "Moving From R Markdown: YAML Header 2\n\nGlobal chunk options are set in YAML header using execute instead of in a knitr setup chunk."
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header-2-1",
-    "href": "index.html#moving-from-r-markdown-yaml-header-2-1",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header 2",
-    "text": "Moving From R Markdown: YAML Header 2\n\nGlobal chunk options are set in YAML header using execute instead of in a knitr setup chunk.\n\n\n\nR Markdown:\nknitr::opts_chunk$set(echo=FALSE)\n\nQuarto:\ntitle: \"My-Title\"\nsubtitle: \"Until now!\"\nexecute:\n  echo: false"
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-chunk-options",
-    "href": "index.html#moving-from-r-markdown-yaml-chunk-options",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Chunk Options",
-    "text": "Moving From R Markdown: YAML Chunk Options\n\nIndividual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|)."
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-chunk-options-1",
-    "href": "index.html#moving-from-r-markdown-yaml-chunk-options-1",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Chunk Options",
-    "text": "Moving From R Markdown: YAML Chunk Options\n\nIndividual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|).\n\n\n\nR Markdown:\n```{r}\nprint(\"hi\")\n```\n\nQuarto:\n\n```{r}\n#| include: True\n#| results: false\nprint(\"hi\")\n```"
-  },
-  {
-    "objectID": "index.html#quarto-features-flexible-layouts-with-multiple-columns",
-    "href": "index.html#quarto-features-flexible-layouts-with-multiple-columns",
-    "title": "reproducibility-in-R",
-    "section": "Quarto Features: Flexible Layouts With Multiple Columns",
-    "text": "Quarto Features: Flexible Layouts With Multiple Columns\nHow to specify multiple column layout:"
-  },
-  {
-    "objectID": "index.html#quarto-flexible-layout-using-layout",
-    "href": "index.html#quarto-flexible-layout-using-layout",
-    "title": "reproducibility-in-R",
-    "section": "Quarto flexible layout using {layout}",
-    "text": "Quarto flexible layout using {layout}\n\n\nYou can now easily organize your report using various layouts including column formats Here, we want the first image spans the entire first row and two equal sized figure in the second row\nThe layout attribute is a 2-dimensional array where the first dimension defines rows and the second columns. In this case “layout=”[[1,1], [1]]” translates to: create two rows, the first of which has two columns of equal size and the second of which has a single column."
-  },
-  {
-    "objectID": "index.html#quarto-flexible-layout-using-layout-1",
-    "href": "index.html#quarto-flexible-layout-using-layout-1",
-    "title": "reproducibility-in-R",
-    "section": "Quarto flexible layout using {layout}",
-    "text": "Quarto flexible layout using {layout}"
-  },
-  {
-    "objectID": "index.html#figures-layout-within-the-yaml-chunk-option",
-    "href": "index.html#figures-layout-within-the-yaml-chunk-option",
-    "title": "reproducibility-in-R",
-    "section": "Figures Layout Within the YAML Chunk Option",
-    "text": "Figures Layout Within the YAML Chunk Option\n\n```{r}\n#| include: True\n#| layout-ncol: 2\n#| fig-cap:\n#|   - \"Speed and Stopping Distances of Cars\"\n#|   - \"Vapor Pressure of Mercury as a Function of Temperature\"\n\nplot(cars)\nplot(pressure)\n```"
+    "text": "Reproducible Reporting\n\nR Markdown, Quarto and Jupyter are tools for integrating code and narrative text into a single executable document\nCan be rendered into various output formats (HTML, PDF, Word, and slides)\nDetailed code and data analysis steps are included in one document, encouraging transparency and providing a complete record of the research process\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion-control compatible"
   },
   {
     "objectID": "index.html#quarto-features-callouts-and-comments",
@@ -126,39 +63,18 @@
     "text": "Quarto Features: Callouts and Comments\nSometimes you need to draw attention to something in your report. You can do this using {.callout-note}\n::: {.callout-note}\nNote that there are five types of callouts, including:\n`note`, `warning`, `important`, `tip`, and `caution`.\n:::\n\n\n\n\n\n\nNote\n\n\nNote that there are five types of callouts, including: note, warning, important, tip, and caution.\n\n\n\n::: {.callout-warning}\nHere is an example of a warning\n:::\n\n\n\n\n\n\nWarning\n\n\nHere is an example of a warning"
   },
   {
-    "objectID": "index.html#biostatr-the-tidyverse-of-analytic-reporting",
-    "href": "index.html#biostatr-the-tidyverse-of-analytic-reporting",
+    "objectID": "index.html#quarto-features-tabs",
+    "href": "index.html#quarto-features-tabs",
     "title": "reproducibility-in-R",
-    "section": "{biostatR}: The ‘tidyverse’ of Analytic Reporting",
-    "text": "{biostatR}: The ‘tidyverse’ of Analytic Reporting\n\n\n\n{biostatR} is a set of packages to help you create and customize analysis reports\nInstalls and loads 3 useful packages\nAlso installs (without loading) additional packages to improve your workflow (meaning you’ll need to load these ‘extra packages’ explicitly with library())."
+    "section": "Quarto Features: Tabs",
+    "text": "Quarto Features: Tabs"
   },
   {
-    "objectID": "index.html#three-main-component-packages",
-    "href": "index.html#three-main-component-packages",
+    "objectID": "index.html#gtsummary",
+    "href": "index.html#gtsummary",
     "title": "reproducibility-in-R",
-    "section": "Three Main Component Packages",
-    "text": "Three Main Component Packages"
-  },
-  {
-    "objectID": "index.html#three-main-component-packages-1",
-    "href": "index.html#three-main-component-packages-1",
-    "title": "reproducibility-in-R",
-    "section": "Three Main Component Packages",
-    "text": "Three Main Component Packages\n\n\n\n{gtsummary} - Tools for creating publication-ready statistical summary tables"
-  },
-  {
-    "objectID": "index.html#three-main-component-packages-2",
-    "href": "index.html#three-main-component-packages-2",
-    "title": "reproducibility-in-R",
-    "section": "Three Main Component Packages",
-    "text": "Three Main Component Packages\n\n\n\n{gtsummary} - Tools for creating publication-ready statistical summary tables\n{bstfun} - A miscellaneous collection of functions for our department"
-  },
-  {
-    "objectID": "index.html#three-main-component-packages-3",
-    "href": "index.html#three-main-component-packages-3",
-    "title": "reproducibility-in-R",
-    "section": "Three Main Component Packages",
-    "text": "Three Main Component Packages\n\n\n\n{gtsummary} - Tools for creating publication-ready statistical summary tables\n{bstfun} - A miscellaneous collection of functions for our department\n{lubridate} - Tools to work with date-times in R"
+    "section": "gtsummary",
+    "text": "gtsummary\n\n{gtsummary} - Tools to create publication-ready analytical and summary tables using the R programming language.\nSummarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities."
   },
   {
     "objectID": "index.html#gtsummary-overview",
@@ -175,18 +91,11 @@
     "text": "Basic tbl_summary()\n\n\nsm_trial &lt;- trial %&gt;% \n  select(trt, age, grade, response)\n\nsm_trial %&gt;%\n  select(-trt) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 2001\n\n\n\n\nAge\n47 (38, 57)\n\n\n    Unknown\n11\n\n\nGrade\n\n\n\n\n    I\n68 (34%)\n\n\n    II\n68 (34%)\n\n\n    III\n64 (32%)\n\n\nTumor Response\n61 (32%)\n\n\n    Unknown\n7\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\n\nFour types of summaries: continuous, continuous2, categorical, and dichotomous\nVariables coded 0/1, TRUE/FALSE, Yes/No treated as dichotomous\nStatistics are median (IQR) for continuous, n (%) for categorical/dichotomous\nLists NA values under “Unknown”\nLabel attributes are printed automatically"
   },
   {
-    "objectID": "index.html#customize-tbl_summary-using-arguments",
-    "href": "index.html#customize-tbl_summary-using-arguments",
+    "objectID": "index.html#survival-outcomes-with-tbl_survfit",
+    "href": "index.html#survival-outcomes-with-tbl_survfit",
     "title": "reproducibility-in-R",
-    "section": "Customize tbl_summary() Using Arguments",
-    "text": "Customize tbl_summary() Using Arguments\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)"
-  },
-  {
-    "objectID": "index.html#customize-tbl_summary-using-arguments-1",
-    "href": "index.html#customize-tbl_summary-using-arguments-1",
-    "title": "reproducibility-in-R",
-    "section": "Customize tbl_summary() Using Arguments",
-    "text": "Customize tbl_summary() Using Arguments\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\nby: specifies a column variable for cross-tabulation\ntype: specifies the summary type\nstatistic: customize the reported statistics\nlabel: change or customize variable labels\ndigits: specify the number of decimal places for rounding"
+    "section": "Survival outcomes with tbl_survfit()",
+    "text": "Survival outcomes with tbl_survfit()\nlibrary(survival)\nfit &lt;- survfit(Surv(ttdeath, death) ~ trt, trial)\ntbl_survfit(\n  fit, \n  times = c(12, 24),\n  label_header = \"**{time} Month**\"\n) %&gt;%\n  add_p()\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n12 Month\n24 Month\np-value1\n\n\n\n\nChemotherapy Treatment\n\n\n\n\n0.2\n\n\n    Drug A\n91% (85%, 97%)\n47% (38%, 58%)\n\n\n\n\n    Drug B\n86% (80%, 93%)\n41% (33%, 52%)\n\n\n\n\n\n1 Log-rank test\n\n\n\n\n\n\n\nAlso, regression (and more) models with tbl_regression() and tbl_uvregression()"
   },
   {
     "objectID": "index.html#gtsummary-formulas",
@@ -203,88 +112,74 @@
     "text": "Customize Using Add-on Functions\nSummary tables can be further updated using helper functions:\n\n\nadd_*() add additional column of statistics or information, e.g. p-values, q-values, overall statistics, treatment differences, N obs., and more\nmodify_*() modify table headers, spanning headers, footnotes, and more\nbold_()/italicize_() style labels, variable levels, significant p-values"
   },
   {
-    "objectID": "index.html#update-tbl_summary-with-add_",
-    "href": "index.html#update-tbl_summary-with-add_",
+    "objectID": "index.html#advanced-tips-update-tbl_summary-with-modify_",
+    "href": "index.html#advanced-tips-update-tbl_summary-with-modify_",
     "title": "reproducibility-in-R",
-    "section": "Update tbl_summary() with add_*()",
-    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;% \n  add_p() %&gt;% \n  add_q(method = \"fdr\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\nq-value3\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n0.7\n0.9\n\n\n    Unknown\n7\n4\n\n\n\n\n\n\nGrade\n\n\n\n\n0.9\n0.9\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n\nTumor Response\n28 (29%)\n33 (34%)\n0.5\n0.9\n\n\n    Unknown\n3\n4\n\n\n\n\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n3 False discovery rate correction for multiple testing\n\n\n\n\n\n\n\n\nadd_p(): adds a column of p-values\nadd_q(): adds a column of p-values adjusted for multiple comparisons through a call to p.adjust()"
+    "section": "Advanced Tips: Update tbl_summary() with modify_*()",
+    "text": "Advanced Tips: Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
   },
   {
-    "objectID": "index.html#update-tbl_summary-with-add_-1",
-    "href": "index.html#update-tbl_summary-with-add_-1",
+    "objectID": "index.html#advanced-tips-continuous2-digits",
+    "href": "index.html#advanced-tips-continuous2-digits",
     "title": "reproducibility-in-R",
-    "section": "Update tbl_summary() with add_*()",
-    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt,\n    missing = \"no\"\n  ) %&gt;% \n  add_overall() %&gt;% \n  add_n() %&gt;% \n  add_stat_label(\n    label = all_categorical() ~ \"No. (%)\"\n  ) \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOverall N = 200\nDrug A N = 98\nDrug B N = 102\n\n\n\n\nAge, Median (Q1, Q3)\n189\n47 (38, 57)\n46 (37, 60)\n48 (39, 56)\n\n\nGrade, No. (%)\n200\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n35 (36%)\n33 (32%)\n\n\n    II\n\n\n68 (34%)\n32 (33%)\n36 (35%)\n\n\n    III\n\n\n64 (32%)\n31 (32%)\n33 (32%)\n\n\nTumor Response, No. (%)\n193\n61 (32%)\n28 (29%)\n33 (34%)\n\n\n\n\n\n\n\nadd_overall(): adds a column of overall statistics\nadd_n(): adds a column with the sample size\nadd_stat_label(): adds a description of the reported statistic"
+    "section": "Advanced Tips: continuous2 & digits",
+    "text": "Advanced Tips: continuous2 & digits\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
   },
   {
-    "objectID": "index.html#update-with-bold_-or-italicize_",
-    "href": "index.html#update-with-bold_-or-italicize_",
+    "objectID": "index.html#advanced-tips-tbl_continuous",
+    "href": "index.html#advanced-tips-tbl_continuous",
     "title": "reproducibility-in-R",
-    "section": "Update with bold_*() or italicize_*()",
-    "text": "Update with bold_*() or italicize_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;%\n  add_p() %&gt;% \n  bold_labels() %&gt;% \n  italicize_levels() %&gt;% \n  bold_p(t = 0.8)\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n0.7\n\n\n    Unknown\n7\n4\n\n\n\n\nGrade\n\n\n\n\n0.9\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\nTumor Response\n28 (29%)\n33 (34%)\n0.5\n\n\n    Unknown\n3\n4\n\n\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n\n\n\n\n\n\nbold_labels(): bold the variable labels\nitalicize_levels(): italicize the variable levels\nbold_p(): bold p-values according a specified threshold"
+    "section": "Advanced Tips: tbl_continuous()",
+    "text": "Advanced Tips: tbl_continuous()\nSummarize a continuous variable within categories and across different strata.\n\n\ntbl_continuous(\n  data = trial,\n  variable = age,\n  by = trt,\n  include = c(grade, response)\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nGrade\n\n\n\n\n\n\n    I\n46 (36, 60)\n48 (42, 55)\n\n\n    II\n45 (31, 55)\n51 (42, 58)\n\n\n    III\n52 (42, 61)\n45 (36, 52)\n\n\nTumor Response\n\n\n\n\n\n\n    0\n46 (36, 60)\n47 (37, 54)\n\n\n    1\n48 (41, 61)\n49 (43, 59)\n\n\n\n1 Age: Median (Q1, Q3)"
   },
   {
-    "objectID": "index.html#update-tbl_summary-with-modify_",
-    "href": "index.html#update-tbl_summary-with-modify_",
+    "objectID": "index.html#advanced-tips-custom-p-value-functions",
+    "href": "index.html#advanced-tips-custom-p-value-functions",
     "title": "reproducibility-in-R",
-    "section": "Update tbl_summary() with modify_*()",
-    "text": "Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
+    "section": "Advanced Tips: Custom p-value functions",
+    "text": "Advanced Tips: Custom p-value functions\n\nMany tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html\nIf you need one not on the list, create a custom function (use broom tidy at the end)\n\n\n\n# define function (need to use these arguments)\ncalculate_prop_test &lt;- function(data, variable, by, ...) {\n  data &lt;- tidyr::drop_na(data, dplyr::all_of(c(variable, by)))\n  prop.trend.test(\n    x = table(data[[variable]], data[[by]])[2, ], # get the second row (the positive row)\n    n = table(data[[by]])) |&gt; \n    broom::tidy()\n}\n\ntrial[c(\"grade\", \"trt\")] %&gt;%\n  tbl_summary(by = trt) %&gt;%\n  add_p(test = grade ~ \"calculate_prop_test\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nGrade\n\n\n\n\n0.7\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n1 n (%)\n\n\n2 Chi-squared Test for Trend in Proportions"
   },
   {
-    "objectID": "index.html#customize-using-add-on-functions-1",
-    "href": "index.html#customize-using-add-on-functions-1",
+    "objectID": "index.html#advanced-tips-tbl_uvregression-with-formula",
+    "href": "index.html#advanced-tips-tbl_uvregression-with-formula",
     "title": "reproducibility-in-R",
-    "section": "Customize Using Add-on Functions",
-    "text": "Customize Using Add-on Functions\nMany more customization available!\n\nSee the documentation at http://www.danieldsjoberg.com/gtsummary/reference/index.html\nAnd a detailed tbl_summary() vignette at http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html"
+    "section": "Advanced Tips: tbl_uvregression() with formula",
+    "text": "Advanced Tips: tbl_uvregression() with formula\n\nformula argument is powerful! You can adjust for variables, or pass mixed model formats (e.g. \"{y} ~ {x} + (1 | gear)\")\nAdditionally, add_global_p() can be useful\n\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    formula = \"{y} ~ {x} + age\",\n    include = -c(age), \n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels() %&gt;%\n  add_global_p()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n183\n\n\n\n\n0.7\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.13\n0.60, 2.13\n\n\n\n\nGrade\n183\n\n\n\n\n0.9\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.85\n0.39, 1.85\n\n\n\n\n    III\n\n\n1.01\n0.47, 2.16\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
   },
   {
-    "objectID": "index.html#quick-code-exercise",
-    "href": "index.html#quick-code-exercise",
+    "objectID": "index.html#advanced-tip-tbl_merge",
+    "href": "index.html#advanced-tip-tbl_merge",
     "title": "reproducibility-in-R",
-    "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nSee documentation for help: https://www.danieldsjoberg.com/gtsummary/"
+    "section": "Advanced Tip: tbl_merge()",
+    "text": "Advanced Tip: tbl_merge()\nOften it’s useful to put summary stats and model estimates side by side\n\n\nt3 &lt;- trial[c(\"age\", \"grade\", \"response\")] %&gt;%\n  tbl_summary(missing = \"no\") %&gt;%\n  add_n() %&gt;%\n  modify_header(stat_0 ~ \"**Summary Statistics**\")\n\nt4 &lt;- tbl_uvregression(\n    trial[c(\"ttdeath\", \"death\", \"age\", \"grade\", \"response\")],\n    method = coxph,\n    y = Surv(ttdeath, death),\n    exponentiate = TRUE,\n    hide_n = TRUE)\n\ntbl_merge(tbls = list(t3, t4)) %&gt;%\n  modify_spanning_header(everything() ~ NA_character_)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nSummary Statistics1\nHR2\n95% CI2\np-value\n\n\n\n\nAge\n189\n47 (38, 57)\n1.01\n0.99, 1.02\n0.3\n\n\nGrade\n200\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n—\n—\n\n\n\n\n    II\n\n\n68 (34%)\n1.28\n0.80, 2.05\n0.3\n\n\n    III\n\n\n64 (32%)\n1.69\n1.07, 2.66\n0.024\n\n\nTumor Response\n193\n61 (32%)\n0.50\n0.31, 0.78\n0.003\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 HR = Hazard Ratio, CI = Confidence Interval"
   },
   {
-    "objectID": "index.html#quick-code-exercise-1",
-    "href": "index.html#quick-code-exercise-1",
+    "objectID": "index.html#advanced-tip-gtsummary-themes",
+    "href": "index.html#advanced-tip-gtsummary-themes",
     "title": "reproducibility-in-R",
-    "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)"
+    "section": "Advanced Tip: gtsummary Themes",
+    "text": "Advanced Tip: gtsummary Themes\n\nThemes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.\nThe {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!\nMost commonly used theme: gtsummary::theme_gtsummary_compact()\nMore info: https://www.danieldsjoberg.com/gtsummary/articles/themes.html"
   },
   {
-    "objectID": "index.html#quick-code-exercise-2",
-    "href": "index.html#quick-code-exercise-2",
+    "objectID": "index.html#other-useful-functions",
+    "href": "index.html#other-useful-functions",
     "title": "reproducibility-in-R",
-    "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\")\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n0 N = 1321\n1 N = 611\n\n\n\n\nAge\n46 (6, 83)\n50 (9, 78)\n\n\nT Stage\n\n\n\n\n\n\n    T1\n34 (26%)\n18 (30%)\n\n\n    T2\n39 (30%)\n13 (21%)\n\n\n    T3\n25 (19%)\n15 (25%)\n\n\n    T4\n34 (26%)\n15 (25%)\n\n\nMarker Level (ng/mL)\n0.59 (0.21, 1.26)\n0.98 (0.31, 1.53)\n\n\n\n1 Mean (Min, Max); n (%); Median (Q1, Q3)"
+    "section": "Other Useful Functions",
+    "text": "Other Useful Functions\ntbl_listing()\nProblem: You &lt;3 {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.\nSolution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report."
   },
   {
-    "objectID": "index.html#quick-code-exercise-3",
-    "href": "index.html#quick-code-exercise-3",
+    "objectID": "index.html#other-useful-functions-1",
+    "href": "index.html#other-useful-functions-1",
     "title": "reproducibility-in-R",
-    "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\") %&gt;%\n  add_p() %&gt;%\n  bold_labels() %&gt;%\n  bold_p() %&gt;%\n  italicize_levels() %&gt;%\n  add_overall() \n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nOverall N = 1931\n0 N = 1321\n1 N = 611\np-value2\n\n\n\n\nAge\n47 (6, 83)\n46 (6, 83)\n50 (9, 78)\n0.091\n\n\nT Stage\n\n\n\n\n\n\n0.6\n\n\n    T1\n52 (27%)\n34 (26%)\n18 (30%)\n\n\n\n\n    T2\n52 (27%)\n39 (30%)\n13 (21%)\n\n\n\n\n    T3\n40 (21%)\n25 (19%)\n15 (25%)\n\n\n\n\n    T4\n49 (25%)\n34 (26%)\n15 (25%)\n\n\n\n\nMarker Level (ng/mL)\n0.62 (0.22, 1.41)\n0.59 (0.21, 1.26)\n0.98 (0.31, 1.53)\n0.10\n\n\n\n1 Mean (Min, Max); n (%); Median (Q1, Q3)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test"
+    "section": "Other Useful Functions",
+    "text": "Other Useful Functions\ngtreg::tbl_listing()"
   },
   {
-    "objectID": "index.html#survival-outcomes-with-tbl_survfit",
-    "href": "index.html#survival-outcomes-with-tbl_survfit",
+    "objectID": "index.html#other-customizations",
+    "href": "index.html#other-customizations",
     "title": "reproducibility-in-R",
-    "section": "Survival outcomes with tbl_survfit()",
-    "text": "Survival outcomes with tbl_survfit()\nlibrary(survival)\nfit &lt;- survfit(Surv(ttdeath, death) ~ trt, trial)\ntbl_survfit(\n  fit, \n  times = c(12, 24),\n  label_header = \"**{time} Month**\"\n) %&gt;%\n  add_p()\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n12 Month\n24 Month\np-value1\n\n\n\n\nChemotherapy Treatment\n\n\n\n\n0.2\n\n\n    Drug A\n91% (85%, 97%)\n47% (38%, 58%)\n\n\n\n\n    Drug B\n86% (80%, 93%)\n41% (33%, 52%)\n\n\n\n\n\n1 Log-rank test\n\n\n\n\n\n\n\nAlso, regression (and more) models with tbl_regression() and tbl_uvregression()"
-  },
-  {
-    "objectID": "index.html#model-summaries-with-tbl_regression",
-    "href": "index.html#model-summaries-with-tbl_regression",
-    "title": "reproducibility-in-R",
-    "section": "Model Summaries with tbl_regression()",
-    "text": "Model Summaries with tbl_regression()\nm1 &lt;- glm(\n  response ~ age + stage,\n  data = trial,\n  family = binomial(link = \"logit\")\n  )\n\n\ntbl_regression(\n    m1,\n    exponentiate = TRUE\n  ) %&gt;% \n  add_global_p() \n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nOR1\n95% CI1\np-value\n\n\n\n\nAge\n1.02\n1.00, 1.04\n0.087\n\n\nT Stage\n\n\n\n\n0.6\n\n\n    T1\n—\n—\n\n\n\n\n    T2\n0.58\n0.24, 1.37\n\n\n\n\n    T3\n0.94\n0.39, 2.28\n\n\n\n\n    T4\n0.79\n0.33, 1.90\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "index.html#univariate-models-with-tbl_uvregression",
-    "href": "index.html#univariate-models-with-tbl_uvregression",
-    "title": "reproducibility-in-R",
-    "section": "Univariate models with tbl_uvregression()",
-    "text": "Univariate models with tbl_uvregression()\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n193\n\n\n\n\n\n\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.21\n0.66, 2.24\n0.5\n\n\nAge\n183\n1.02\n1.00, 1.04\n0.10\n\n\nGrade\n193\n\n\n\n\n\n\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.95\n0.45, 2.00\n0.9\n\n\n    III\n\n\n1.10\n0.52, 2.29\n0.8\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\n\nSpecify model method, method.args, and the response variable\nArguments and helper functions like exponentiate, bold_*(), add_global_p() can also be used with tbl_uvregression()"
+    "section": "Other Customizations",
+    "text": "Other Customizations\nMany more customization available!\n\nSee the documentation at http://www.danieldsjoberg.com/gtsummary/reference/index.html\nAnd a detailed tbl_summary() vignette at http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html"
   },
   {
     "objectID": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text",
@@ -322,20 +217,6 @@
     "text": "{bstfun} Useful Functions\nuse_varnames_as_labels()\nAutomatically add labels to your data based on column names\n\n\nBefore:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  tbl_summary() \n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nmpg\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nvs\n14 (44%)\n\n\nam\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\nAfter:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nMPG\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nVS\n14 (44%)\n\n\nAm\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)"
   },
   {
-    "objectID": "index.html#bstfun-useful-functions-2",
-    "href": "index.html#bstfun-useful-functions-2",
-    "title": "reproducibility-in-R",
-    "section": "{bstfun} Useful Functions",
-    "text": "{bstfun} Useful Functions\nclean_mrn()\nMRNs follows specific formatting rules:\n\nMust be character\nMust contain only numeric components\nMust be eight characters long and include leading zeros.\n\nThis function converts numeric MRNs to character and ensures it follows MRN conventions. Character MRNs can also be passed, and leading zeros will be appended and checked for consistency.\nfake_mrn &lt;- c(\"00100\", \"100\", \"0100\")\n\nfake_mrn %&gt;%\n  bstfun::clean_mrn()\n[1] “00000100” “00000100” “00000100”"
-  },
-  {
-    "objectID": "index.html#bstfun-useful-functions-3",
-    "href": "index.html#bstfun-useful-functions-3",
-    "title": "reproducibility-in-R",
-    "section": "{bstfun} Useful Functions",
-    "text": "{bstfun} Useful Functions\nuse_varnames_as_labels()\nAutomatically add labels to your data based on column names\n\n\nBefore:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  tbl_summary() \n\n\n\n\n\n\nCharacteristic\n\n\nN = 321\n\n\n\n\n\n\n\nmpg\n\n\n19.2 (15.4, 22.8)\n\n\n\n\ncyl\n\n\n\n\n\n\n    4\n\n\n11 (34%)\n\n\n\n\n    6\n\n\n7 (22%)\n\n\n\n\n    8\n\n\n14 (44%)\n\n\n\n\nvs\n\n\n14 (44%)\n\n\n\n\nam\n\n\n13 (41%)\n\n\n\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n\n\n\nAfter:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\nCharacteristic\n\n\nN = 321\n\n\n\n\n\n\n\nMPG\n\n\n19.2 (15.4, 22.8)\n\n\n\n\ncyl\n\n\n\n\n\n\n    4\n\n\n11 (34%)\n\n\n\n\n    6\n\n\n7 (22%)\n\n\n\n\n    8\n\n\n14 (44%)\n\n\n\n\nVS\n\n\n14 (44%)\n\n\n\n\nAm\n\n\n13 (41%)\n\n\n\n\n\n\n1 Median (IQR); n (%)"
-  },
-  {
     "objectID": "index.html#lubridate",
     "href": "index.html#lubridate",
     "title": "reproducibility-in-R",
@@ -343,53 +224,11 @@
     "text": "{lubridate}\n\nWe work with a LOT of dates\n{lubridate} helps parse dates from strings, and improves functional operations on date-times\nData cleaning training will cover this in more depth or see R for Data Science: https://r4ds.had.co.nz/dates-and-times.html\n\nlibrary(lubridate)\n\nbday &lt;- dmy(\"14/10/1940\")\nmonth(bday)\n[1] 10\nwday(bday, label = TRUE)\n[1] Mon Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat\nyear(bday) &lt;- 2016\nwday(bday, label = TRUE)\n[1] Fri Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat"
   },
   {
-    "objectID": "index.html#add-tabs-to-your-report",
-    "href": "index.html#add-tabs-to-your-report",
+    "objectID": "index.html#five-pillars-of-reproducibility-1",
+    "href": "index.html#five-pillars-of-reproducibility-1",
     "title": "reproducibility-in-R",
-    "section": "Add Tabs to Your Report",
-    "text": "Add Tabs to Your Report"
-  },
-  {
-    "objectID": "index.html#what-is-quarto",
-    "href": "index.html#what-is-quarto",
-    "title": "reproducibility-in-R",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\n\n\nQuarto is a multi-language, next generation version of R Markdown from RStudio\nThis change shouldn’t affect R users much - it can render most existing Rmd files with few changes\nDo I Have to Switch From R Markdown? Nope! R Markdown is not going away and will continue to be supported\nHowever, Quarto has some exciting features (some shown today) and will continue to develop and mature."
-  },
-  {
-    "objectID": "index.html#quarto-features-flexible-layouts",
-    "href": "index.html#quarto-features-flexible-layouts",
-    "title": "reproducibility-in-R",
-    "section": "Quarto Features: Flexible Layouts",
-    "text": "Quarto Features: Flexible Layouts\nYou can now easily organize your report using various layouts including column formats\n\n\nplot(cars)\nplot(pressure)\n\n\n\n\n\n\nSpeed and Stopping Distances of Cars\n\n\n\n\n\n\n\nVapor Pressure of Mercury as a Function of Temperature"
-  },
-  {
-    "objectID": "index.html#quarto-features",
-    "href": "index.html#quarto-features",
-    "title": "reproducibility-in-R",
-    "section": "Quarto Features",
-    "text": "Quarto Features\n\nYou can execute R and Python code in the same file\nAuto-fill YAML options for easy, fool-proof YAML coding\nCleaner organization (e.g. Global chunk options can now go in YAML header)"
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header-3",
-    "href": "index.html#moving-from-r-markdown-yaml-header-3",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header",
-    "text": "Moving From R Markdown: YAML Header\nYAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof.\n\n\nR Markdown:\n#| code-line-numbers: \"2\"\n\ntitle: \"My Document\"\noutput:\n  html_document:\n    toc: true\n    number_sections: true\n    css: styles.css\n\nQuarto:\n#| code-line-numbers: \"2\"\n\ntitle: \"My Document\"\nformat:\n  html:\n    toc: true\n    number-sections: true\n    css: styles.css"
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-header-4",
-    "href": "index.html#moving-from-r-markdown-yaml-header-4",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Header",
-    "text": "Moving From R Markdown: YAML Header\nGlobal chunk options are set in YAML header using execute instead of in a knitr setup chunk.\n\n\nR Markdown:\n\n\nQuarto:\ntitle: \"My-Title\"\nsubtitle: \"Until now!\"\nexecute:\n  echo: false"
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown-yaml-chunk-options-2",
-    "href": "index.html#moving-from-r-markdown-yaml-chunk-options-2",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown: YAML Chunk Options",
-    "text": "Moving From R Markdown: YAML Chunk Options\nIndividual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|).\n\n\nR Markdown:\n\n\nQuarto:"
+    "section": "Five Pillars Of Reproducibility",
+    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
   },
   {
     "objectID": "index.html#resources",
@@ -397,229 +236,5 @@
     "title": "reproducibility-in-R",
     "section": "Resources",
     "text": "Resources\n\n{biostaR} - https://github.mskcc.org/pages/datadojo/biostatR/index.html\n{gtsummary} - https://www.danieldsjoberg.com/gtsummary/\n{bstfun} - https://www.danieldsjoberg.com/bstfun/index.html\nDepartmental Resource Guide - https://rconnect.mskcc.org/resource-guide/\nQuarto Docs - https://quarto.org/docs/guide/\nQuarto Blog Post by Alison Hill - https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/"
-  },
-  {
-    "objectID": "index.html#r-markdown-or-quarto",
-    "href": "index.html#r-markdown-or-quarto",
-    "title": "reproducibility-in-R",
-    "section": "R Markdown or Quarto?",
-    "text": "R Markdown or Quarto?\n\nRStudio is Now Posit- aiming to broaden their scope and software programs to include other programming languages (e.g Python, Julia)\nThis change shouldn’t affect R users much\nNew publishing system called Quarto (already launched) is part of this multilanguage effort"
-  },
-  {
-    "objectID": "index.html#r-markdown-vs.-quarto",
-    "href": "index.html#r-markdown-vs.-quarto",
-    "title": "reproducibility-in-R",
-    "section": "R Markdown vs. Quarto?",
-    "text": "R Markdown vs. Quarto?\n\nQuarto documents end in .qmd instead of .rmd and have some minimal required formatting changes:\n-YAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof.\n-Global chunk options are set in YAML header using execute instead of in a knitr setup chunk.\n-Individual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|)."
-  },
-  {
-    "objectID": "index.html#do-i-have-to-switch-from-r-markdown",
-    "href": "index.html#do-i-have-to-switch-from-r-markdown",
-    "title": "reproducibility-in-R",
-    "section": "Do I Have to Switch From R Markdown?",
-    "text": "Do I Have to Switch From R Markdown?\n\nNope! R Markdown is not going away and will continue to be supported\nHowever, Quarto has some exciting features (to be shown today) and will continue to develop and mature."
-  },
-  {
-    "objectID": "index.html#what-is-quarto-1",
-    "href": "index.html#what-is-quarto-1",
-    "title": "reproducibility-in-R",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\n\n\nQuarto is a multi-language, next generation version of R Markdown from RStudio\nLike R Markdown, Quarto uses Knitr to execute R code, therefore it can render most existing Rmd files with few changes\nThe latest release of RStudio (v2022.07) includes support for editing and preview of Quarto documents."
-  },
-  {
-    "objectID": "index.html#reproducible-reporting-1",
-    "href": "index.html#reproducible-reporting-1",
-    "title": "reproducibility-in-R",
-    "section": "Reproducible Reporting",
-    "text": "Reproducible Reporting\n\nR Markdown, Quarto and Jupyter are tools for integrating code and narrative text into a single executable document\nCan be rendered into various output formats (HTML, PDF, Word, and slides)\nDetailed code and data analysis steps are included in one document, encouraging transparency and providing a complete record of the research process\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion-control compatible"
-  },
-  {
-    "objectID": "index.html#quick-aside-r-markdown-vs.-quarto",
-    "href": "index.html#quick-aside-r-markdown-vs.-quarto",
-    "title": "reproducibility-in-R",
-    "section": "Quick Aside: R Markdown vs. Quarto?",
-    "text": "Quick Aside: R Markdown vs. Quarto?\n\nRStudio is Now Posit, aiming to broaden their scope to include software for other programming languages (e.g Python, Julia)\nNew publishing system called Quarto (already launched) is part of this multilanguage effort"
-  },
-  {
-    "objectID": "index.html#gtsummary",
-    "href": "index.html#gtsummary",
-    "title": "reproducibility-in-R",
-    "section": "gtsummary",
-    "text": "gtsummary\n\n{gtsummary} - Tools to create publication-ready analytical and summary tables using the R programming language.\nSummarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities."
-  },
-  {
-    "objectID": "index.html#moving-from-r-markdown",
-    "href": "index.html#moving-from-r-markdown",
-    "title": "reproducibility-in-R",
-    "section": "Moving From R Markdown",
-    "text": "Moving From R Markdown\n\nQuarto documents end in .qmd instead of .rmd and have some minimal required formatting changes:\n\n-YAML Header now uses format instead of output and allows auto-complete to make editing the YAML more fool-proof.\n-Global chunk options are set in YAML header using execute instead of in a knitr setup chunk.\n-Individual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|)."
-  },
-  {
-    "objectID": "index.html#other-useful-functions",
-    "href": "index.html#other-useful-functions",
-    "title": "reproducibility-in-R",
-    "section": "Other Useful Functions",
-    "text": "Other Useful Functions\ntbl_listing()\nProblem: You &lt;3 {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.\nSolution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report."
-  },
-  {
-    "objectID": "index.html#other-useful-functions-1",
-    "href": "index.html#other-useful-functions-1",
-    "title": "reproducibility-in-R",
-    "section": "Other Useful Functions",
-    "text": "Other Useful Functions\ngtreg::tbl_listing()"
-  },
-  {
-    "objectID": "index.html#quarto-features-tabss",
-    "href": "index.html#quarto-features-tabss",
-    "title": "reproducibility-in-R",
-    "section": "Quarto Features: Tabss",
-    "text": "Quarto Features: Tabss"
-  },
-  {
-    "objectID": "index.html#quarto-features-tabs",
-    "href": "index.html#quarto-features-tabs",
-    "title": "reproducibility-in-R",
-    "section": "Quarto Features: Tabs",
-    "text": "Quarto Features: Tabs"
-  },
-  {
-    "objectID": "index.html#gtsummary-themes",
-    "href": "index.html#gtsummary-themes",
-    "title": "reproducibility-in-R",
-    "section": "gtsummary Themes",
-    "text": "gtsummary Themes\n\nThemes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.\nThe {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!\nMost commonly used theme: gtsummary::theme_gtsummary_compact()\nMore info: https://www.danieldsjoberg.com/gtsummary/articles/themes.html"
-  },
-  {
-    "objectID": "example-quarto.html",
-    "href": "example-quarto.html",
-    "title": "Example Statistical Analysis",
-    "section": "",
-    "text": "This is a common table 1 you would often see in manuscripts. Below I am staratifying the data by gender and adding a p value. The specific tests will be specified in the footnote. You can remove the p-values, and overall column if you do not want them there.\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      Overall, N = 4031\n      female, N = 2341\n      male, N = 1691\n      p-value2\n    \n  \n  \n    chol\n204 (179, 230)\n205 (179, 231)\n204 (179, 230)\n0.8\n        Unknown\n1\n0\n1\n\n    stabilized_glucose\n89 (81, 106)\n90 (81, 105)\n89 (81, 111)\n0.5\n        Unknown\n3\n2\n1\n\n    hdl\n46 (38, 59)\n47 (41, 59)\n44 (35, 59)\n0.007\n        Unknown\n4\n1\n3\n\n    ratio_chol_hdl\n4.20 (3.20, 5.40)\n4.10 (3.27, 5.10)\n4.60 (3.20, 5.80)\n0.016\n        Unknown\n4\n2\n2\n\n    location\n\n\n\n0.6\n        buckingham\n198 (50%)\n112 (48%)\n86 (51%)\n\n        louisa\n202 (51%)\n120 (52%)\n82 (49%)\n\n        Unknown\n3\n2\n1\n\n    age\n45 (34, 60)\n43 (32, 59)\n48 (36, 61)\n0.12\n    height\n66.0 (63.0, 69.0)\n63.0 (62.0, 65.0)\n69.0 (67.0, 71.0)\n&lt;0.001\n        Unknown\n5\n5\n0\n\n    weight\n173 (151, 200)\n170 (145, 200)\n178 (159, 204)\n0.045\n        Unknown\n1\n0\n1\n\n    frame\n\n\n\n&lt;0.001\n        large\n102 (26%)\n42 (19%)\n60 (37%)\n\n        medium\n183 (47%)\n115 (51%)\n68 (42%)\n\n        small\n103 (27%)\n68 (30%)\n35 (21%)\n\n        Unknown\n15\n9\n6\n\n    bp_1s\n136 (121, 147)\n135 (120, 146)\n137 (124, 148)\n0.2\n        Unknown\n5\n3\n2\n\n    bp_1d\n82 (75, 90)\n82 (72, 90)\n82 (76, 92)\n0.2\n        Unknown\n5\n3\n2\n\n    bp_2s\n149 (138, 161)\n148 (139, 160)\n150 (136, 167)\n&gt;0.9\n        Unknown\n262\n157\n105\n\n    bp_2d\n92 (84, 100)\n92 (84, 100)\n94 (84, 100)\n0.5\n        Unknown\n262\n157\n105\n\n    waist\n37.0 (33.0, 41.0)\n38.0 (33.0, 42.0)\n37.0 (34.0, 40.5)\n0.4\n        Unknown\n5\n3\n2\n\n    hip\n42.0 (39.0, 46.0)\n44.0 (40.0, 47.0)\n41.0 (39.0, 43.0)\n&lt;0.001\n        Unknown\n2\n1\n1\n\n    time_ppn\n240 (90, 518)\n240 (90, 480)\n240 (120, 525)\n0.4\n        Unknown\n3\n1\n2\n\n    glyhb\n4.84 (4.38, 5.60)\n4.79 (4.38, 5.55)\n4.90 (4.38, 5.69)\n0.2\n        Unknown\n13\n6\n7\n\n  \n  \n  \n    \n      1 Median (IQR); n (%)\n    \n    \n      2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n    \n  \n\n\n\n\n\n\nAnother common way to summarize data would be to summarize a continuous variable by one or more categorical variables.\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      female, N = 2341\n      male, N = 1691\n    \n  \n  \n    location\n\n\n        buckingham\n88 (81, 104)\n92 (80, 112)\n        louisa\n90 (81, 106)\n88 (81, 106)\n        Unknown\n2\n1\n  \n  \n  \n    \n      1 stabilized_glucose: Median (IQR)\n    \n  \n\n\n\n\n\n\n\nggplot2 is one of the most common ways to visualize data in R.  Components of ggplot:  - data: data.frame/tibble - geom_* :type of plot (* means there are multiple options [e.g - geom_bar, geom_point]) - these geometric objects tell ggplot what kind of graph you are building - scatter plot, box plot, bar plot, etc… - aesthetics (aes): tells ggplot how to represent the data - stats: can transform data to be plotted - theme: handles general graphing options (color background, font sizes) - scale: controls options between data and aes, plot limits, colors, line types, etc…  Necessary components of ggplot  - only need data, geom_* and aesthetics to make a graph, the rest are augments of this base plot\n\n\n\n\n\nYou can also represent the data in a more sophisticated way with facets.\n\n\n\n\n\nThere are many types of geom_* and it is best to look at them from the https://ggplot2.tidyverse.org/ website."
-  },
-  {
-    "objectID": "example-quarto.html#summarizing-data",
-    "href": "example-quarto.html#summarizing-data",
-    "title": "Example Statistical Analysis",
-    "section": "",
-    "text": "This is a common table 1 you would often see in manuscripts. Below I am staratifying the data by gender and adding a p value. The specific tests will be specified in the footnote. You can remove the p-values, and overall column if you do not want them there.\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      Overall, N = 4031\n      female, N = 2341\n      male, N = 1691\n      p-value2\n    \n  \n  \n    chol\n204 (179, 230)\n205 (179, 231)\n204 (179, 230)\n0.8\n        Unknown\n1\n0\n1\n\n    stabilized_glucose\n89 (81, 106)\n90 (81, 105)\n89 (81, 111)\n0.5\n        Unknown\n3\n2\n1\n\n    hdl\n46 (38, 59)\n47 (41, 59)\n44 (35, 59)\n0.007\n        Unknown\n4\n1\n3\n\n    ratio_chol_hdl\n4.20 (3.20, 5.40)\n4.10 (3.27, 5.10)\n4.60 (3.20, 5.80)\n0.016\n        Unknown\n4\n2\n2\n\n    location\n\n\n\n0.6\n        buckingham\n198 (50%)\n112 (48%)\n86 (51%)\n\n        louisa\n202 (51%)\n120 (52%)\n82 (49%)\n\n        Unknown\n3\n2\n1\n\n    age\n45 (34, 60)\n43 (32, 59)\n48 (36, 61)\n0.12\n    height\n66.0 (63.0, 69.0)\n63.0 (62.0, 65.0)\n69.0 (67.0, 71.0)\n&lt;0.001\n        Unknown\n5\n5\n0\n\n    weight\n173 (151, 200)\n170 (145, 200)\n178 (159, 204)\n0.045\n        Unknown\n1\n0\n1\n\n    frame\n\n\n\n&lt;0.001\n        large\n102 (26%)\n42 (19%)\n60 (37%)\n\n        medium\n183 (47%)\n115 (51%)\n68 (42%)\n\n        small\n103 (27%)\n68 (30%)\n35 (21%)\n\n        Unknown\n15\n9\n6\n\n    bp_1s\n136 (121, 147)\n135 (120, 146)\n137 (124, 148)\n0.2\n        Unknown\n5\n3\n2\n\n    bp_1d\n82 (75, 90)\n82 (72, 90)\n82 (76, 92)\n0.2\n        Unknown\n5\n3\n2\n\n    bp_2s\n149 (138, 161)\n148 (139, 160)\n150 (136, 167)\n&gt;0.9\n        Unknown\n262\n157\n105\n\n    bp_2d\n92 (84, 100)\n92 (84, 100)\n94 (84, 100)\n0.5\n        Unknown\n262\n157\n105\n\n    waist\n37.0 (33.0, 41.0)\n38.0 (33.0, 42.0)\n37.0 (34.0, 40.5)\n0.4\n        Unknown\n5\n3\n2\n\n    hip\n42.0 (39.0, 46.0)\n44.0 (40.0, 47.0)\n41.0 (39.0, 43.0)\n&lt;0.001\n        Unknown\n2\n1\n1\n\n    time_ppn\n240 (90, 518)\n240 (90, 480)\n240 (120, 525)\n0.4\n        Unknown\n3\n1\n2\n\n    glyhb\n4.84 (4.38, 5.60)\n4.79 (4.38, 5.55)\n4.90 (4.38, 5.69)\n0.2\n        Unknown\n13\n6\n7\n\n  \n  \n  \n    \n      1 Median (IQR); n (%)\n    \n    \n      2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n    \n  \n\n\n\n\n\n\nAnother common way to summarize data would be to summarize a continuous variable by one or more categorical variables.\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      female, N = 2341\n      male, N = 1691\n    \n  \n  \n    location\n\n\n        buckingham\n88 (81, 104)\n92 (80, 112)\n        louisa\n90 (81, 106)\n88 (81, 106)\n        Unknown\n2\n1\n  \n  \n  \n    \n      1 stabilized_glucose: Median (IQR)\n    \n  \n\n\n\n\n\n\n\nggplot2 is one of the most common ways to visualize data in R.  Components of ggplot:  - data: data.frame/tibble - geom_* :type of plot (* means there are multiple options [e.g - geom_bar, geom_point]) - these geometric objects tell ggplot what kind of graph you are building - scatter plot, box plot, bar plot, etc… - aesthetics (aes): tells ggplot how to represent the data - stats: can transform data to be plotted - theme: handles general graphing options (color background, font sizes) - scale: controls options between data and aes, plot limits, colors, line types, etc…  Necessary components of ggplot  - only need data, geom_* and aesthetics to make a graph, the rest are augments of this base plot\n\n\n\n\n\nYou can also represent the data in a more sophisticated way with facets.\n\n\n\n\n\nThere are many types of geom_* and it is best to look at them from the https://ggplot2.tidyverse.org/ website."
-  },
-  {
-    "objectID": "example-quarto.html#generating-univariate-statistics",
-    "href": "example-quarto.html#generating-univariate-statistics",
-    "title": "Example Statistical Analysis",
-    "section": "Generating univariate statistics",
-    "text": "Generating univariate statistics\nSometimes it is important to test your outcome of interest against many covariates. We can use gtsummary to help with this instead of writing several models out all at once. The code below you can input all the covariates and the outcome, specify the method type and the outcome and it will generate a table of unviariate models neatly displayed.\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      N\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    chol\n399\n0.18\n0.06, 0.30\n0.003\n    hdl\n396\n-0.48\n-0.78, -0.18\n0.002\n    ratio_chol_hdl\n396\n9.0\n6.1, 12\n&lt;0.001\n    location\n397\n\n\n\n        buckingham\n\n—\n—\n\n        louisa\n\n0.11\n-10, 11\n&gt;0.9\n    age\n400\n0.94\n0.63, 1.2\n&lt;0.001\n    gender\n400\n\n\n\n        female\n\n—\n—\n\n        male\n\n9.6\n-0.99, 20\n0.076\n    height\n395\n1.2\n-0.17, 2.5\n0.086\n    weight\n399\n0.24\n0.11, 0.37\n&lt;0.001\n    frame\n385\n\n\n\n        large\n\n—\n—\n\n        medium\n\n-16\n-29, -3.0\n0.016\n        small\n\n-24\n-39, -9.8\n0.001\n    bp_1s\n396\n0.39\n0.16, 0.62\n&lt;0.001\n    bp_1d\n396\n0.08\n-0.31, 0.47\n0.7\n    bp_2s\n141\n0.08\n-0.36, 0.53\n0.7\n    bp_2d\n141\n-0.84\n-1.7, -0.02\n0.045\n    waist\n395\n2.0\n1.1, 2.9\n&lt;0.001\n    hip\n398\n1.2\n0.32, 2.2\n0.009\n    time_ppn\n397\n-0.01\n-0.03, 0.01\n0.3\n    glyhb\n387\n18\n16, 20\n&lt;0.001\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\n Similarly we can do this for many different model types. Here is an example with logistic regression. \n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      N\n      OR1\n      95% CI1\n      p-value\n    \n  \n  \n    chol\n399\n1.01\n1.00, 1.01\n0.031\n    hdl\n396\n0.98\n0.97, 0.99\n0.003\n    ratio_chol_hdl\n396\n1.41\n1.23, 1.63\n&lt;0.001\n    location\n397\n\n\n\n        buckingham\n\n—\n—\n\n        louisa\n\n1.01\n0.68, 1.50\n&gt;0.9\n    age\n400\n1.04\n1.02, 1.05\n&lt;0.001\n    gender\n400\n\n\n\n        female\n\n—\n—\n\n        male\n\n1.00\n0.67, 1.48\n&gt;0.9\n    height\n395\n0.98\n0.93, 1.03\n0.5\n    weight\n399\n1.01\n1.00, 1.02\n&lt;0.001\n    frame\n385\n\n\n\n        large\n\n—\n—\n\n        medium\n\n0.60\n0.36, 0.98\n0.044\n        small\n\n0.40\n0.23, 0.70\n0.001\n    bp_1s\n396\n1.01\n1.01, 1.02\n0.002\n    bp_1d\n396\n1.01\n0.99, 1.02\n0.4\n    bp_2s\n141\n1.01\n0.99, 1.02\n0.5\n    bp_2d\n141\n0.99\n0.96, 1.01\n0.3\n    waist\n395\n1.08\n1.04, 1.12\n&lt;0.001\n    hip\n398\n1.07\n1.03, 1.11\n&lt;0.001\n    time_ppn\n397\n1.00\n1.00, 1.00\n0.065\n    glyhb\n387\n2.14\n1.72, 2.76\n&lt;0.001\n  \n  \n  \n    \n      1 OR = Odds Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "example-quarto.html#multivariate-statistics",
-    "href": "example-quarto.html#multivariate-statistics",
-    "title": "Example Statistical Analysis",
-    "section": "Multivariate statistics",
-    "text": "Multivariate statistics\n Lets predict stabilized glucose from a few predictors. \n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    Age\n0.82\n0.52, 1.1\n&lt;0.001\n    Weight (lbs)\n0.18\n0.06, 0.31\n0.005\n    Ratio Chol/HDL\n6.8\n3.9, 9.8\n&lt;0.001\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\n We can also look at this with a logistic model \n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      OR1\n      95% CI1\n      p-value\n    \n  \n  \n    Age\n1.03\n1.02, 1.05\n&lt;0.001\n    Weight (lbs)\n1.01\n1.00, 1.01\n0.004\n    Ratio Chol/HDL\n1.28\n1.10, 1.49\n0.001\n  \n  \n  \n    \n      1 OR = Odds Ratio, CI = Confidence Interval\n    \n  \n\n\n\n\n Lets combine the results\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      \n        Linear\n      \n      \n        Logistic\n      \n    \n    \n      Beta\n      95% CI1\n      p-value\n      OR1\n      95% CI1\n      p-value\n    \n  \n  \n    Age\n0.82\n0.52, 1.1\n&lt;0.001\n1.03\n1.02, 1.05\n&lt;0.001\n    Weight (lbs)\n0.18\n0.06, 0.31\n0.005\n1.01\n1.00, 1.01\n0.004\n    Ratio Chol/HDL\n6.8\n3.9, 9.8\n&lt;0.001\n1.28\n1.10, 1.49\n0.001\n  \n  \n  \n    \n      1 CI = Confidence Interval, OR = Odds Ratio"
-  },
-  {
-    "objectID": "example-quarto.html#switching-gears-to-a-survival-model",
-    "href": "example-quarto.html#switching-gears-to-a-survival-model",
-    "title": "Example Statistical Analysis",
-    "section": "Switching gears to a survival model",
-    "text": "Switching gears to a survival model\n\nGenerating survival curves\nUsing the survfit with Surv will create Kaplan-Meier estimates. From these estimates we can create Kaplan-Meier survival curves. The survminer package provides a simple interface to create these curves."
-  },
-  {
-    "objectID": "example-quarto.html#cox-model",
-    "href": "example-quarto.html#cox-model",
-    "title": "Example Statistical Analysis",
-    "section": "Cox model",
-    "text": "Cox model\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      HR1\n      95% CI1\n      p-value\n    \n  \n  \n    age\n1.02\n1.00, 1.04\n0.065\n    sex\n0.60\n0.43, 0.83\n0.002\n  \n  \n  \n    \n      1 HR = Hazard Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "index.html#five-pillars-of-reproducibility",
-    "href": "index.html#five-pillars-of-reproducibility",
-    "title": "reproducibility-in-R",
-    "section": "Five Pillars Of Reproducibility",
-    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
-  },
-  {
-    "objectID": "index.html#literate-programming",
-    "href": "index.html#literate-programming",
-    "title": "reproducibility-in-R",
-    "section": "Literate Programming",
-    "text": "Literate Programming\nAvoid ‘by hand’ steps used in the analysis\n\nDon’t clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.\nIf any ‘non-scriptable’ steps are unavoidable, document those steps very clearly\nDNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)"
-  },
-  {
-    "objectID": "index.html#advanced-tips-update-tbl_summary-with-modify_",
-    "href": "index.html#advanced-tips-update-tbl_summary-with-modify_",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: Update tbl_summary() with modify_*()",
-    "text": "Advanced Tips: Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
-  },
-  {
-    "objectID": "index.html#advanced-tips-tbl_continuous",
-    "href": "index.html#advanced-tips-tbl_continuous",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: tbl_continuous()",
-    "text": "Advanced Tips: tbl_continuous()\nSummarize a continuous variable within categories and across different strata.\n\n\ntbl_continuous(\n  data = trial,\n  variable = age,\n  by = trt,\n  include = c(grade, response)\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nGrade\n\n\n\n\n\n\n    I\n46 (36, 60)\n48 (42, 55)\n\n\n    II\n45 (31, 55)\n51 (42, 58)\n\n\n    III\n52 (42, 61)\n45 (36, 52)\n\n\nTumor Response\n\n\n\n\n\n\n    0\n46 (36, 60)\n47 (37, 54)\n\n\n    1\n48 (41, 61)\n49 (43, 59)\n\n\n\n1 Age: Median (Q1, Q3)"
-  },
-  {
-    "objectID": "index.html#updated-nih-guidelines",
-    "href": "index.html#updated-nih-guidelines",
-    "title": "reproducibility-in-R",
-    "section": "Updated NIH Guidelines",
-    "text": "Updated NIH Guidelines\nNIH Data Management & Sharing Policy Updates\n\nEffective Date: January 25, 2023\nPurpose: Enhance data sharing to advance research transparency & reproducibility\n\n\nKey Requirements:\n\nAs of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)\nThis plan will likely requires sharing of research data, and in some cases, code.\nYou may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant."
-  },
-  {
-    "objectID": "index.html#advanced-tips-continuous2",
-    "href": "index.html#advanced-tips-continuous2",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: continuous2",
-    "text": "Advanced Tips: continuous2\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
-  },
-  {
-    "objectID": "index.html#advanced-tips-custom-p-value-functions",
-    "href": "index.html#advanced-tips-custom-p-value-functions",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: Custom p-value functions",
-    "text": "Advanced Tips: Custom p-value functions\n\nMany tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html\nIf you need one not on the list, create a custom function (use broom tidy at the end)\n\n\n\n# define function (need to use these arguments)\ncalculate_prop_test &lt;- function(data, variable, by, ...) {\n  data &lt;- tidyr::drop_na(data, dplyr::all_of(c(variable, by)))\n  prop.trend.test(\n    x = table(data[[variable]], data[[by]])[2, ], # get the second row (the positive row)\n    n = table(data[[by]])) |&gt; \n    broom::tidy()\n}\n\ntrial[c(\"grade\", \"trt\")] %&gt;%\n  tbl_summary(by = trt) %&gt;%\n  add_p(test = grade ~ \"calculate_prop_test\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nGrade\n\n\n\n\n0.7\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n1 n (%)\n\n\n2 Chi-squared Test for Trend in Proportions"
-  },
-  {
-    "objectID": "index.html#other-customizations",
-    "href": "index.html#other-customizations",
-    "title": "reproducibility-in-R",
-    "section": "Other Customizations",
-    "text": "Other Customizations\nMany more customization available!\n\nSee the documentation at http://www.danieldsjoberg.com/gtsummary/reference/index.html\nAnd a detailed tbl_summary() vignette at http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html"
-  },
-  {
-    "objectID": "index.html#advanced-tips-tbl_uvregression-with-formula",
-    "href": "index.html#advanced-tips-tbl_uvregression-with-formula",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: tbl_uvregression() with formula",
-    "text": "Advanced Tips: tbl_uvregression() with formula\n\nformula argument is powerful! You can adjust for variables, or pass mixed model formats (e.g. \"{y} ~ {x} + (1 | gear)\")\nAdditionally, add_global_p() can be useful\n\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    formula = \"{y} ~ {x} + age\",\n    include = -c(age), \n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels() %&gt;%\n  add_global_p()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n183\n\n\n\n\n0.7\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.13\n0.60, 2.13\n\n\n\n\nGrade\n183\n\n\n\n\n0.9\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.85\n0.39, 1.85\n\n\n\n\n    III\n\n\n1.01\n0.47, 2.16\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "index.html#advanced-tip-tbl_merge",
-    "href": "index.html#advanced-tip-tbl_merge",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tip: tbl_merge()",
-    "text": "Advanced Tip: tbl_merge()\nOften it’s useful to put summary stats and model estimates side by side\n\n\nt3 &lt;- trial[c(\"age\", \"grade\", \"response\")] %&gt;%\n  tbl_summary(missing = \"no\") %&gt;%\n  add_n() %&gt;%\n  modify_header(stat_0 ~ \"**Summary Statistics**\")\n\nt4 &lt;- tbl_uvregression(\n    trial[c(\"ttdeath\", \"death\", \"age\", \"grade\", \"response\")],\n    method = coxph,\n    y = Surv(ttdeath, death),\n    exponentiate = TRUE,\n    hide_n = TRUE)\n\ntbl_merge(tbls = list(t3, t4)) %&gt;%\n  modify_spanning_header(everything() ~ NA_character_)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nSummary Statistics1\nHR2\n95% CI2\np-value\n\n\n\n\nAge\n189\n47 (38, 57)\n1.01\n0.99, 1.02\n0.3\n\n\nGrade\n200\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n—\n—\n\n\n\n\n    II\n\n\n68 (34%)\n1.28\n0.80, 2.05\n0.3\n\n\n    III\n\n\n64 (32%)\n1.69\n1.07, 2.66\n0.024\n\n\nTumor Response\n193\n61 (32%)\n0.50\n0.31, 0.78\n0.003\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 HR = Hazard Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "index.html#advanced-tip-gtsummary-themes",
-    "href": "index.html#advanced-tip-gtsummary-themes",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tip: gtsummary Themes",
-    "text": "Advanced Tip: gtsummary Themes\n\nThemes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.\nThe {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!\nMost commonly used theme: gtsummary::theme_gtsummary_compact()\nMore info: https://www.danieldsjoberg.com/gtsummary/articles/themes.html"
-  },
-  {
-    "objectID": "index.html#advanced-tips-continuous2-digits",
-    "href": "index.html#advanced-tips-continuous2-digits",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: continuous2 & digits",
-    "text": "Advanced Tips: continuous2 & digits\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
-  },
-  {
-    "objectID": "index.html#five-pillars-of-reproducibility-1",
-    "href": "index.html#five-pillars-of-reproducibility-1",
-    "title": "reproducibility-in-R",
-    "section": "Five Pillars Of Reproducibility",
-    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
   }
 ]
