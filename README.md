@@ -4,8 +4,9 @@
 
 Welcome to the **Reproducibility in R** workshop repository. This repo contains materials for slides on how to conduct reproducible analyses in R. This is an updated version (> 2024) that removed {gtsummary} basics from previous years and includes advanced tips. 
 
-View the slides [here](https://www.karissawhiting.com/reproducibility-in-r)
-PDF of slides [here](https://github.com/karissawhiting/reproducibility-in-r/blob/main/reproducibility-in-R-2025.pdf)
+- View the slides [here](https://www.karissawhiting.com/reproducibility-in-r)
+
+- PDF of slides [here](https://github.com/karissawhiting/reproducibility-in-r/blob/main/reproducibility-in-R-2025.pdf)
 
 ## Repository Structure
 
