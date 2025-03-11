@@ -2,6 +2,9 @@ project:
   title: "reproducibility-in-R"
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!archived-materials/*.qmd"
 
 execute:
   error: true
