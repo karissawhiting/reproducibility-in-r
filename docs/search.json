@@ -25,7 +25,7 @@
     "href": "index.html#how-do-we-ensure-our-code-is-reproducible",
     "title": "reproducibility-in-R",
     "section": "How Do We Ensure Our Code is Reproducible?",
-    "text": "How Do We Ensure Our Code is Reproducible?\n\n\nHave a clear project structure and defined workflow - Discussed in Part 1\nAvoid absolute file paths (e.g. ~/Users/Whiting/Projects...) - Discussed in Part 1\nVersion control (document changes you make, or use git!) - Discussed in Part 1\nComment and document your code\nAvoid ‘by hand’ steps used in the analysis"
+    "text": "How Do We Ensure Our Code is Reproducible?\n\nCompute Environment Control\n\nVirtual environments, avoid absolute file paths (e.g. ~/Users/Whiting/Projects...)\n\nCode Version Control\n\nDocument changes you make, or use git/Github\n\nDocumentation\n\nComment and document your code\nInvest in a good README.md\n\nData Integrity - more details later\nLiterate Programming\n\nHave a clear project structure, avoid ‘by hand’ steps"
   },
   {
     "objectID": "index.html#how-do-we-ensure-our-code-is-reproducible-1",
@@ -88,7 +88,7 @@
     "href": "index.html#moving-from-r-markdown-yaml-chunk-options-1",
     "title": "reproducibility-in-R",
     "section": "Moving From R Markdown: YAML Chunk Options",
-    "text": "Moving From R Markdown: YAML Chunk Options\n\nIndividual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|).\n\n\n\nR Markdown:\nprint(\"hi\")\n\nQuarto:\n\n```{r}\n#| include: True\n#| results: false\nprint(\"hi\")\n```"
+    "text": "Moving From R Markdown: YAML Chunk Options\n\nIndividual chunk options are also set in YAML in each chunk as needed, using the “hashpipe” (#|).\n\n\n\nR Markdown:\n```{r}\nprint(\"hi\")\n```\n\nQuarto:\n\n```{r}\n#| include: True\n#| results: false\nprint(\"hi\")\n```"
   },
   {
     "objectID": "index.html#quarto-features-flexible-layouts-with-multiple-columns",
@@ -172,21 +172,21 @@
     "href": "index.html#basic-tbl_summary",
     "title": "reproducibility-in-R",
     "section": "Basic tbl_summary()",
-    "text": "Basic tbl_summary()\n\n\nsm_trial &lt;- trial %&gt;% \n  select(trt, age, grade, response)\n\nsm_trial %&gt;%\n  select(-trt) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\nCharacteristic\n\n\nN = 2001\n\n\n\n\n\n\n\nAge\n\n\n47 (38, 57)\n\n\n\n\n    Unknown\n\n\n11\n\n\n\n\nGrade\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n\n\n\n\n    II\n\n\n68 (34%)\n\n\n\n\n    III\n\n\n64 (32%)\n\n\n\n\nTumor Response\n\n\n61 (32%)\n\n\n\n\n    Unknown\n\n\n7\n\n\n\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n\n\n\n\nFour types of summaries: continuous, continuous2, categorical, and dichotomous\nVariables coded 0/1, TRUE/FALSE, Yes/No treated as dichotomous\nStatistics are median (IQR) for continuous, n (%) for categorical/dichotomous\nLists NA values under “Unknown”\nLabel attributes are printed automatically"
+    "text": "Basic tbl_summary()\n\n\nsm_trial &lt;- trial %&gt;% \n  select(trt, age, grade, response)\n\nsm_trial %&gt;%\n  select(-trt) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 2001\n\n\n\n\nAge\n47 (38, 57)\n\n\n    Unknown\n11\n\n\nGrade\n\n\n\n\n    I\n68 (34%)\n\n\n    II\n68 (34%)\n\n\n    III\n64 (32%)\n\n\nTumor Response\n61 (32%)\n\n\n    Unknown\n7\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\n\nFour types of summaries: continuous, continuous2, categorical, and dichotomous\nVariables coded 0/1, TRUE/FALSE, Yes/No treated as dichotomous\nStatistics are median (IQR) for continuous, n (%) for categorical/dichotomous\nLists NA values under “Unknown”\nLabel attributes are printed automatically"
   },
   {
     "objectID": "index.html#customize-tbl_summary-using-arguments",
     "href": "index.html#customize-tbl_summary-using-arguments",
     "title": "reproducibility-in-R",
     "section": "Customize tbl_summary() Using Arguments",
-    "text": "Customize tbl_summary() Using Arguments\n\n\n\n\n\n\n\nCharacteristic\n\n\nDrug A, N = 981\n\n\nDrug B, N = 1021\n\n\n\n\n\n\n\nAge\n\n\n\n\n\n\n\n\n    Mean (SD)\n\n\n47.0 (14.7)\n\n\n47.4 (14.0)\n\n\n\n\n    Range\n\n\n6.0, 78.0\n\n\n9.0, 83.0\n\n\n\n\n    Unknown\n\n\n7\n\n\n4\n\n\n\n\nPathologic tumor grade\n\n\n\n\n\n\n\n\n    I\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n    II\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n    III\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\nTumor Response\n\n\n28 / 95 (29%)\n\n\n33 / 98 (34%)\n\n\n\n\n    Unknown\n\n\n3\n\n\n4\n\n\n\n\n\n\n1 n (%); n / N (%)"
+    "text": "Customize tbl_summary() Using Arguments\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)"
   },
   {
     "objectID": "index.html#customize-tbl_summary-using-arguments-1",
     "href": "index.html#customize-tbl_summary-using-arguments-1",
     "title": "reproducibility-in-R",
     "section": "Customize tbl_summary() Using Arguments",
-    "text": "Customize tbl_summary() Using Arguments\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\nCharacteristic\n\n\nDrug A, N = 981\n\n\nDrug B, N = 1021\n\n\n\n\n\n\n\nAge\n\n\n\n\n\n\n\n\n    Mean (SD)\n\n\n47.0 (14.7)\n\n\n47.4 (14.0)\n\n\n\n\n    Range\n\n\n6.0, 78.0\n\n\n9.0, 83.0\n\n\n\n\n    Unknown\n\n\n7\n\n\n4\n\n\n\n\nPathologic tumor grade\n\n\n\n\n\n\n\n\n    I\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n    II\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n    III\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\nTumor Response\n\n\n28 / 95 (29%)\n\n\n33 / 98 (34%)\n\n\n\n\n    Unknown\n\n\n3\n\n\n4\n\n\n\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\n\nby: specifies a column variable for cross-tabulation\ntype: specifies the summary type\nstatistic: customize the reported statistics\nlabel: change or customize variable labels\ndigits: specify the number of decimal places for rounding"
+    "text": "Customize tbl_summary() Using Arguments\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\nby: specifies a column variable for cross-tabulation\ntype: specifies the summary type\nstatistic: customize the reported statistics\nlabel: change or customize variable labels\ndigits: specify the number of decimal places for rounding"
   },
   {
     "objectID": "index.html#gtsummary-formulas",
@@ -207,28 +207,28 @@
     "href": "index.html#update-tbl_summary-with-add_",
     "title": "reproducibility-in-R",
     "section": "Update tbl_summary() with add_*()",
-    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;% \n  add_p() %&gt;% \n  add_q(method = \"fdr\")\n\n\n\n\n\n\n\nCharacteristic\n\n\nDrug A, N = 981\n\n\nDrug B, N = 1021\n\n\np-value2\n\n\nq-value3\n\n\n\n\n\n\n\nAge\n\n\n46 (37, 59)\n\n\n48 (39, 56)\n\n\n0.7\n\n\n0.9\n\n\n\n\n    Unknown\n\n\n7\n\n\n4\n\n\n\n\n\n\n\n\nGrade\n\n\n\n\n\n\n0.9\n\n\n0.9\n\n\n\n\n    I\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n\n\n\n\n    II\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n\n\n\n\n    III\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\n\n\n\n\nTumor Response\n\n\n28 (29%)\n\n\n33 (34%)\n\n\n0.5\n\n\n0.9\n\n\n\n\n    Unknown\n\n\n3\n\n\n4\n\n\n\n\n\n\n\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n\n\n3 False discovery rate correction for multiple testing\n\n\n\n\n\n\n\n\n\nadd_p(): adds a column of p-values\nadd_q(): adds a column of p-values adjusted for multiple comparisons through a call to p.adjust()"
+    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;% \n  add_p() %&gt;% \n  add_q(method = \"fdr\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\nq-value3\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n0.7\n0.9\n\n\n    Unknown\n7\n4\n\n\n\n\n\n\nGrade\n\n\n\n\n0.9\n0.9\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n\nTumor Response\n28 (29%)\n33 (34%)\n0.5\n0.9\n\n\n    Unknown\n3\n4\n\n\n\n\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n3 False discovery rate correction for multiple testing\n\n\n\n\n\n\n\n\nadd_p(): adds a column of p-values\nadd_q(): adds a column of p-values adjusted for multiple comparisons through a call to p.adjust()"
   },
   {
     "objectID": "index.html#update-tbl_summary-with-add_-1",
     "href": "index.html#update-tbl_summary-with-add_-1",
     "title": "reproducibility-in-R",
     "section": "Update tbl_summary() with add_*()",
-    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt,\n    missing = \"no\"\n  ) %&gt;% \n  add_overall() %&gt;% \n  add_n() %&gt;% \n  add_stat_label(\n    label = all_categorical() ~ \"No. (%)\"\n  ) \n\n\n\n\n\n\n\nCharacteristic\n\n\nN\n\n\nOverall, N = 200\n\n\nDrug A, N = 98\n\n\nDrug B, N = 102\n\n\n\n\n\n\n\nAge, Median (IQR)\n\n\n189\n\n\n47 (38, 57)\n\n\n46 (37, 59)\n\n\n48 (39, 56)\n\n\n\n\nGrade, No. (%)\n\n\n200\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n\n\n68 (34%)\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n    II\n\n\n\n\n68 (34%)\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n    III\n\n\n\n\n64 (32%)\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\nTumor Response, No. (%)\n\n\n193\n\n\n61 (32%)\n\n\n28 (29%)\n\n\n33 (34%)\n\n\n\n\n\n\n\n\n\nadd_overall(): adds a column of overall statistics\nadd_n(): adds a column with the sample size\nadd_stat_label(): adds a description of the reported statistic"
+    "text": "Update tbl_summary() with add_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt,\n    missing = \"no\"\n  ) %&gt;% \n  add_overall() %&gt;% \n  add_n() %&gt;% \n  add_stat_label(\n    label = all_categorical() ~ \"No. (%)\"\n  ) \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOverall N = 200\nDrug A N = 98\nDrug B N = 102\n\n\n\n\nAge, Median (Q1, Q3)\n189\n47 (38, 57)\n46 (37, 60)\n48 (39, 56)\n\n\nGrade, No. (%)\n200\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n35 (36%)\n33 (32%)\n\n\n    II\n\n\n68 (34%)\n32 (33%)\n36 (35%)\n\n\n    III\n\n\n64 (32%)\n31 (32%)\n33 (32%)\n\n\nTumor Response, No. (%)\n193\n61 (32%)\n28 (29%)\n33 (34%)\n\n\n\n\n\n\n\nadd_overall(): adds a column of overall statistics\nadd_n(): adds a column with the sample size\nadd_stat_label(): adds a description of the reported statistic"
   },
   {
     "objectID": "index.html#update-with-bold_-or-italicize_",
     "href": "index.html#update-with-bold_-or-italicize_",
     "title": "reproducibility-in-R",
     "section": "Update with bold_*() or italicize_*()",
-    "text": "Update with bold_*() or italicize_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;%\n  add_p() %&gt;% \n  bold_labels() %&gt;% \n  italicize_levels() %&gt;% \n  bold_p(t = 0.8)\n\n\n\n\n\n\n\nCharacteristic\n\n\nDrug A, N = 981\n\n\nDrug B, N = 1021\n\n\np-value2\n\n\n\n\n\n\n\nAge\n\n\n46 (37, 59)\n\n\n48 (39, 56)\n\n\n0.7\n\n\n\n\n    Unknown\n\n\n7\n\n\n4\n\n\n\n\n\n\nGrade\n\n\n\n\n\n\n0.9\n\n\n\n\n    I\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n\n\n    II\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n\n\n    III\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\n\n\nTumor Response\n\n\n28 (29%)\n\n\n33 (34%)\n\n\n0.5\n\n\n\n\n    Unknown\n\n\n3\n\n\n4\n\n\n\n\n\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n\n\n\n\n\n\n\nbold_labels(): bold the variable labels\nitalicize_levels(): italicize the variable levels\nbold_p(): bold p-values according a specified threshold"
+    "text": "Update with bold_*() or italicize_*()\n\n\nsm_trial %&gt;%\n  tbl_summary(\n    by = trt\n  ) %&gt;%\n  add_p() %&gt;% \n  bold_labels() %&gt;% \n  italicize_levels() %&gt;% \n  bold_p(t = 0.8)\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n0.7\n\n\n    Unknown\n7\n4\n\n\n\n\nGrade\n\n\n\n\n0.9\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\nTumor Response\n28 (29%)\n33 (34%)\n0.5\n\n\n    Unknown\n3\n4\n\n\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test\n\n\n\n\n\n\n\n\nbold_labels(): bold the variable labels\nitalicize_levels(): italicize the variable levels\nbold_p(): bold p-values according a specified threshold"
   },
   {
     "objectID": "index.html#update-tbl_summary-with-modify_",
     "href": "index.html#update-tbl_summary-with-modify_",
     "title": "reproducibility-in-R",
     "section": "Update tbl_summary() with modify_*()",
-    "text": "Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\nCharacteristic\n\n\nDrug\n\n\n\n\nGroup A1\n\n\nGroup B1\n\n\n\n\n\n\n\nAge\n\n\n46 (37, 59)\n\n\n48 (39, 56)\n\n\n\n\nGrade\n\n\n\n\n\n\n\n\n    I\n\n\n35 (36%)\n\n\n33 (32%)\n\n\n\n\n    II\n\n\n32 (33%)\n\n\n36 (35%)\n\n\n\n\n    III\n\n\n31 (32%)\n\n\n33 (32%)\n\n\n\n\nTumor Response\n\n\n28 (29%)\n\n\n33 (34%)\n\n\n\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
+    "text": "Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
   },
   {
     "objectID": "index.html#customize-using-add-on-functions-1",
@@ -256,35 +256,35 @@
     "href": "index.html#quick-code-exercise-2",
     "title": "reproducibility-in-R",
     "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\")\n\n\n\n\n\n\nCharacteristic\n\n\n0, N = 1321\n\n\n1, N = 611\n\n\n\n\n\n\n\nAge\n\n\n46 (6, 83)\n\n\n50 (9, 78)\n\n\n\n\nT Stage\n\n\n\n\n\n\n\n\n    T1\n\n\n34 (26%)\n\n\n18 (30%)\n\n\n\n\n    T2\n\n\n39 (30%)\n\n\n13 (21%)\n\n\n\n\n    T3\n\n\n25 (19%)\n\n\n15 (25%)\n\n\n\n\n    T4\n\n\n34 (26%)\n\n\n15 (25%)\n\n\n\n\nMarker Level (ng/mL)\n\n\n0.59 (0.21, 1.24)\n\n\n0.98 (0.31, 1.53)\n\n\n\n\n\n\n1 Mean (Range); n (%); Median (IQR)"
+    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\")\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n0 N = 1321\n1 N = 611\n\n\n\n\nAge\n46 (6, 83)\n50 (9, 78)\n\n\nT Stage\n\n\n\n\n\n\n    T1\n34 (26%)\n18 (30%)\n\n\n    T2\n39 (30%)\n13 (21%)\n\n\n    T3\n25 (19%)\n15 (25%)\n\n\n    T4\n34 (26%)\n15 (25%)\n\n\nMarker Level (ng/mL)\n0.59 (0.21, 1.26)\n0.98 (0.31, 1.53)\n\n\n\n1 Mean (Min, Max); n (%); Median (Q1, Q3)"
   },
   {
     "objectID": "index.html#quick-code-exercise-3",
     "href": "index.html#quick-code-exercise-3",
     "title": "reproducibility-in-R",
     "section": "Quick Code Exercise",
-    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\") %&gt;%\n  add_p() %&gt;%\n  bold_labels() %&gt;%\n  bold_p() %&gt;%\n  italicize_levels() %&gt;%\n  add_overall() \n\n\n\n\n\n\nCharacteristic\n\n\nOverall, N = 1931\n\n\n0, N = 1321\n\n\n1, N = 611\n\n\np-value2\n\n\n\n\n\n\n\nAge\n\n\n47 (6, 83)\n\n\n46 (6, 83)\n\n\n50 (9, 78)\n\n\n0.091\n\n\n\n\nT Stage\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n    T1\n\n\n52 (27%)\n\n\n34 (26%)\n\n\n18 (30%)\n\n\n\n\n\n\n    T2\n\n\n52 (27%)\n\n\n39 (30%)\n\n\n13 (21%)\n\n\n\n\n\n\n    T3\n\n\n40 (21%)\n\n\n25 (19%)\n\n\n15 (25%)\n\n\n\n\n\n\n    T4\n\n\n49 (25%)\n\n\n34 (26%)\n\n\n15 (25%)\n\n\n\n\n\n\nMarker Level (ng/mL)\n\n\n0.62 (0.22, 1.38)\n\n\n0.59 (0.21, 1.24)\n\n\n0.98 (0.31, 1.53)\n\n\n0.10\n\n\n\n\n\n\n1 Mean (Range); n (%); Median (IQR)\n\n\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test"
+    "text": "Quick Code Exercise\n\n\n\n1. Create new data frame (new_trial) and select columns age, stage, response, marker\n2. Make a basic tbl_summary() summarizing by response variable and add the following customization:\n\nFor age make statistic report the\"{mean} ({min}, {max})\"\nUse missing arg to remove display of missing values\n\n3. Now apply the following customization:\n\nadd a p-value\nbold labels and p-values ≤ .05, italicize levels\nadd an ‘overall’ column\n\n\nnew_trial &lt;- select(trial, age, stage, response, marker)\n\nnew_trial %&gt;%\n  tbl_summary(by = response, \n              statistic = age ~ \"{mean} ({min}, {max})\", \n              missing = \"no\") %&gt;%\n  add_p() %&gt;%\n  bold_labels() %&gt;%\n  bold_p() %&gt;%\n  italicize_levels() %&gt;%\n  add_overall() \n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nOverall N = 1931\n0 N = 1321\n1 N = 611\np-value2\n\n\n\n\nAge\n47 (6, 83)\n46 (6, 83)\n50 (9, 78)\n0.091\n\n\nT Stage\n\n\n\n\n\n\n0.6\n\n\n    T1\n52 (27%)\n34 (26%)\n18 (30%)\n\n\n\n\n    T2\n52 (27%)\n39 (30%)\n13 (21%)\n\n\n\n\n    T3\n40 (21%)\n25 (19%)\n15 (25%)\n\n\n\n\n    T4\n49 (25%)\n34 (26%)\n15 (25%)\n\n\n\n\nMarker Level (ng/mL)\n0.62 (0.22, 1.41)\n0.59 (0.21, 1.26)\n0.98 (0.31, 1.53)\n0.10\n\n\n\n1 Mean (Min, Max); n (%); Median (Q1, Q3)\n\n\n2 Wilcoxon rank sum test; Pearson’s Chi-squared test"
   },
   {
     "objectID": "index.html#survival-outcomes-with-tbl_survfit",
     "href": "index.html#survival-outcomes-with-tbl_survfit",
     "title": "reproducibility-in-R",
     "section": "Survival outcomes with tbl_survfit()",
-    "text": "Survival outcomes with tbl_survfit()\nlibrary(survival)\nfit &lt;- survfit(Surv(ttdeath, death) ~ trt, trial)\ntbl_survfit(\n  fit, \n  times = c(12, 24),\n  label_header = \"**{time} Month**\"\n) %&gt;%\n  add_p()\n\n\n\n\n\n\nCharacteristic\n\n\n12 Month\n\n\n24 Month\n\n\np-value1\n\n\n\n\n\n\n\nChemotherapy Treatment\n\n\n\n\n\n\n0.2\n\n\n\n\n    Drug A\n\n\n91% (85%, 97%)\n\n\n47% (38%, 58%)\n\n\n\n\n\n\n    Drug B\n\n\n86% (80%, 93%)\n\n\n41% (33%, 52%)\n\n\n\n\n\n\n\n\n1 Log-rank test"
+    "text": "Survival outcomes with tbl_survfit()\nlibrary(survival)\nfit &lt;- survfit(Surv(ttdeath, death) ~ trt, trial)\ntbl_survfit(\n  fit, \n  times = c(12, 24),\n  label_header = \"**{time} Month**\"\n) %&gt;%\n  add_p()\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n12 Month\n24 Month\np-value1\n\n\n\n\nChemotherapy Treatment\n\n\n\n\n0.2\n\n\n    Drug A\n91% (85%, 97%)\n47% (38%, 58%)\n\n\n\n\n    Drug B\n86% (80%, 93%)\n41% (33%, 52%)\n\n\n\n\n\n1 Log-rank test\n\n\n\n\n\n\n\nAlso, regression (and more) models with tbl_regression() and tbl_uvregression()"
   },
   {
     "objectID": "index.html#model-summaries-with-tbl_regression",
     "href": "index.html#model-summaries-with-tbl_regression",
     "title": "reproducibility-in-R",
     "section": "Model Summaries with tbl_regression()",
-    "text": "Model Summaries with tbl_regression()\nm1 &lt;- glm(\n  response ~ age + stage,\n  data = trial,\n  family = binomial(link = \"logit\")\n  )\n\n\ntbl_regression(\n    m1,\n    exponentiate = TRUE\n  ) %&gt;% \n  add_global_p() \n\n\n\n\n\n\nCharacteristic\n\n\nOR1\n\n\n95% CI1\n\n\np-value\n\n\n\n\n\n\n\nAge\n\n\n1.02\n\n\n1.00, 1.04\n\n\n0.087\n\n\n\n\nT Stage\n\n\n\n\n\n\n0.6\n\n\n\n\n    T1\n\n\n—\n\n\n—\n\n\n\n\n\n\n    T2\n\n\n0.58\n\n\n0.24, 1.37\n\n\n\n\n\n\n    T3\n\n\n0.94\n\n\n0.39, 2.28\n\n\n\n\n\n\n    T4\n\n\n0.79\n\n\n0.33, 1.90\n\n\n\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
+    "text": "Model Summaries with tbl_regression()\nm1 &lt;- glm(\n  response ~ age + stage,\n  data = trial,\n  family = binomial(link = \"logit\")\n  )\n\n\ntbl_regression(\n    m1,\n    exponentiate = TRUE\n  ) %&gt;% \n  add_global_p() \n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nOR1\n95% CI1\np-value\n\n\n\n\nAge\n1.02\n1.00, 1.04\n0.087\n\n\nT Stage\n\n\n\n\n0.6\n\n\n    T1\n—\n—\n\n\n\n\n    T2\n0.58\n0.24, 1.37\n\n\n\n\n    T3\n0.94\n0.39, 2.28\n\n\n\n\n    T4\n0.79\n0.33, 1.90\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
   },
   {
     "objectID": "index.html#univariate-models-with-tbl_uvregression",
     "href": "index.html#univariate-models-with-tbl_uvregression",
     "title": "reproducibility-in-R",
     "section": "Univariate models with tbl_uvregression()",
-    "text": "Univariate models with tbl_uvregression()\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\nCharacteristic\n\n\nN\n\n\nOR1\n\n\n95% CI1\n\n\np-value\n\n\n\n\n\n\n\nChemotherapy Treatment\n\n\n193\n\n\n\n\n\n\n\n\n\n\n    Drug A\n\n\n\n\n—\n\n\n—\n\n\n\n\n\n\n    Drug B\n\n\n\n\n1.21\n\n\n0.66, 2.24\n\n\n0.5\n\n\n\n\nAge\n\n\n183\n\n\n1.02\n\n\n1.00, 1.04\n\n\n0.10\n\n\n\n\nGrade\n\n\n193\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n\n\n—\n\n\n—\n\n\n\n\n\n\n    II\n\n\n\n\n0.95\n\n\n0.45, 2.00\n\n\n0.9\n\n\n\n\n    III\n\n\n\n\n1.10\n\n\n0.52, 2.29\n\n\n0.8\n\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\n\nSpecify model method, method.args, and the response variable\nArguments and helper functions like exponentiate, bold_*(), add_global_p() can also be used with tbl_uvregression()"
+    "text": "Univariate models with tbl_uvregression()\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n193\n\n\n\n\n\n\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.21\n0.66, 2.24\n0.5\n\n\nAge\n183\n1.02\n1.00, 1.04\n0.10\n\n\nGrade\n193\n\n\n\n\n\n\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.95\n0.45, 2.00\n0.9\n\n\n    III\n\n\n1.10\n0.52, 2.29\n0.8\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\n\nSpecify model method, method.args, and the response variable\nArguments and helper functions like exponentiate, bold_*(), add_global_p() can also be used with tbl_uvregression()"
   },
   {
     "objectID": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text",
@@ -298,14 +298,14 @@
     "href": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text-1",
     "title": "reproducibility-in-R",
     "section": "Report Reproducbile Statistics with gtsummary::inline_text()",
-    "text": "Report Reproducbile Statistics with gtsummary::inline_text()\n\n\nlibrary(gtsummary)\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\nCharacteristic\n\n\nN\n\n\nOR1\n\n\n95% CI1\n\n\np-value\n\n\n\n\n\n\n\nChemotherapy Treatment\n\n\n193\n\n\n\n\n\n\n\n\n\n\n    Drug A\n\n\n\n\n—\n\n\n—\n\n\n\n\n\n\n    Drug B\n\n\n\n\n1.21\n\n\n0.66, 2.24\n\n\n0.5\n\n\n\n\nAge\n\n\n183\n\n\n1.02\n\n\n1.00, 1.04\n\n\n0.10\n\n\n\n\nGrade\n\n\n193\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n\n\n—\n\n\n—\n\n\n\n\n\n\n    II\n\n\n\n\n0.95\n\n\n0.45, 2.00\n\n\n0.9\n\n\n\n\n    III\n\n\n\n\n1.10\n\n\n0.52, 2.29\n\n\n0.8\n\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\n\nIn Code: The odds ratio for age is ‘inline_text(tbl_uvreg, variable = age)’\nIn Report: The odds ratio for age is 1.02 (95% CI 1.00, 1.04; p=0.10)"
+    "text": "Report Reproducbile Statistics with gtsummary::inline_text()\n\n\nlibrary(gtsummary)\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n193\n\n\n\n\n\n\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.21\n0.66, 2.24\n0.5\n\n\nAge\n183\n1.02\n1.00, 1.04\n0.10\n\n\nGrade\n193\n\n\n\n\n\n\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.95\n0.45, 2.00\n0.9\n\n\n    III\n\n\n1.10\n0.52, 2.29\n0.8\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\nIn Code: The odds ratio for age is ‘inline_text(tbl_uvreg, variable = age)’\nIn Report: The odds ratio for age is 1.02 (95% CI 1.00, 1.04; p=0.10)"
   },
   {
     "objectID": "index.html#bstfun",
     "href": "index.html#bstfun",
     "title": "reproducibility-in-R",
     "section": "{bstfun}",
-    "text": "{bstfun}\n\nA shared space for department members to add functions that may be useful to others\nHouses individual member’s project templates and function to start projects (create_bst_project(): will be discussed in further training)\nDiverse functions for various analysis-related tasks, {bstfun} Reference Index: https://www.danieldsjoberg.com/bstfun/reference/index.html"
+    "text": "{bstfun}\n\nA shared space for department members to add functions that may be useful to others\nHouses individual member’s project templates and function to start projects (create_bst_project(): will be discussed in further training)\nDiverse functions for various analysis-related tasks, {bstfun} Reference Index: https://mskcc-epi-bio.github.io/bstfun/"
   },
   {
     "objectID": "index.html#bstfun-useful-functions",
@@ -319,7 +319,7 @@
     "href": "index.html#bstfun-useful-functions-1",
     "title": "reproducibility-in-R",
     "section": "{bstfun} Useful Functions",
-    "text": "{bstfun} Useful Functions\nuse_varnames_as_labels()\nAutomatically add labels to your data based on column names\n\n\nBefore:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  tbl_summary() \n\n\n\n\n\n\nCharacteristic\n\n\nN = 321\n\n\n\n\n\n\n\nmpg\n\n\n19.2 (15.4, 22.8)\n\n\n\n\ncyl\n\n\n\n\n\n\n    4\n\n\n11 (34%)\n\n\n\n\n    6\n\n\n7 (22%)\n\n\n\n\n    8\n\n\n14 (44%)\n\n\n\n\nvs\n\n\n14 (44%)\n\n\n\n\nam\n\n\n13 (41%)\n\n\n\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n\n\n\nAfter:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\nCharacteristic\n\n\nN = 321\n\n\n\n\n\n\n\nMPG\n\n\n19.2 (15.4, 22.8)\n\n\n\n\ncyl\n\n\n\n\n\n\n    4\n\n\n11 (34%)\n\n\n\n\n    6\n\n\n7 (22%)\n\n\n\n\n    8\n\n\n14 (44%)\n\n\n\n\nVS\n\n\n14 (44%)\n\n\n\n\nAm\n\n\n13 (41%)\n\n\n\n\n\n\n1 Median (IQR); n (%)"
+    "text": "{bstfun} Useful Functions\nuse_varnames_as_labels()\nAutomatically add labels to your data based on column names\n\n\nBefore:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  tbl_summary() \n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nmpg\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nvs\n14 (44%)\n\n\nam\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\nAfter:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nMPG\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nVS\n14 (44%)\n\n\nAm\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)"
   },
   {
     "objectID": "index.html#bstfun-useful-functions-2",
@@ -431,7 +431,7 @@
     "href": "index.html#reproducible-reporting-1",
     "title": "reproducibility-in-R",
     "section": "Reproducible Reporting",
-    "text": "Reproducible Reporting\n\n\nR Markdown & Quarto are tools for integrating R code and narrative text into a single executable document\nCan be rendered into various output formats (HTML, PDF, Word, and slides)\nDetailed code and data analysis steps are included in one document, encouraging transparency and providing a complete record of the research process\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion-control compatible"
+    "text": "Reproducible Reporting\n\nR Markdown, Quarto and Jupyter are tools for integrating code and narrative text into a single executable document\nCan be rendered into various output formats (HTML, PDF, Word, and slides)\nDetailed code and data analysis steps are included in one document, encouraging transparency and providing a complete record of the research process\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion-control compatible"
   },
   {
     "objectID": "index.html#quick-aside-r-markdown-vs.-quarto",
@@ -530,5 +530,96 @@
     "title": "Example Statistical Analysis",
     "section": "Cox model",
     "text": "Cox model\n\n\n\n\n\n\n  \n    \n    \n      Characteristic\n      HR1\n      95% CI1\n      p-value\n    \n  \n  \n    age\n1.02\n1.00, 1.04\n0.065\n    sex\n0.60\n0.43, 0.83\n0.002\n  \n  \n  \n    \n      1 HR = Hazard Ratio, CI = Confidence Interval"
+  },
+  {
+    "objectID": "index.html#five-pillars-of-reproducibility",
+    "href": "index.html#five-pillars-of-reproducibility",
+    "title": "reproducibility-in-R",
+    "section": "Five Pillars Of Reproducibility",
+    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
+  },
+  {
+    "objectID": "index.html#literate-programming",
+    "href": "index.html#literate-programming",
+    "title": "reproducibility-in-R",
+    "section": "Literate Programming",
+    "text": "Literate Programming\nAvoid ‘by hand’ steps used in the analysis\n\nDon’t clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.\nIf any ‘non-scriptable’ steps are unavoidable, document those steps very clearly\nDNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)"
+  },
+  {
+    "objectID": "index.html#advanced-tips-update-tbl_summary-with-modify_",
+    "href": "index.html#advanced-tips-update-tbl_summary-with-modify_",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: Update tbl_summary() with modify_*()",
+    "text": "Advanced Tips: Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
+  },
+  {
+    "objectID": "index.html#advanced-tips-tbl_continuous",
+    "href": "index.html#advanced-tips-tbl_continuous",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: tbl_continuous()",
+    "text": "Advanced Tips: tbl_continuous()\nSummarize a continuous variable within categories and across different strata.\n\n\ntbl_continuous(\n  data = trial,\n  variable = age,\n  by = trt,\n  include = c(grade, response)\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nGrade\n\n\n\n\n\n\n    I\n46 (36, 60)\n48 (42, 55)\n\n\n    II\n45 (31, 55)\n51 (42, 58)\n\n\n    III\n52 (42, 61)\n45 (36, 52)\n\n\nTumor Response\n\n\n\n\n\n\n    0\n46 (36, 60)\n47 (37, 54)\n\n\n    1\n48 (41, 61)\n49 (43, 59)\n\n\n\n1 Age: Median (Q1, Q3)"
+  },
+  {
+    "objectID": "index.html#updated-nih-guidelines",
+    "href": "index.html#updated-nih-guidelines",
+    "title": "reproducibility-in-R",
+    "section": "Updated NIH Guidelines",
+    "text": "Updated NIH Guidelines\nNIH Data Management & Sharing Policy Updates\n\nEffective Date: January 25, 2023\nPurpose: Enhance data sharing to advance research transparency & reproducibility\n\n\nKey Requirements:\n\nAs of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)\nThis plan will likely requires sharing of research data, and in some cases, code.\nYou may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant."
+  },
+  {
+    "objectID": "index.html#advanced-tips-continuous2",
+    "href": "index.html#advanced-tips-continuous2",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: continuous2",
+    "text": "Advanced Tips: continuous2\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
+  },
+  {
+    "objectID": "index.html#advanced-tips-custom-p-value-functions",
+    "href": "index.html#advanced-tips-custom-p-value-functions",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: Custom p-value functions",
+    "text": "Advanced Tips: Custom p-value functions\n\nMany tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html\nIf you need one not on the list, create a custom function (use broom tidy at the end)\n\n\n\n# define function (need to use these arguments)\ncalculate_prop_test &lt;- function(data, variable, by, ...) {\n  data &lt;- tidyr::drop_na(data, dplyr::all_of(c(variable, by)))\n  prop.trend.test(\n    x = table(data[[variable]], data[[by]])[2, ], # get the second row (the positive row)\n    n = table(data[[by]])) |&gt; \n    broom::tidy()\n}\n\ntrial[c(\"grade\", \"trt\")] %&gt;%\n  tbl_summary(by = trt) %&gt;%\n  add_p(test = grade ~ \"calculate_prop_test\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nGrade\n\n\n\n\n0.7\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n1 n (%)\n\n\n2 Chi-squared Test for Trend in Proportions"
+  },
+  {
+    "objectID": "index.html#other-customizations",
+    "href": "index.html#other-customizations",
+    "title": "reproducibility-in-R",
+    "section": "Other Customizations",
+    "text": "Other Customizations\nMany more customization available!\n\nSee the documentation at http://www.danieldsjoberg.com/gtsummary/reference/index.html\nAnd a detailed tbl_summary() vignette at http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html"
+  },
+  {
+    "objectID": "index.html#advanced-tips-tbl_uvregression-with-formula",
+    "href": "index.html#advanced-tips-tbl_uvregression-with-formula",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: tbl_uvregression() with formula",
+    "text": "Advanced Tips: tbl_uvregression() with formula\n\nformula argument is powerful! You can adjust for variables, or pass mixed model formats (e.g. \"{y} ~ {x} + (1 | gear)\")\nAdditionally, add_global_p() can be useful\n\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    formula = \"{y} ~ {x} + age\",\n    include = -c(age), \n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels() %&gt;%\n  add_global_p()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n183\n\n\n\n\n0.7\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.13\n0.60, 2.13\n\n\n\n\nGrade\n183\n\n\n\n\n0.9\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.85\n0.39, 1.85\n\n\n\n\n    III\n\n\n1.01\n0.47, 2.16\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
+  },
+  {
+    "objectID": "index.html#advanced-tip-tbl_merge",
+    "href": "index.html#advanced-tip-tbl_merge",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tip: tbl_merge()",
+    "text": "Advanced Tip: tbl_merge()\nOften it’s useful to put summary stats and model estimates side by side\n\n\nt3 &lt;- trial[c(\"age\", \"grade\", \"response\")] %&gt;%\n  tbl_summary(missing = \"no\") %&gt;%\n  add_n() %&gt;%\n  modify_header(stat_0 ~ \"**Summary Statistics**\")\n\nt4 &lt;- tbl_uvregression(\n    trial[c(\"ttdeath\", \"death\", \"age\", \"grade\", \"response\")],\n    method = coxph,\n    y = Surv(ttdeath, death),\n    exponentiate = TRUE,\n    hide_n = TRUE)\n\ntbl_merge(tbls = list(t3, t4)) %&gt;%\n  modify_spanning_header(everything() ~ NA_character_)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nSummary Statistics1\nHR2\n95% CI2\np-value\n\n\n\n\nAge\n189\n47 (38, 57)\n1.01\n0.99, 1.02\n0.3\n\n\nGrade\n200\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n—\n—\n\n\n\n\n    II\n\n\n68 (34%)\n1.28\n0.80, 2.05\n0.3\n\n\n    III\n\n\n64 (32%)\n1.69\n1.07, 2.66\n0.024\n\n\nTumor Response\n193\n61 (32%)\n0.50\n0.31, 0.78\n0.003\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 HR = Hazard Ratio, CI = Confidence Interval"
+  },
+  {
+    "objectID": "index.html#advanced-tip-gtsummary-themes",
+    "href": "index.html#advanced-tip-gtsummary-themes",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tip: gtsummary Themes",
+    "text": "Advanced Tip: gtsummary Themes\n\nThemes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.\nThe {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!\nMost commonly used theme: gtsummary::theme_gtsummary_compact()\nMore info: https://www.danieldsjoberg.com/gtsummary/articles/themes.html"
+  },
+  {
+    "objectID": "index.html#advanced-tips-continuous2-digits",
+    "href": "index.html#advanced-tips-continuous2-digits",
+    "title": "reproducibility-in-R",
+    "section": "Advanced Tips: continuous2 & digits",
+    "text": "Advanced Tips: continuous2 & digits\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
+  },
+  {
+    "objectID": "index.html#five-pillars-of-reproducibility-1",
+    "href": "index.html#five-pillars-of-reproducibility-1",
+    "title": "reproducibility-in-R",
+    "section": "Five Pillars Of Reproducibility",
+    "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
   }
 ]
