@@ -11,13 +11,12 @@ execute:
 editor: source
 --- 
 
-# Reproducibility Analyses in R {background-color="#007CBA" style="text-align: center;"}
-
 ```{r}
 #| echo: false
-#| results: false
+#| error: false
+#| warning: false
 
-knitr::opts_chunk$set(echo = TRUE, results = 'asis')
+#knitr::opts_chunk$set(echo = TRUE, results = 'asis')
 
 library(tidyverse)
 library(gtsummary)
@@ -27,28 +26,29 @@ sm_trial <-
   select(trt, age, grade, response)
 
 
-knit_print.gtsummary <- function(x, ...) {
-   gtsummary::as_gt(x) |>
-     gt::as_raw_html()
-}
-
-knit_print.gt_tbl <- function(x, ...) {
-  gt::as_raw_html(x)
-} 
-
-
-registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
-registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
+# knit_print.gtsummary <- function(x, ...) {
+#    gtsummary::as_gt(x) |>
+#      gt::as_raw_html()
+# }
+# 
+# knit_print.gt_tbl <- function(x, ...) {
+#   gt::as_raw_html(x)
+# } 
+# 
+# 
+# registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
+# registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
 
 # fill for font awesome icons
 fa_fill <- "#606060"
 ```
 
+# Reproducible Analyses & Literate Programming {background-color="#007CBA" style="text-align: center;"}
 
-Karissa Whiting <br> Research Biostatistician <br> Memorial Sloan Kettering <br>
 
-June 10th, 2024
+Karissa Whiting <br> Research Biostatistician Training Series <br> Memorial Sloan Kettering <br>
 
+March 11th, 2025
 
 <p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
 
@@ -106,40 +106,68 @@ Dangers of writing code that is hard to double-check or confirm:
 <p align="center"><img src="images/nytimes2.png"width=60%></p>
 
 
+## Updated NIH Guidelines
 
-## How Do We Ensure Our Code is Reproducible?
+[NIH Data Management & Sharing Policy Updates]{.emphasized}
 
-::: incremental
+- Effective Date: January 25, 2023
+- Purpose: Enhance data sharing to advance research transparency & reproducibility
 
-- Have a clear project structure and defined workflow - **Discussed in Part 1**
+<br> 
 
-- Avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`) - **Discussed in Part 1**
+[Key Requirements:]{.emphasized}
 
-- Version control (document changes you make, or use git!) - **Discussed in Part 1**
+  - As of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)
+  - This plan will likely requires sharing of research data, and in some cases, code. 
+  - You may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant.
 
-- Comment and document your code
+## Five Pillars Of Reproducibility
 
-- [Avoid 'by hand' steps used in the analysis]{.emphasized}
 
+<p align="center"><img src="images/five-pillars.jpg"width=60%></p>
+
+::: aside
+<https://pubmed.ncbi.nlm.nih.gov/37870287/>
 :::
 
 ## How Do We Ensure Our Code is Reproducible?
 
+
+- [Compute Environment Control]{.emphasized}
+  - Virtual environments, avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`) 
+
+- [Code Version Control]{.emphasized}
+  - Document changes you make, or use git/Github
+
+- [Documentation]{.emphasized}
+  - Comment and document your code
+  - Invest in a good `README.md`
+
+- [Data Integrity]{.emphasized} - more details later
+
+- [Literate Programming]{.emphasized}
+  - Have a clear project structure, avoid 'by hand' steps
+
+
+## Literate Programming
+
 [Avoid 'by hand' steps used in the analysis]{.emphasized}
 
-- All analysis steps should be done using code and saved in well-documented scripts (e.g. you should use a script to clean data, rather than cleaning it by hand in Excel)
+- Don't clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts. 
     
 - If any 'non-scriptable' steps are unavoidable, document those steps very clearly
 
+- DNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function
+
 - Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+
 
 # Reproducible Reporting {background-color="#007CBA" style="text-align: center;"}
 
 ## Reproducible Reporting
 
-::: incremental
 
-- [R Markdown]{.emphasized} & [Quarto]{.emphasized} are tools for integrating R code and narrative text into a single executable document
+- [R Markdown]{.emphasized}, [Quarto]{.emphasized} and [Jupyter]{.emphasized} are tools for integrating code and narrative text into a single executable document
 
 - Can be rendered into various **output formats** (HTML, PDF, Word, and slides)
 
@@ -148,185 +176,6 @@ Dangers of writing code that is hard to double-check or confirm:
 - Documents automatically update when data or code changes, **reducing errors** and **maintaining consistency**.
 
 - Version-control compatible 
-:::
-
-## Quick Aside: R Markdown vs. Quarto?
-
-- **RStudio is Now Posit**, aiming to broaden their scope to include software for other programming languages (e.g Python, Julia)
-
--   New publishing system called Quarto (already launched) is part of this multilanguage effort
-
-![](images/rstudio-posit.png)
-
-## What is Quarto?
-
-::: incremental
--   [Quarto]{.emphasized} is a multi-language, next generation version of R Markdown from RStudio
-
--   [This change shouldn't affect R users much]{.emphasized} - it can render most existing Rmd files with few changes
-
--  Do I Have to Switch From R Markdown? [Nope!]{.emphasized} R Markdown is not going away and will continue to be supported
-
-- However, Quarto has some exciting features (some shown today) and will continue to develop and mature.
-
-![](images/rmd-quarto.png){fig-align="center"}
-
-
-:::
-
-
-## Moving From R Markdown
-
-::: incremental
-
-Quarto documents end in `.qmd` instead of `.rmd` and have some minimal required formatting changes:
-
-<br>
-
-\-[YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
-
-\-[Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
-
-\-[Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
-:::
-
-
-
-
-
-
-## Moving From R Markdown: YAML Header
-
-- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
-
-## Moving From R Markdown: YAML Header
-
-- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
-
-
-:::: columns
-::: column
-
-**R Markdown:**
-
-```{yaml}
-#| echo: TRUE
-#| code-line-numbers: "2"
-
-title: "My Document"
-output:
-  html_document:
-    toc: true
-    number_sections: true
-    css: styles.css
-```
-:::
-
-::: column
-
-**Quarto:**
-
-```{yaml}
-#| echo: TRUE
-#| code-line-numbers: "2"
-
-title: "My Document"
-format:
-  html:
-    toc: true
-    number-sections: true
-    css: styles.css
-```
-:::
-
-::::
-
-
-## Moving From R Markdown: YAML Header 2
-
-
-- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
-
-## Moving From R Markdown: YAML Header 2
-
-
-- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
-
-::: columns
-::: column
-**R Markdown:**
-
-```{r,setup,echo=TRUE}
-knitr::opts_chunk$set(echo=FALSE)
-```
-:::
-
-::: column
-**Quarto:**
-
-``` yaml
-title: "My-Title"
-subtitle: "Until now!"
-execute:
-  echo: false
-```
-:::
-:::
-
-## Moving From R Markdown: YAML Chunk Options
-
-
-- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
-
-
-## Moving From R Markdown: YAML Chunk Options
-
-
-- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
-
-::: columns
-::: column
-
-**R Markdown:**
-
-```{{r}}
-print("hi")
-```
-
-:::
-
-::: column
-**Quarto:**
-
-```{r}
-#| echo: fenced
-#| include: True
-#| results: false
-print("hi")
-```
-:::
-:::
-
-## Quarto Features: Flexible Layouts With Multiple Columns
-
-How to specify multiple column layout: 
-
-![](images/multiple.columns.png)
-
-## Quarto flexible layout using {layout}
-
-![](images/quarto3.png)
-
-::: notes
-You can now easily organize your report using various layouts including column formats Here, we want the first image spans the entire first row and two equal sized figure in the second row
-
-The layout attribute is a 2-dimensional array where the first dimension defines rows and the second columns. In this case "layout="\[\[1,1\], \[1\]\]" translates to: create two rows, the first of which has two columns of equal size and the second of which has a single column.
-:::
-
-
-## Quarto flexible layout using {layout}
-
-![](images/Elephant.png)
 
 
 ## Quarto Features: Callouts and Comments

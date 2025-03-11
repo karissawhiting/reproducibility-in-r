@@ -29,3 +29,26 @@ wday(bday, label = TRUE)
 ```
 
 
+## Five Pillars Of Reproducibility
+
+
+<p align="center"><img src="images/five-pillars.jpg"width=60%></p>
+
+::: aside
+<https://pubmed.ncbi.nlm.nih.gov/37870287/>
+:::
+
+
+# Data Versioning
+
+- How data versions are managed is still highly depending on what service and data types you work with
+
+- For genomic or imaging data, try to use a standardized pipeline 
+
+- For clinical data, try to establish a workflow with your service collaborators.
+
+- **Avoid making changes to excel yourself**
+
+- Use the `README` to track
+
+

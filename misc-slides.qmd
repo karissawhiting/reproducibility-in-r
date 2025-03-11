@@ -1,0 +1,282 @@
+
+## Quick Aside: R Markdown vs. Quarto?
+
+- **RStudio is Now Posit**, aiming to broaden their scope to include software for other programming languages (e.g Python, Julia)
+
+-   New publishing system called Quarto (already launched) is part of this multilanguage effort
+
+![](images/rstudio-posit.png)
+
+## What is Quarto?
+
+::: incremental
+-   [Quarto]{.emphasized} is a multi-language, next generation version of R Markdown from RStudio
+
+-   [This change shouldn't affect R users much]{.emphasized} - it can render most existing Rmd files with few changes
+
+-  Do I Have to Switch From R Markdown? [Nope!]{.emphasized} R Markdown is not going away and will continue to be supported
+
+- However, Quarto has some exciting features (some shown today) and will continue to develop and mature.
+
+![](images/rmd-quarto.png){fig-align="center"}
+
+
+:::
+
+
+## Moving From R Markdown
+
+::: incremental
+
+Quarto documents end in `.qmd` instead of `.rmd` and have some minimal required formatting changes:
+
+<br>
+
+\-[YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+\-[Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+\-[Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+:::
+
+
+
+
+
+
+## Moving From R Markdown: YAML Header
+
+- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+## Moving From R Markdown: YAML Header
+
+- [YAML Header]{.emphasized} now uses `format` instead of `output` and allows auto-complete to make editing the YAML more fool-proof.
+
+
+:::: columns
+::: column
+
+**R Markdown:**
+
+```{yaml}
+#| echo: TRUE
+#| code-line-numbers: "2"
+
+title: "My Document"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    css: styles.css
+```
+:::
+
+::: column
+
+**Quarto:**
+
+```{yaml}
+#| echo: TRUE
+#| code-line-numbers: "2"
+
+title: "My Document"
+format:
+  html:
+    toc: true
+    number-sections: true
+    css: styles.css
+```
+:::
+
+::::
+
+
+## Moving From R Markdown: YAML Header 2
+
+
+- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+## Moving From R Markdown: YAML Header 2
+
+
+- [Global chunk options]{.emphasized} are set in YAML header using `execute` instead of in a knitr setup chunk.
+
+::: columns
+::: column
+**R Markdown:**
+
+```{r,setup,echo=TRUE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+:::
+
+::: column
+**Quarto:**
+
+``` yaml
+title: "My-Title"
+subtitle: "Until now!"
+execute:
+  echo: false
+```
+:::
+:::
+
+## Moving From R Markdown: YAML Chunk Options
+
+
+- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+
+
+## Moving From R Markdown: YAML Chunk Options
+
+
+- [Individual chunk options]{.emphasized} are also set in YAML in each chunk as needed, using the "hashpipe" (`#|`).
+
+::: columns
+::: column
+
+**R Markdown:**
+
+```{{r}}
+print("hi")
+```
+
+:::
+
+::: column
+**Quarto:**
+
+```{r}
+#| echo: fenced
+#| include: True
+#| results: false
+print("hi")
+```
+:::
+:::
+
+
+
+## Quarto Features: Flexible Layouts With Multiple Columns
+
+How to specify multiple column layout: 
+
+![](images/multiple.columns.png)
+
+## Quarto flexible layout using {layout}
+
+![](images/quarto3.png)
+
+::: notes
+You can now easily organize your report using various layouts including column formats Here, we want the first image spans the entire first row and two equal sized figure in the second row
+
+The layout attribute is a 2-dimensional array where the first dimension defines rows and the second columns. In this case "layout="\[\[1,1\], \[1\]\]" translates to: create two rows, the first of which has two columns of equal size and the second of which has a single column.
+:::
+
+
+## Quarto flexible layout using {layout}
+
+![](images/Elephant.png)
+
+## Customize tbl_summary() Using Arguments
+
+```{r}
+#| output-location: "column"
+#| echo: true
+tbl_summary(
+  sm_trial,
+  by = trt,
+  type = age ~ "continuous2",
+  statistic = 
+    list(
+      age ~ c("{mean} ({sd})", 
+              "{min}, {max}"), 
+      response ~ "{n} / {N} ({p}%)"
+    ),
+  label = 
+    grade ~ "Pathologic tumor grade",
+  digits = age ~ 1
+)
+```
+
+::: small
+::: columns
+::: {.column width="50%"}
+-   `by`: specifies a column variable for cross-tabulation
+
+-   `type`: specifies the summary type
+
+-   `statistic`: customize the reported statistics
+
+-   `label`: change or customize variable labels
+
+-   `digits`: specify the number of decimal places for rounding
+:::
+
+::: {.column width="50%"}
+:::
+:::
+:::
+
+
+
+## Update tbl_summary() with add\_\*()
+
+```{r}
+#| output-location: "column"
+#| echo: true
+#| code-line-numbers: "5,6"
+sm_trial %>%
+  tbl_summary(
+    by = trt
+  ) %>% 
+  add_p() %>% 
+  add_q(method = "fdr")
+```
+
+-   `add_p()`: adds a column of p-values
+
+-   `add_q()`: adds a column of p-values adjusted for multiple comparisons through a call to `p.adjust()`
+
+## Update tbl_summary() with add\_\*()
+
+```{r}
+#| output-location: "column"
+#| echo: true
+#| code-line-numbers: "6,7,8,9,10"
+sm_trial %>%
+  tbl_summary(
+    by = trt,
+    missing = "no"
+  ) %>% 
+  add_overall() %>% 
+  add_n() %>% 
+  add_stat_label(
+    label = all_categorical() ~ "No. (%)"
+  ) 
+```
+
+-   `add_overall()`: adds a column of overall statistics
+-   `add_n()`: adds a column with the sample size
+-   `add_stat_label()`: adds a description of the reported statistic
+
+## Update with bold\_\*() or italicize\_\*()
+
+```{r}
+#| output-location: "column"
+#| code-line-numbers: "6,7,8"
+#| echo: true
+sm_trial %>%
+  tbl_summary(
+    by = trt
+  ) %>%
+  add_p() %>% 
+  bold_labels() %>% 
+  italicize_levels() %>% 
+  bold_p(t = 0.8)
+```
+
+-   `bold_labels()`: bold the variable labels
+-   `italicize_levels()`: italicize the variable levels
+-   `bold_p()`: bold p-values according a specified threshold
