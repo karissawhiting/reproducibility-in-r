@@ -42,6 +42,7 @@
 
 ```{r}
 #| echo: true
+#| cache: false
 
 sm_trial <- trial %>% 
   select(trt, age, grade, response)
