@@ -1,0 +1,150 @@
+
+# AI Best Practices {background-color="#007CBA" style="text-align: center;"}
+
+
+## AI in Coding: Opportunities & Risks
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**Pros**
+
+- Speeds up boilerplate code and scaffold complex code pipelines
+- Helps translate between R and Python
+- Useful for debugging error messages
+- Generates documentation and inline comments quickly
+- Automatic code review
+
+:::
+
+::: {.column width="50%"}
+
+**Cons**
+
+- **PHI risk** 
+- **Hallucinations** —AI can confidently generates plausible but incorrect code or refs
+- **Reproducibility gap** — if you can't explain what the code does, you can't defend the analysis
+- Outdated training data / limited knowledge of niche packages and functions
+
+:::
+
+::::
+
+::: {.callout-warning}
+**MSK policy:** Use only approved institutional tools. These are currently web & browser based only.
+:::
+
+
+# Tips for Coding with AI ⚠️
+
+## AI Tips: Stay Close to Code During Data QA
+
+## AI Tips: Stay Close to Code During Data QA
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+Stay close to your code while preprocessing and QA-ing your data. AI cannot catch errors it doesn't know to look for.
+
+- Make sure you understand every variable needed to execute the analysis plan.
+- Check variable types, missingness, and ranges yourself before handing off to an AI tool
+
+:::
+
+::: {.column width="45%"}
+
+<p align="center"><img src="images/ai-qa-mistake.png" width=100%></p>
+
+:::
+
+::::
+
+
+## AI Tips: Don't Outsource Your Statistical Judgment
+
+**❌ Don't** : Let an LLM pick the most appropriate statistical test or models for your analysis. 
+
+**✅ Do** : Get help with syntax, but make the decisions yourself. If you don't understand why a test or model is appropriate for your data and question, see if the LLM can help explain it to you in simple terms (I've had varying success with this last point). 
+
+<br> 
+
+**❌ Don't** : Let an LLM write a statistical plan for you.
+
+
+**✅ Do** : ...Your own statistical plan.
+
+
+
+## AI Tips: Think Systematically
+
+<br>
+
+**❌ Don't** : Tell an LLM to produce a figure based on a dataset you input. 
+
+
+**✅ Do** : Provide context on the structure of your data (which variables you want to use), and the specifications of the plot you would like to make. Then, ask it to generate readable and well-commented code to produce the plot, and explain the code to you line by line. 
+
+
+
+## AI Tips: Don't Let Your Code Base Get Away From You
+
+
+**❌ Don't** : Let AI take over your codebase without understanding and verifying every line of code it produces.
+
+**✅ Do** : Use AI to scaffold, debug, and explain code. Use it to help organize, functionalize and modularize your code (eg. helping with the 'do not repeat 3 times' rule)
+
+::: {.callout-warning}
+You are still responsible for understanding and maintaining this codebase. Stay in control — treat AI suggestions like code review, not ground truth.
+:::
+
+## Example: AI-Assisted Pipeline Review
+
+Ask AI to review your code systematically — bugs, performance, and structure all at once
+
+```{.md}
+# Pipeline Review: run-pipeline.R and Related Scripts
+
+## Findings
+
+### Bugs / Errors
+
+- Sequential bootstrap loop — parallel cluster is set up but never used
+  Fix: Replace `for` loop in `run_bootstrap()` with `foreach %dopar%`
+
+- `prep-data.R` uses hardcoded parameters duplicated from `run-pipeline.R`
+  Fix: Source shared parameters from a single config file
+
+- Pipeline assumes `data/model-data.RData` exists — fails with cryptic error if missing
+  Fix: Check if file exists; source `prep-data.R` first if not
+
+- Potential syntax bug in `preprocess-functions.R` line ~57: `[, , drop = FALSE]`
+  Fix: Verify intent and replace with proper indexing
+
+### Performance Improvements
+
+1. Parallelize the bootstrap loop (biggest gain) — swap `for` → `foreach %dopar%`
+2. Batch file writes — collect rows during loop, write once at the end
+3. Replace `do.call(cbind, ...)` with `dplyr::bind_cols()` — faster for wide data
+
+### Verification Plan
+
+- Run local mode with NBOOT=5, confirm no errors end-to-end
+- Confirm parallelized and sequential bootstrap give same AUC distributions (same seed)
+- Unit test the indexing fix on a small data slice
+```
+
+::: {.callout-tip}
+Prompt: *"Review this pipeline for bugs, performance issues, and parameter consistency across scripts. List findings by priority and suggest specific fixes with file and line references."*
+:::
+
+
+## Other AI Tips
+
+- AI very useful for writing tedious documentation or checking your documentation is sufficient
+- **Cluster Computing** - Input cluster guidelines as context for cluster computing scripts
+- Can be useful in vetting / reviewing your code and looking for gaps
+- Use Plan mode for larger code base changes
+- Use it to build and organize pipelines, but make sure you understand which code /functions depend on which scripts, etc. 
+
