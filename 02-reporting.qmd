@@ -1,8 +1,125 @@
 
-# What Goes In Your Report? {background-color="#007CBA" style="text-align: center;"}
+# Reproducible Analysis Code {background-color="#007CBA" style="text-align: center;"}
 
 
-## gtsummary {auto-animate="true"}
+## Literate Programming
+
+[Avoid 'by hand' steps used in the analysis]{.emphasized}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+- Don't clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.
+
+- If any 'non-scriptable' steps are unavoidable, document those steps very clearly
+
+- DNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function
+
+- Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+
+:::
+
+::: {.column width="40%"}
+
+<p align="center"><img src="images/project-folders.png" width=100%></p>
+
+:::
+
+::::
+
+## Reproducible Reporting
+
+
+- [R Markdown]{.emphasized}, [Quarto]{.emphasized} and [Jupyter]{.emphasized} are tools for integrating code and narrative text into a single executable document
+
+- Can be rendered into various **output formats** (HTML, PDF, Word, and slides)
+
+- Detailed code and data analysis steps are included in one document, encouraging **transparency** and providing a complete record of the research process 
+
+- Documents automatically update when data or code changes, **reducing errors** and **maintaining consistency**.
+
+- Version-control compatible 
+
+
+## Quarto vs. Jupyter Notebooks
+
+::::{.columns}
+:::{.column width="50%"}
+[**Quarto (`.qmd`)**]{.emphasized}
+
+- Native R, Python, Julia, support
+- Plain-text Markdown + code instructions — **no stored outputs**
+- Git-friendly — diffs are clean and meaningful
+- Easy to turn analysis into formal report: Renders to HTML, PDF, Word, slides, websites, etc
+:::
+
+:::{.column width="50%"}
+[**Jupyter (`.ipynb`)**]{.emphasized}
+
+- Primarily Python-first; widely used in data science and ML
+- JSON container storing code, text, **and outputs** — **Results are visible on reopen**
+- Cell execution order can be non-linear (a reproducibility risk)
+- Git diffs can be messy
+
+
+:::
+::::
+
+::: {.callout-tip}
+**The hidden risk of ipynb:** Jupyter lets you run cells out of order. Results can depend on state you forgot you created earlier. The notebook looks coherent, but a fresh top-to-bottom run may not reproduce the same story. Quarto rendering enforces clean execution and exposes that quickly.
+:::
+
+
+
+# Useful Reporting Tools {background-color="#007CBA" style="text-align: center;"}
+
+
+## Quarto Features: Callouts and Comments
+
+Sometimes you need to draw attention to something in your report. You can do this using `{.callout-note}`
+
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+```
+
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+```
+::: {.callout-warning}
+Here is an example of a warning
+:::
+```
+
+::: {.callout-warning}
+Here is an example of a warning 
+:::
+
+
+
+
+## Quarto Features: Tabs
+
+::::{.columns}
+:::{.column}
+![](images/tab_code.png)
+:::
+
+
+:::{.column}
+![](images/tab_image.png)
+:::
+::::
+
+
+
+## {gtsummary} {auto-animate="true"}
 
 
 - [**{gtsummary}**]{.emphasized} - Tools to create publication-ready analytical and summary tables using the R programming language. 
@@ -267,25 +384,6 @@ tbl_merge(tbls = list(t3, t4)) %>%
 - More info: [https://www.danieldsjoberg.com/gtsummary/articles/themes.html](https://www.danieldsjoberg.com/gtsummary/articles/themes.html)
 
 
-
-
-## Other Useful Functions
-
-[tbl_listing()]{.emphasized}
-
-
-Problem: You <3  {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.
- 
-Solution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report.
-
-![](images/tbl_listing.png)
-
-## Other Useful Functions
-
-[gtreg::tbl_listing()]{.emphasized}
-
-![](images/tbl_listing2.png)
-
 ## Other Customizations
 
 Many more customization available!
@@ -300,7 +398,7 @@ And a detailed `tbl_summary()` vignette at <http://www.danieldsjoberg.com/gtsumm
 
 
 
-## Report Reproducbile Statistics with gtsummary::inline_text()
+## Report Reproducible Statistics with gtsummary::inline_text()
 
 -   Tables are important, but we often need to report results in-line in a report.
 
