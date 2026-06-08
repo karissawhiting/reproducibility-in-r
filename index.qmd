@@ -43,9 +43,10 @@ sm_trial <-
 fa_fill <- "#606060"
 ```
 
-# Computational Reproducibility <br> in Practice {background-color="#007CBA" style="text-align: center; font-size: 0.8em;"}
+# Coding Workshop Part 1{background-color="#007CBA" style="text-align: left; font-size: 0.8em;"}
+[Computational Reproducibility]{style="font-size: 1.5em; color: white;"}
 
-
+<br>
 Karissa Whiting <br> 
 June 1st, 2026 <br><br>
 Summer Training Series <br> 
@@ -54,6 +55,20 @@ Memorial Sloan Kettering <br>
 
 <p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
 
+<br>
+
+`r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
+
+
+# Computational Reproducibility <br> in Practice {background-color="#007CBA" style="text-align: center; font-size: 0.8em;"}{visibility="hidden"}
+
+[Karissa Whiting <br>
+June 1st, 2026 <br>
+Summer Training Series <br>
+Memorial Sloan Kettering <br>]{style="color: #FFB347;"}
+
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
 
 <br>
 
@@ -61,7 +76,19 @@ Memorial Sloan Kettering <br>
 
 `r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
 
+ 
 
+## Agenda
+
+::: {.larger}
+1. Computational Reproducibility Overview
+2. Project Setup
+3. Writing Good Code
+4. Reproducible Reporting
+5. AI Guidelines for Coding
+:::
+
+ 
 ## What is Reproducibility?
 
 ::: incremental
@@ -73,7 +100,7 @@ A data analysis is [reproducible]{.emphasized} if all the information (data, fil
 - All analysis decisions made are documented and available in code
 
 - Results don't depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)
-
+ 
 :::
 
 ## Why is Reproducibility Important?
@@ -107,11 +134,9 @@ Dangers of writing code that is hard to double-check or confirm:
 <p align="center"><img src="images/nytimes.png"width=50%></p>
 <p align="center"><img src="images/nytimes2.png"width=60%></p>
 
-
-
 ## Journal Code-Sharing Requirements
 
-Increasingly, journals and funders require code to be submitted or shared. You may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of a grant.
+Increasingly, journals and funders require code to be submitted. You may be asked to provide your cleaned analysis data (and possibly code) at time of publication.
 
 ::: {style="font-size: 0.75em;"}
 
@@ -119,7 +144,7 @@ Increasingly, journals and funders require code to be submitted or shared. You m
 |---|---|
 | **NIH** | As of Jan 2023, all grants require a Data Management Plan; sharing of data and code may be required at publication or grant end.|
 | **The BMJ** | Submissions ≥ May 2024: code used to analyze data must be submitted |
-| **PLOS Biology/Medicine** | Submissions ≥ Jan 2026: author-generated code directly related to findings must be available publicaly |
+| **PLOS Biology/Medicine** | Submissions ≥ Jan 2026: author-generated code directly related to findings must be available publicly |
 | **Nature / Springer Nature** | Code Availability Statement required; sharing is a condition of publication |
 
 

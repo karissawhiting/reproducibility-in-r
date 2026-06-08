@@ -10,11 +10,11 @@
 
 **Pros**
 
-- Speeds up boilerplate code and scaffold complex code pipelines
-- Helps translate between R and Python
-- Useful for debugging error messages
-- Generates documentation and inline comments quickly
-- Automatic code review
+- **Helps scaffold** - Speeds up boilerplate code and complex code pipelines
+- Helps **translate** between R and Python
+- **Debugging** 
+- **Documentation** - Generates documentation and inline comments
+- **Code review**
 
 :::
 
@@ -23,9 +23,9 @@
 **Cons**
 
 - **PHI risk** 
-- **Hallucinations** —AI can confidently generates plausible but incorrect code or refs
+- **Hallucinations** - AI confidently generates plausible but incorrect code
 - **Reproducibility gap** — if you can't explain what the code does, you can't defend the analysis
-- Outdated training data / limited knowledge of niche packages and functions
+- Outdated training data / limited knowledge of niche packages
 
 :::
 
@@ -36,9 +36,7 @@
 :::
 
 
-# Tips for Coding with AI ⚠️
-
-## AI Tips: Stay Close to Code During Data QA
+# Tips for Coding with AI ⚠️ {background-color="#007CBA" style="text-align: center;"}
 
 ## AI Tips: Stay Close to Code During Data QA
 
@@ -48,8 +46,11 @@
 
 Stay close to your code while preprocessing and QA-ing your data. AI cannot catch errors it doesn't know to look for.
 
-- Make sure you understand every variable needed to execute the analysis plan.
-- Check variable types, missingness, and ranges yourself before handing off to an AI tool
+<br> 
+
+**❌ Don't** : Let an LLM QA your data or use unchecked variable cleaning code from an LLM without QA-ing it yourself.
+
+**✅ Do** : Check variable types and levels, missingness, and ranges yourself before handing off to an AI tool. **Make sure you understand every variable needed to execute the analysis plan**
 
 :::
 
@@ -64,17 +65,19 @@ Stay close to your code while preprocessing and QA-ing your data. AI cannot catc
 
 ## AI Tips: Don't Outsource Your Statistical Judgment
 
-**❌ Don't** : Let an LLM pick the most appropriate statistical test or models for your analysis. 
+::: {.fragment}
+**❌ Don't** : Let an LLM pick the most appropriate statistical test or models for your analysis.
 
-**✅ Do** : Get help with syntax, but make the decisions yourself. If you don't understand why a test or model is appropriate for your data and question, see if the LLM can help explain it to you in simple terms (I've had varying success with this last point). 
+**✅ Do** : Get help with syntax, but make the decisions yourself. If you don't understand why a test or model is appropriate for your data and question, see if the LLM can help explain it to you in simple terms (I've had varying success with this last point).
+:::
 
 <br> 
 
+::: {.fragment}
 **❌ Don't** : Let an LLM write a statistical plan for you.
 
-
-**✅ Do** : ...Your own statistical plan.
-
+**✅ Do** : Let an LLM clean up and format a statistical plan you've already written. Ask it to review it for gaps or inconsistencies, but make sure you understand and can defend every decision in the plan yourself.
+:::
 
 
 ## AI Tips: Think Systematically
@@ -87,6 +90,34 @@ Stay close to your code while preprocessing and QA-ing your data. AI cannot catc
 **✅ Do** : Provide context on the structure of your data (which variables you want to use), and the specifications of the plot you would like to make. Then, ask it to generate readable and well-commented code to produce the plot, and explain the code to you line by line. 
 
 
+
+## AI Tips: Think Systematically — Example
+
+::::{.columns}
+
+:::{.column width="50%"}
+**❌ Vague prompt:**
+
+> *"Here is my dataset. Make a survival curve."*
+
+- LLM has to guess variable names, event coding, grouping variable
+- Output may use wrong packages or defaults
+- Hard to verify or adapt the code you get back
+
+:::
+
+:::{.column width="50%"}
+**✅ Specific prompt:**
+
+> *"I have a data frame `trial` with: `ttdeath` (time to death in months), `death` (1 = event, 0 = censored), `trt` ('Drug A' / 'Drug B'). Using `{survival}` and `{ggsurvfit}`, write well-commented R code to plot Kaplan-Meier curves by treatment group with a risk table. Then explain each step."*
+
+- LLM produces code you can read and verify
+- Explanation helps you catch mistakes and learn
+- You stay in control of the analytical decisions
+
+:::
+
+::::
 
 ## AI Tips: Don't Let Your Code Base Get Away From You
 
@@ -102,6 +133,10 @@ You are still responsible for understanding and maintaining this codebase. Stay 
 ## Example: AI-Assisted Pipeline Review
 
 Ask AI to review your code systematically — bugs, performance, and structure all at once
+
+::: {.callout-tip}
+Prompt: *"Review this pipeline for bugs, efficiency and parameter consistency across scripts. Suggest areas to speed up the code. List findings by priority and suggest specific fixes with file and line references."*
+:::
 
 ```{.md}
 # Pipeline Review: run-pipeline.R and Related Scripts
@@ -135,16 +170,16 @@ Ask AI to review your code systematically — bugs, performance, and structure a
 - Unit test the indexing fix on a small data slice
 ```
 
-::: {.callout-tip}
-Prompt: *"Review this pipeline for bugs, performance issues, and parameter consistency across scripts. List findings by priority and suggest specific fixes with file and line references."*
-:::
-
 
 ## Other AI Tips
 
-- AI very useful for writing tedious documentation or checking your documentation is sufficient
-- **Cluster Computing** - Input cluster guidelines as context for cluster computing scripts
-- Can be useful in vetting / reviewing your code and looking for gaps
-- Use Plan mode for larger code base changes
-- Use it to build and organize pipelines, but make sure you understand which code /functions depend on which scripts, etc. 
+::: {.incremental}
+- **✅ Do** : Use AI to write documentation
+- **✅ Do** : Use AI for code review and improving code efficiency
+- **✅ Do** : Use context/project/skill files to specify style, preferred packages, compute constraints, etc.
+- **✅ Do** : Input cluster guidelines as context for cluster computing scripts
+- **✅ Do** : Use Plan mode and iterate several times for larger code refactors
+- **✅ Do** : Use it to build/organize larger pipelines, but make sure you understand which code/functions depend on which scripts, etc.
+:::
+
 

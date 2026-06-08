@@ -1,5 +1,24 @@
 
-# Reproducible Analysis Code {background-color="#007CBA" style="text-align: center;"}
+# Writing Good Code {background-color="#007CBA" style="text-align: center;"}
+
+
+## Analysis Plan First
+
+**Write the plan before you write the code**
+
+**Why it matters:**
+
+- Prevents [p-hacking]{.emphasized} — decisions made after seeing results inflate false positive rates
+- Forces clarity on the research questions and makes collaboration easier 
+- **Makes coding easier!!!!**
+
+**What to include:**
+
+- Research question, hypotheses, endpoints
+- Cohort definition
+- Statistical methods and model specifications (e.g how to handle missing data)
+- Planned sensitivity analyses, expected outputs/tables/figures
+
 
 
 ## Literate Programming
@@ -10,23 +29,47 @@
 
 ::: {.column width="60%"}
 
-- Don't clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.
+::: {.incremental}
 
-- If any 'non-scriptable' steps are unavoidable, document those steps very clearly
+- Don't clean by hand in Excel. All analysis steps should be done in code and saved in scripts. If any 'non-scriptable' steps are unavoidable, document those steps very clearly.
 
-- DNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function
+- Write code comments and maintain a good README
+
+- Consider [efficiency / readibility]{.emphasized} trade-off
+  
+- [DNR]{.emphasized} (Do Not Repeat) - if you do it more than 3 times, consider writing a function
 
 - Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
 
 :::
 
+:::
+
 ::: {.column width="40%"}
 
-<p align="center"><img src="images/project-folders.png" width=100%></p>
 
+::: {.larger}
+
+```
+📁 my-project/
+├── 📁 raw-data/
+├── 📁 data/
+├── 📁 scripts/
+│   ├── 📄 01-clean.R
+│   └── 📄 02-analysis.R
+├── 📁 outputs/
+├── 📁 admin/
+├── 📄 README.md
+└── 📄 my-project.Rproj
+```
+:::
 :::
 
 ::::
+
+
+# Reproducible Reporting {background-color="#007CBA" style="text-align: center;"}
+
 
 ## Reproducible Reporting
 
@@ -69,10 +112,6 @@
 ::: {.callout-tip}
 **The hidden risk of ipynb:** Jupyter lets you run cells out of order. Results can depend on state you forgot you created earlier. The notebook looks coherent, but a fresh top-to-bottom run may not reproduce the same story. Quarto rendering enforces clean execution and exposes that quickly.
 :::
-
-
-
-# Useful Reporting Tools {background-color="#007CBA" style="text-align: center;"}
 
 
 ## Quarto Features: Callouts and Comments
@@ -183,7 +222,7 @@ sm_trial %>%
 :::
 :::
 
-## Survival outcomes with tbl_survfit()
+## Survival outcomes with tbl_survfit(){visibility="hidden"}
 
 ```{r}
 #| echo: true
@@ -200,7 +239,7 @@ tbl_survfit(
 
 - Also, regression (and more) models with `tbl_regression()` and `tbl_uvregression()` 
 
-## {gtsummary} + formulas
+## {gtsummary} + formulas{visibility="hidden"}
 
 <p align="center">
 
@@ -208,7 +247,7 @@ tbl_survfit(
 
 </p>
 
-## Customize Using Add-on Functions
+## Customize Using Add-on Functions{visibility="hidden"}
 
 Summary tables can be further updated using [helper functions]{.emphasized}:
 
@@ -220,7 +259,7 @@ Summary tables can be further updated using [helper functions]{.emphasized}:
 -   [bold\_*()/italicize\_*()]{.emphasized} style labels, variable levels, significant p-values
 :::
 
-## Advanced Tips: Update tbl_summary() with modify\_\*()
+## Advanced Tips: Update tbl_summary() with modify\_\*(){visibility="hidden"}
 
 ```{r}
 #| output-location: "column"
@@ -244,7 +283,7 @@ sm_trial %>%
 
 -   Use `show_header_names()` to see the internal header names available for use in `modify_header()`
 
-## Advanced Tips: continuous2 & digits
+## Advanced Tips: continuous2 & digits{visibility="hidden"}
 
 ```{r}
 #| output-location: "column"
@@ -279,7 +318,7 @@ tbl_summary(
 :::
 :::
 
-## Advanced Tips: tbl_continuous()
+## Advanced Tips: tbl_continuous(){visibility="hidden"}
 
 Summarize a continuous variable within categories and across different strata.
 
@@ -296,7 +335,7 @@ tbl_continuous(
 
 ```
 
-## Advanced Tips: Custom p-value functions
+## Advanced Tips: Custom p-value functions{visibility="hidden"}
 
 - Many tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html
 - If you need one not on the list, create a custom function (use broom tidy at the end)
@@ -349,7 +388,7 @@ tbl_uvreg
 
 
 
-## Advanced Tip: tbl_merge()
+## Advanced Tip: tbl_merge(){visibility="hidden"}
 
 Often it's useful to put summary stats and model estimates side by side 
 ```{r}
@@ -420,7 +459,7 @@ And a detailed `tbl_summary()` vignette at <http://www.danieldsjoberg.com/gtsumm
 
 library(gtsummary)
 
-tbl_uvreg <- sm_trial %>% 
+tbl_uvreg <- sm_trial %>%
   tbl_uvregression(
     method = glm,
     y = response,

@@ -2,13 +2,44 @@
 # Project Setup {background-color="#007CBA" style="text-align: center;"}
 
 
+## Good Project Setup First = Hours Saved Later{.incremental}
+
+:::: {.incremental}
+
+- The goal is to set yourself up with a project that is **easy to navigate** & **self-explanatory** without needing to hold everything in your head
+
+
+- 🔮✨ A little upfront effort in organizing your code and files will save you an enormous amount of time and frustration later
+
+
+<p align="center"><img src="images/start-at-beginning.png" width=40%></p>
+
+
+::::
+
+
 ## Project Setup: Anatomy of a Project
 
 :::: { .columns}
 
 ::: {.column width="50%"}
 
-<p align="center"><img src="images/project-folders.png" width=100%></p>
+<br> 
+
+::: {.larger}
+```
+📁 my-project/
+├── 📁 raw-data/
+├── 📁 data/
+├── 📁 scripts/
+│   ├── 📄 01-clean.R
+│   └── 📄 02-analysis.R
+├── 📁 outputs/
+├── 📁 admin/
+├── 📄 README.md
+└── 📄 my-project.Rproj
+```
+:::
 
 :::
 
@@ -29,17 +60,13 @@
 ::::
 
 
-## Compute Environment Control
+## Compute Environment Control: Virtual Environments
 
 Make it easy for others (and future you) to re-run your code on any machine
 
-:::: {.columns}
-
-::: {.column width="50%"}
-
-#### Virtual Environments
-
 Isolate package versions per project so code runs the same everywhere
+
+<br>
 
 **Python — `venv` or `conda`:**
 ```bash
@@ -53,11 +80,7 @@ pip install -r requirements.txt # restore
 
 You can commit & track `renv.lock` / `requirements.txt` / `environment.yml`
 
-:::
-
-::: {.column width="50%"}
-
-#### Avoid Absolute File Paths
+## Compute Environment Control: Avoid Absolute File Paths
 
 Hard-coded paths break on every other machine:
 
@@ -74,31 +97,6 @@ read.csv(here::here("data", "raw", "data.csv"))
 
 - Always use paths **relative to the project root**
 - `here::here()` (R) and `pyprojroot.here()` (Python) find the project root automatically
-
-
-:::
-
-::::
-
-
-## Analysis Plan First
-
-**Write the plan before you write the code** - define your questions, methods, and outputs *before* touching data
-
-**Why it matters:**
-
-- Prevents [p-hacking]{.emphasized} — decisions made after seeing results inflate false positive rates
-- Forces clarity on the research questions and makes collaboration easier 
-- **Makes coding easier!!!!**
-
-**What to include:**
-
-- Research question, hypotheses, endpoints
-- Cohort definition
-- Statistical methods and model specifications (e.g how to handle missing data)
-- Planned sensitivity analyses, expected outputs/tables/figures
-
-
 
 ## Setup Version Control
 
@@ -150,11 +148,11 @@ Think of Git as "track changes" for your entire project, and GitHub as Google Dr
 **Deleting a file does not remove it from Git history.** If PHI or sensitive data is ever committed, it is a violation — even if you delete it in the next commit.
 :::
 
-A `.gitignore` file tells git which files to NOT track. Set it up *before* you commit anything. 
+<br>
 
-<br> 
+- A `.gitignore` file tells git which files to NOT track. Set it up *before* you commit anything. 
 
-Use `usethis::use_git_ignore()` in R or GitHub's [gitignore templates](https://github.com/github/gitignore) to get started quickly (but check where data resides and add as needed)
+- ßUse `usethis::use_git_ignore()` in R or GitHub's [gitignore templates](https://github.com/github/gitignore) to get started quickly (but check where data resides and add as needed)
 
 ## `.gitignore` Example
 
