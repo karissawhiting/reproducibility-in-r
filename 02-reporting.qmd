@@ -1,8 +1,164 @@
 
-# What Goes In Your Report? {background-color="#007CBA" style="text-align: center;"}
+# Writing Good Code {background-color="#007CBA" style="text-align: center;"}
 
 
-## gtsummary {auto-animate="true"}
+## Analysis Plan First
+
+**Write the plan before you write the code**
+
+**Why it matters:**
+
+- Prevents [p-hacking]{.emphasized} — decisions made after seeing results inflate false positive rates
+- Forces clarity on the research questions and makes collaboration easier 
+- **Makes coding easier!!!!**
+
+**What to include:**
+
+- Research question, hypotheses, endpoints
+- Cohort definition
+- Statistical methods and model specifications (e.g how to handle missing data)
+- Planned sensitivity analyses, expected outputs/tables/figures
+
+
+
+## Literate Programming
+
+[Avoid 'by hand' steps used in the analysis]{.emphasized}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+::: {.incremental}
+
+- Don't clean by hand in Excel. All analysis steps should be done in code and saved in scripts. If any 'non-scriptable' steps are unavoidable, document those steps very clearly.
+
+- Write code comments and maintain a good README
+
+- Consider [efficiency / readibility]{.emphasized} trade-off
+  
+- [DNR]{.emphasized} (Do Not Repeat) - if you do it more than 3 times, consider writing a function
+
+- Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+
+:::
+
+:::
+
+::: {.column width="40%"}
+
+
+::: {.larger}
+
+```
+📁 my-project/
+├── 📁 raw-data/
+├── 📁 data/
+├── 📁 scripts/
+│   ├── 📄 01-clean.R
+│   └── 📄 02-analysis.R
+├── 📁 outputs/
+├── 📁 admin/
+├── 📄 README.md
+└── 📄 my-project.Rproj
+```
+:::
+:::
+
+::::
+
+
+# Reproducible Reporting {background-color="#007CBA" style="text-align: center;"}
+
+
+## Reproducible Reporting
+
+
+- [R Markdown]{.emphasized}, [Quarto]{.emphasized} and [Jupyter]{.emphasized} are tools for integrating code and narrative text into a single executable document
+
+- Can be rendered into various **output formats** (HTML, PDF, Word, and slides)
+
+- Detailed code and data analysis steps are included in one document, encouraging **transparency** and providing a complete record of the research process 
+
+- Documents automatically update when data or code changes, **reducing errors** and **maintaining consistency**.
+
+- Version-control compatible 
+
+
+## Quarto vs. Jupyter Notebooks
+
+::::{.columns}
+:::{.column width="50%"}
+[**Quarto (`.qmd`)**]{.emphasized}
+
+- Native R, Python, Julia, support
+- Plain-text Markdown + code instructions — **no stored outputs**
+- Git-friendly — diffs are clean and meaningful
+- Easy to turn analysis into formal report: Renders to HTML, PDF, Word, slides, websites, etc
+:::
+
+:::{.column width="50%"}
+[**Jupyter (`.ipynb`)**]{.emphasized}
+
+- Primarily Python-first; widely used in data science and ML
+- JSON container storing code, text, **and outputs** — **Results are visible on reopen**
+- Cell execution order can be non-linear (a reproducibility risk)
+- Git diffs can be messy
+
+
+:::
+::::
+
+::: {.callout-tip}
+**The hidden risk of ipynb:** Jupyter lets you run cells out of order. Results can depend on state you forgot you created earlier. The notebook looks coherent, but a fresh top-to-bottom run may not reproduce the same story. Quarto rendering enforces clean execution and exposes that quickly.
+:::
+
+
+## Quarto Features: Callouts and Comments
+
+Sometimes you need to draw attention to something in your report. You can do this using `{.callout-note}`
+
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+```
+
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+```
+::: {.callout-warning}
+Here is an example of a warning
+:::
+```
+
+::: {.callout-warning}
+Here is an example of a warning 
+:::
+
+
+
+
+## Quarto Features: Tabs
+
+::::{.columns}
+:::{.column}
+![](images/tab_code.png)
+:::
+
+
+:::{.column}
+![](images/tab_image.png)
+:::
+::::
+
+
+
+## {gtsummary} {auto-animate="true"}
 
 
 - [**{gtsummary}**]{.emphasized} - Tools to create publication-ready analytical and summary tables using the R programming language. 
@@ -66,7 +222,7 @@ sm_trial %>%
 :::
 :::
 
-## Survival outcomes with tbl_survfit()
+## Survival outcomes with tbl_survfit(){visibility="hidden"}
 
 ```{r}
 #| echo: true
@@ -83,7 +239,7 @@ tbl_survfit(
 
 - Also, regression (and more) models with `tbl_regression()` and `tbl_uvregression()` 
 
-## {gtsummary} + formulas
+## {gtsummary} + formulas{visibility="hidden"}
 
 <p align="center">
 
@@ -91,7 +247,7 @@ tbl_survfit(
 
 </p>
 
-## Customize Using Add-on Functions
+## Customize Using Add-on Functions{visibility="hidden"}
 
 Summary tables can be further updated using [helper functions]{.emphasized}:
 
@@ -103,7 +259,7 @@ Summary tables can be further updated using [helper functions]{.emphasized}:
 -   [bold\_*()/italicize\_*()]{.emphasized} style labels, variable levels, significant p-values
 :::
 
-## Advanced Tips: Update tbl_summary() with modify\_\*()
+## Advanced Tips: Update tbl_summary() with modify\_\*(){visibility="hidden"}
 
 ```{r}
 #| output-location: "column"
@@ -127,7 +283,7 @@ sm_trial %>%
 
 -   Use `show_header_names()` to see the internal header names available for use in `modify_header()`
 
-## Advanced Tips: continuous2 & digits
+## Advanced Tips: continuous2 & digits{visibility="hidden"}
 
 ```{r}
 #| output-location: "column"
@@ -162,7 +318,7 @@ tbl_summary(
 :::
 :::
 
-## Advanced Tips: tbl_continuous()
+## Advanced Tips: tbl_continuous(){visibility="hidden"}
 
 Summarize a continuous variable within categories and across different strata.
 
@@ -179,7 +335,7 @@ tbl_continuous(
 
 ```
 
-## Advanced Tips: Custom p-value functions
+## Advanced Tips: Custom p-value functions{visibility="hidden"}
 
 - Many tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html
 - If you need one not on the list, create a custom function (use broom tidy at the end)
@@ -232,7 +388,7 @@ tbl_uvreg
 
 
 
-## Advanced Tip: tbl_merge()
+## Advanced Tip: tbl_merge(){visibility="hidden"}
 
 Often it's useful to put summary stats and model estimates side by side 
 ```{r}
@@ -267,25 +423,6 @@ tbl_merge(tbls = list(t3, t4)) %>%
 - More info: [https://www.danieldsjoberg.com/gtsummary/articles/themes.html](https://www.danieldsjoberg.com/gtsummary/articles/themes.html)
 
 
-
-
-## Other Useful Functions
-
-[tbl_listing()]{.emphasized}
-
-
-Problem: You <3  {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.
- 
-Solution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report.
-
-![](images/tbl_listing.png)
-
-## Other Useful Functions
-
-[gtreg::tbl_listing()]{.emphasized}
-
-![](images/tbl_listing2.png)
-
 ## Other Customizations
 
 Many more customization available!
@@ -300,7 +437,7 @@ And a detailed `tbl_summary()` vignette at <http://www.danieldsjoberg.com/gtsumm
 
 
 
-## Report Reproducbile Statistics with gtsummary::inline_text()
+## Report Reproducible Statistics with gtsummary::inline_text()
 
 -   Tables are important, but we often need to report results in-line in a report.
 
@@ -322,7 +459,7 @@ And a detailed `tbl_summary()` vignette at <http://www.danieldsjoberg.com/gtsumm
 
 library(gtsummary)
 
-tbl_uvreg <- sm_trial %>% 
+tbl_uvreg <- sm_trial %>%
   tbl_uvregression(
     method = glm,
     y = response,

@@ -43,15 +43,32 @@ sm_trial <-
 fa_fill <- "#606060"
 ```
 
-# Reproducible Analyses & Literate Programming {background-color="#007CBA" style="text-align: center;"}
+# Coding Workshop Part 1{background-color="#007CBA" style="text-align: left; font-size: 0.8em;"}
+[Computational Reproducibility]{style="font-size: 1.5em; color: white;"}
 
+<br>
+Karissa Whiting <br> 
+June 1st, 2026 <br><br>
+Summer Training Series <br> 
+Memorial Sloan Kettering <br>
 
-Karissa Whiting <br> Research Biostatistician Training Series <br> Memorial Sloan Kettering <br>
-
-March 11th, 2025
 
 <p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
 
+<br>
+
+`r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
+
+
+# Computational Reproducibility <br> in Practice {background-color="#007CBA" style="text-align: center; font-size: 0.8em;"}{visibility="hidden"}
+
+[Karissa Whiting <br>
+June 1st, 2026 <br>
+Summer Training Series <br>
+Memorial Sloan Kettering <br>]{style="color: #FFB347;"}
+
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
 
 <br>
 
@@ -59,7 +76,19 @@ March 11th, 2025
 
 `r fontawesome::fa("github", fill = "white")` [[github.com/karissawhiting](https://github.com/karissawhiting/)]{style="color: white"}
 
+ 
 
+## Agenda
+
+::: {.larger}
+1. Computational Reproducibility Overview
+2. Project Setup
+3. Writing Good Code
+4. Reproducible Reporting
+5. AI Guidelines for Coding
+:::
+
+ 
 ## What is Reproducibility?
 
 ::: incremental
@@ -71,7 +100,7 @@ A data analysis is [reproducible]{.emphasized} if all the information (data, fil
 - All analysis decisions made are documented and available in code
 
 - Results don't depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)
-
+ 
 :::
 
 ## Why is Reproducibility Important?
@@ -105,21 +134,25 @@ Dangers of writing code that is hard to double-check or confirm:
 <p align="center"><img src="images/nytimes.png"width=50%></p>
 <p align="center"><img src="images/nytimes2.png"width=60%></p>
 
+## Journal Code-Sharing Requirements
 
-## Updated NIH Guidelines
+Increasingly, journals and funders require code to be submitted. You may be asked to provide your cleaned analysis data (and possibly code) at time of publication.
 
-[NIH Data Management & Sharing Policy Updates]{.emphasized}
+::: {style="font-size: 0.75em;"}
 
-- Effective Date: January 25, 2023
-- Purpose: Enhance data sharing to advance research transparency & reproducibility
+| Journal / Publisher | Requirement |
+|---|---|
+| **NIH** | As of Jan 2023, all grants require a Data Management Plan; sharing of data and code may be required at publication or grant end.|
+| **The BMJ** | Submissions ≥ May 2024: code used to analyze data must be submitted |
+| **PLOS Biology/Medicine** | Submissions ≥ Jan 2026: author-generated code directly related to findings must be available publicly |
+| **Nature / Springer Nature** | Code Availability Statement required; sharing is a condition of publication |
 
-<br> 
 
-[Key Requirements:]{.emphasized}
+:::
 
-  - As of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)
-  - This plan will likely requires sharing of research data, and in some cases, code. 
-  - You may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant.
+::: {.callout-tip}
+Requirements vary by journal, article type, and whether code is essential to reproduce findings. Even when not required, sharing code is increasingly expected.
+:::
 
 ## Five Pillars Of Reproducibility
 
@@ -129,6 +162,7 @@ Dangers of writing code that is hard to double-check or confirm:
 ::: aside
 <https://pubmed.ncbi.nlm.nih.gov/37870287/>
 :::
+
 
 ## How Do We Ensure Our Code is Reproducible?
 
@@ -148,84 +182,13 @@ Dangers of writing code that is hard to double-check or confirm:
 - [Literate Programming]{.emphasized}
   - Have a clear project structure, avoid 'by hand' steps
 
+{{< include 01-project-setup.qmd >}}
 
-## Literate Programming
-
-[Avoid 'by hand' steps used in the analysis]{.emphasized}
-
-- Don't clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts. 
-    
-- If any 'non-scriptable' steps are unavoidable, document those steps very clearly
-
-- DNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function
-
-- Use [reproducible reporting]{.emphasized} practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
-
-
-# Reproducible Reporting {background-color="#007CBA" style="text-align: center;"}
-
-## Reproducible Reporting
-
-
-- [R Markdown]{.emphasized}, [Quarto]{.emphasized} and [Jupyter]{.emphasized} are tools for integrating code and narrative text into a single executable document
-
-- Can be rendered into various **output formats** (HTML, PDF, Word, and slides)
-
-- Detailed code and data analysis steps are included in one document, encouraging **transparency** and providing a complete record of the research process 
-
-- Documents automatically update when data or code changes, **reducing errors** and **maintaining consistency**.
-
-- Version-control compatible 
-
-
-## Quarto Features: Callouts and Comments
-
-Sometimes you need to draw attention to something in your report. You can do this using `{.callout-note}`
-
-```
-::: {.callout-note}
-Note that there are five types of callouts, including:
-`note`, `warning`, `important`, `tip`, and `caution`.
-:::
-```
-
-::: {.callout-note}
-Note that there are five types of callouts, including:
-`note`, `warning`, `important`, `tip`, and `caution`.
-:::
-
-```
-::: {.callout-warning}
-Here is an example of a warning
-:::
-```
-
-::: {.callout-warning}
-Here is an example of a warning 
-:::
-
-
-
-
-## Quarto Features: Tabs
-
-::::{.columns}
-:::{.column}
-![](images/tab_code.png)
-:::
-
-
-:::{.column}
-![](images/tab_image.png)
-:::
-::::
-
-
-{{< include 01-gtsummary.qmd >}}
-
-{{< include 02-bstfun.qmd >}}
+{{< include 02-reporting.qmd >}}
 
 {{< include 03-lubridate-and-bonus.qmd >}}
+
+{{< include 04-ai-guidelines.qmd >}}
 
 # Thank You!!!
 

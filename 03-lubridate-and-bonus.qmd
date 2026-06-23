@@ -29,6 +29,8 @@ wday(bday, label = TRUE)
 ```
 
 
+# Data Versioning {background-color="#007CBA" style="text-align: center;"}
+
 ## Five Pillars Of Reproducibility
 
 
@@ -45,7 +47,7 @@ wday(bday, label = TRUE)
 
 - For genomic or imaging data, try to use a standardized pipeline 
 
-- For clinical data, try to establish a workflow with your service collaborators.
+- For clinical data, try to establish a workflow with your collaborators.
 
 - **Avoid making changes to excel yourself**
 
