@@ -3,8 +3,8 @@ project:
   type: website
   output-dir: docs
   render:
-    - "*.qmd"
-    - "!archived-materials/*.qmd"
+    - "index.qmd"
+    - "example-quarto.qmd"
 
 execute:
   error: true
