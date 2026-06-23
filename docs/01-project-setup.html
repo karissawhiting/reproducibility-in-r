@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -126,22 +126,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-background-color="#007CBA" style="text-align: center;">Project Setup</h1>
 <section id="good-project-setup-first-hours-saved-later" class="level2 incremental">
 <h2 class="incremental anchored" data-anchor-id="good-project-setup-first-hours-saved-later">Good Project Setup First = Hours Saved Later</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>The goal is to set yourself up with a project that is <strong>easy to navigate</strong> &amp; <strong>self-explanatory</strong> without needing to hold everything in your head</p>
-<p><br></p>
-<p>🔮✨ A little upfront effort in organizing your code and files will save you an enormous amount of time and frustration later</p>
-</div><div class="column" style="width:40%;">
+<div class="incremental">
+<ul class="incremental">
+<li><p>The goal is to set yourself up with a project that is <strong>easy to navigate</strong> &amp; <strong>self-explanatory</strong> without needing to hold everything in your head</p></li>
+<li><p>🔮✨ A little upfront effort in organizing your code and files will save you an enormous amount of time and frustration later</p></li>
+</ul>
 <p align="center">
-<img src="images/start-at-beginning.png" width="100%">
+<img src="images/start-at-beginning.png" width="40%">
 </p>
-</div>
 </div>
 </section>
 <section id="project-setup-anatomy-of-a-project" class="level2">
 <h2 class="anchored" data-anchor-id="project-setup-anatomy-of-a-project">Project Setup: Anatomy of a Project</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<p><br></p>
+<div class="larger">
 <pre><code>📁 my-project/
 ├── 📁 raw-data/
 ├── 📁 data/
@@ -152,6 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── 📁 admin/
 ├── 📄 README.md
 └── 📄 my-project.Rproj</code></pre>
+</div>
 </div><div class="column" style="width:50%;">
 <ul>
 <li><p>Keep raw and processed data separate (<code>raw-data</code> vs.&nbsp;<code>data</code>)</p></li>
@@ -163,14 +164,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="compute-environment-control" class="level2">
-<h2 class="anchored" data-anchor-id="compute-environment-control">Compute Environment Control</h2>
+<section id="compute-environment-control-virtual-environments" class="level2">
+<h2 class="anchored" data-anchor-id="compute-environment-control-virtual-environments">Compute Environment Control: Virtual Environments</h2>
 <p>Make it easy for others (and future you) to re-run your code on any machine</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<section id="virtual-environments" class="level4">
-<h4 class="anchored" data-anchor-id="virtual-environments">Virtual Environments</h4>
 <p>Isolate package versions per project so code runs the same everywhere</p>
+<p><br></p>
 <p><strong>Python — <code>venv</code> or <code>conda</code>:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv <span class="kw">&amp;&amp;</span> <span class="bu">source</span> .venv/bin/activate</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt   <span class="co"># save</span></span>
@@ -178,9 +176,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>R — <code>renv</code>:</strong></p>
 <p>You can commit &amp; track <code>renv.lock</code> / <code>requirements.txt</code> / <code>environment.yml</code></p>
 </section>
-</div><div class="column" style="width:50%;">
-<section id="avoid-absolute-file-paths" class="level4">
-<h4 class="anchored" data-anchor-id="avoid-absolute-file-paths">Avoid Absolute File Paths</h4>
+<section id="compute-environment-control-avoid-absolute-file-paths" class="level2">
+<h2 class="anchored" data-anchor-id="compute-environment-control-avoid-absolute-file-paths">Compute Environment Control: Avoid Absolute File Paths</h2>
 <p>Hard-coded paths break on every other machine:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ❌ breaks on anyone else's computer</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"~/Users/Whiting/Projects/data.csv"</span>)</span>
@@ -194,9 +191,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Always use paths <strong>relative to the project root</strong></li>
 <li><code>here::here()</code> (R) and <code>pyprojroot.here()</code> (Python) find the project root automatically</li>
 </ul>
-</section>
-</div>
-</div>
 </section>
 <section id="setup-version-control" class="level2">
 <h2 class="anchored" data-anchor-id="setup-version-control">Setup Version Control</h2>
@@ -260,9 +254,11 @@ Warning
 <p><strong>Deleting a file does not remove it from Git history.</strong> If PHI or sensitive data is ever committed, it is a violation — even if you delete it in the next commit.</p>
 </div>
 </div>
-<p>A <code>.gitignore</code> file tells git which files to NOT track. Set it up <em>before</em> you commit anything.</p>
 <p><br></p>
-<p>Use <code>usethis::use_git_ignore()</code> in R or GitHub’s <a href="https://github.com/github/gitignore">gitignore templates</a> to get started quickly (but check where data resides and add as needed)</p>
+<ul>
+<li><p>A <code>.gitignore</code> file tells git which files to NOT track. Set it up <em>before</em> you commit anything.</p></li>
+<li><p>ßUse <code>usethis::use_git_ignore()</code> in R or GitHub’s <a href="https://github.com/github/gitignore">gitignore templates</a> to get started quickly (but check where data resides and add as needed)</p></li>
+</ul>
 </section>
 <section id="gitignore-example" class="level2">
 <h2 class="anchored" data-anchor-id="gitignore-example"><code>.gitignore</code> Example</h2>
