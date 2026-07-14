@@ -21,6 +21,7 @@ editor: source
 library(tidyverse)
 library(gtsummary)
 
+
 sm_trial <-
   trial %>% 
   select(trt, age, grade, response)
