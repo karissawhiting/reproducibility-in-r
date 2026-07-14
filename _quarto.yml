@@ -3,7 +3,6 @@ project:
   type: website
   render:
     - "index.qmd"
-    - "example-quarto.qmd"
 
 execute:
   error: true
