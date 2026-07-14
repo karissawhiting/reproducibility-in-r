@@ -65,17 +65,24 @@
 
 ## AI Tips: Don't Outsource Your Statistical Judgment
 
+<br> 
+
 ::: {.fragment}
 **❌ Don't** : Let an LLM write a statistical plan for you.
 
+
 **✅ Do** : Let an LLM clean up and format a statistical plan you've already written. Ask it to review it for gaps or inconsistencies, but make sure you understand and can defend every decision in the plan yourself.
+
 :::
 
 
 ## AI Tips: Don't Outsource Your Statistical Judgment
 
+<br> 
+
 ::: {.fragment}
 **❌ Don't** : Let an LLM pick the most appropriate statistical test or models for your analysis.
+
 
 **✅ Do**: Get help with syntax, but make the decisions yourself. If you don't understand why a test or model is appropriate for your data and question, see if the LLM can help explain it to you in simple terms (I've had varying success with this last point).
 
@@ -124,8 +131,10 @@
 
 ## AI Tips: Don't Let Your Code Base Get Away From You
 
+<br>
 
 **❌ Don't** : Let AI take over your codebase without understanding and verifying every line of code it produces.
+
 
 **✅ Do** : Use AI to scaffold, debug, and explain code. Use it to help organize, functionalize and modularize your code (eg. helping with the 'do not repeat 3 times' rule)
 
