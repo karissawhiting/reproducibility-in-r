@@ -16,6 +16,8 @@ Imports:
     here,
     labelled,
     broom,
+    broom.helpers,
+    car,
     dplyr,
     tidyr
 Encoding: UTF-8
