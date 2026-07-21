@@ -1,0 +1,21 @@
+Package: reproducibilityinR
+Title: Reproducibility in R Training Materials
+Type: Package
+Version: 0.0.0.9000
+Description: Course materials for the Reproducibility in R training.
+License: MIT
+Imports:
+    knitr,
+    rmarkdown,
+    tidyverse,
+    lubridate,
+    gtsummary,
+    fontawesome,
+    survival,
+    survminer,
+    here,
+    labelled,
+    broom,
+    dplyr,
+    tidyr
+Encoding: UTF-8

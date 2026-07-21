@@ -25,12 +25,6 @@ jobs:
 
       - name: Install R packages
         uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::knitr
-            any::rmarkdown
-            any::tidyverse
-            any::lubridate
 
       - name: Render site
         run: quarto render index.qmd
