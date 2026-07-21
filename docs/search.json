@@ -1,17 +1,24 @@
 [
   {
+    "objectID": "index.html#agenda",
+    "href": "index.html#agenda",
+    "title": "reproducibility-in-R",
+    "section": "Agenda",
+    "text": "Agenda\n\n\nComputational Reproducibility Overview\nProject Setup\nWriting Good Code\nReproducible Reporting\nAI Guidelines for Coding"
+  },
+  {
     "objectID": "index.html#what-is-reproducibility",
     "href": "index.html#what-is-reproducibility",
     "title": "reproducibility-in-R",
     "section": "What is Reproducibility?",
-    "text": "What is Reproducibility?\n\nA data analysis is reproducible if all the information (data, files, etc.) needed to compute results is available for someone else to re-do your entire analysis and get the same results.\n\nAll data processing steps from raw data to cleaned data are available and documented\nAll analysis decisions made are documented and available in code\nResults don’t depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)"
+    "text": "What is Reproducibility?\nA data analysis is reproducible if all the information (data, files, etc.) needed to compute results is available for someone else to re-do your entire analysis and get the same results.\n\nAll data processing steps from raw data to cleaned data are available and documented\nAll analysis decisions made are documented and available in code\nResults don’t depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)"
   },
   {
     "objectID": "index.html#why-is-reproducibility-important",
     "href": "index.html#why-is-reproducibility-important",
     "title": "reproducibility-in-R",
     "section": "Why is Reproducibility Important?",
-    "text": "Why is Reproducibility Important?\n\n\nAllows you to show evidence of your results\nEncourages transparency about decisions made during analysis\nEnables others to check and use/extend your methods and results\nEnables FUTURE YOU to check and use/extend your methods and results\n\n\n“You mostly collaborate with yourself, and me-from-two-months-ago never responds to email”\n\nDr. Mark Holder, Computational Biologist"
+    "text": "Why is Reproducibility Important?\n\nAllows you to show evidence of your results\nEncourages transparency about decisions made during analysis\nEnables others to check and use/extend your methods and results\nEnables FUTURE YOU to check and use/extend your methods and results\n\n\n“You mostly collaborate with yourself, and me-from-two-months-ago never responds to email”\n\nDr. Mark Holder, Computational Biologist"
   },
   {
     "objectID": "index.html#why-is-reproducibility-important-1",
@@ -21,11 +28,11 @@
     "text": "Why is Reproducibility Important?\nDangers of writing code that is hard to double-check or confirm:\n\nThe New York Times"
   },
   {
-    "objectID": "index.html#updated-nih-guidelines",
-    "href": "index.html#updated-nih-guidelines",
+    "objectID": "index.html#journal-code-sharing-requirements",
+    "href": "index.html#journal-code-sharing-requirements",
     "title": "reproducibility-in-R",
-    "section": "Updated NIH Guidelines",
-    "text": "Updated NIH Guidelines\nNIH Data Management & Sharing Policy Updates\n\nEffective Date: January 25, 2023\nPurpose: Enhance data sharing to advance research transparency & reproducibility\n\n\nKey Requirements:\n\nAs of 1/2023, all NIH Grants must create and adhere to a Data Management Plan (DMP)\nThis plan will likely requires sharing of research data, and in some cases, code.\nYou may be asked to provide your cleaned analysis data (and possibly code) at time of publication or end of grant."
+    "section": "Journal Code-Sharing Requirements",
+    "text": "Journal Code-Sharing Requirements\nIncreasingly, journals and funders require code to be submitted. You may be asked to provide your cleaned analysis data (and possibly code) at time of publication.\n\n\n\n\n\n\n\n\nJournal / Publisher\nRequirement\n\n\n\n\nNIH\nAs of Jan 2023, all grants require a Data Management Plan; sharing of data and code may be required at publication or grant end.\n\n\nThe BMJ\nSubmissions ≥ May 2024: code used to analyze data must be submitted\n\n\nPLOS Biology/Medicine\nSubmissions ≥ Jan 2026: author-generated code directly related to findings must be available publicly\n\n\nNature / Springer Nature\nCode Availability Statement required; sharing is a condition of publication\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nRequirements vary by journal, article type, and whether code is essential to reproduce findings. Even when not required, sharing code is increasingly expected."
   },
   {
     "objectID": "index.html#five-pillars-of-reproducibility",
@@ -42,11 +49,74 @@
     "text": "How Do We Ensure Our Code is Reproducible?\n\nCompute Environment Control\n\nVirtual environments, avoid absolute file paths (e.g. ~/Users/Whiting/Projects...)\n\nCode Version Control\n\nDocument changes you make, or use git/Github\n\nDocumentation\n\nComment and document your code\nInvest in a good README.md\n\nData Integrity - more details later\nLiterate Programming\n\nHave a clear project structure, avoid ‘by hand’ steps"
   },
   {
+    "objectID": "index.html#good-project-setup-first-hours-saved-later",
+    "href": "index.html#good-project-setup-first-hours-saved-later",
+    "title": "reproducibility-in-R",
+    "section": "Good Project Setup First = Hours Saved Later",
+    "text": "Good Project Setup First = Hours Saved Later\n\nThe goal is to set yourself up with a project that is easy to navigate & self-explanatory without needing to hold everything in your head\n🔮✨ A little upfront effort in organizing your code and files will save you an enormous amount of time and frustration later"
+  },
+  {
+    "objectID": "index.html#project-setup-anatomy-of-a-project",
+    "href": "index.html#project-setup-anatomy-of-a-project",
+    "title": "reproducibility-in-R",
+    "section": "Project Setup: Anatomy of a Project",
+    "text": "Project Setup: Anatomy of a Project\n\n\n\n\n📁 my-project/\n├── 📁 raw-data/\n├── 📁 data/\n├── 📁 scripts/\n│   ├── 📄 01-clean.R\n│   └── 📄 02-analysis.R\n├── 📁 outputs/\n├── 📁 admin/\n├── 📄 README.md\n└── 📄 my-project.Rproj\n\n\n\nKeep raw and processed data separate (raw-data vs. data)\nFolder for scripts, ordered or labelled descriptively\nOptionally have admin for project notes and outputs for final reports and figures\nREADME — text file that introduces and explains a project (usethis::use_readme_md())\nR Project (.Rproj file) — tells RStudio all your files belong to one project and sets the working directory for the entire project"
+  },
+  {
+    "objectID": "index.html#compute-environment-control-virtual-environments",
+    "href": "index.html#compute-environment-control-virtual-environments",
+    "title": "reproducibility-in-R",
+    "section": "Compute Environment Control: Virtual Environments",
+    "text": "Compute Environment Control: Virtual Environments\nMake it easy for others (and future you) to re-run your code on any machine\nIsolate package versions per project so code runs the same everywhere\n\nPython — venv or conda:\npython -m venv .venv && source .venv/bin/activate\npip freeze &gt; requirements.txt   # save\npip install -r requirements.txt # restore\nR — renv:\nYou can commit & track renv.lock / requirements.txt / environment.yml"
+  },
+  {
+    "objectID": "index.html#compute-environment-control-avoid-absolute-file-paths",
+    "href": "index.html#compute-environment-control-avoid-absolute-file-paths",
+    "title": "reproducibility-in-R",
+    "section": "Compute Environment Control: Avoid Absolute File Paths",
+    "text": "Compute Environment Control: Avoid Absolute File Paths\nHard-coded paths break on every other machine:\n# ❌ breaks on anyone else's computer\nread.csv(\"~/Users/Whiting/Projects/data.csv\")\n\n# ✅ relative path from project root\nread.csv(\"data/raw/data.csv\")\n\n# ✅ R: use here::here() for safety\nread.csv(here::here(\"data\", \"raw\", \"data.csv\"))\n\nAlways use paths relative to the project root\nhere::here() (R) and pyprojroot.here() (Python) find the project root automatically"
+  },
+  {
+    "objectID": "index.html#setup-version-control",
+    "href": "index.html#setup-version-control",
+    "title": "reproducibility-in-R",
+    "section": "Setup Version Control",
+    "text": "Setup Version Control\nGit is version control software that runs locally on your computer\n\nTracks every change made to your files over time, so you can revert to any previous version\nWork on experimental changes without breaking working code (branches)\n\nGitHub is a cloud platform for hosting Git repositories\n\nBack up your code and git history remotely and collaborate with others on the same codebase\n\n\n\n\n\n\n\nTip\n\n\nThink of Git as “track changes” for your entire project, and GitHub as Google Drive — but for code and those documented changes"
+  },
+  {
+    "objectID": "index.html#github-github-enterprise",
+    "href": "index.html#github-github-enterprise",
+    "title": "reproducibility-in-R",
+    "section": "GitHub & GitHub Enterprise",
+    "text": "GitHub & GitHub Enterprise\n\n\nGitHub\n\nwww.github.com\nPublic website\nIndividual repositories can be made public or private (only you or invited collaborators can see repo)\n\n\nGitHub Enterprise (MSK)\n\nwww.github.mskcc.org\nBehind the MSK firewall (need to be on VPN if not on MSK network)\nLogin via MSK credentials\nShould be used for MSK projects\nOtherwise identical to github.com"
+  },
+  {
+    "objectID": "index.html#set-up-.gitignore-before-your-first-commit",
+    "href": "index.html#set-up-.gitignore-before-your-first-commit",
+    "title": "reproducibility-in-R",
+    "section": "Set Up .gitignore Before Your First Commit",
+    "text": "Set Up .gitignore Before Your First Commit\n\n\n\n\n\n\nWarning\n\n\nDeleting a file does not remove it from Git history. If PHI or sensitive data is ever committed, it is a violation — even if you delete it in the next commit.\n\n\n\n\n\nA .gitignore file tells git which files to NOT track. Set it up before you commit anything.\nßUse usethis::use_git_ignore() in R or GitHub’s gitignore templates to get started quickly (but check where data resides and add as needed)"
+  },
+  {
+    "objectID": "index.html#gitignore-example",
+    "href": "index.html#gitignore-example",
+    "title": "reproducibility-in-R",
+    "section": ".gitignore Example",
+    "text": ".gitignore Example\n# Data — never commit raw or sensitive data\ndata/\nraw-data/\n*.csv\n*.xlsx\n\n# Credentials and config\n.env\n*.key\n\n# R-specific\n.Rhistory\n.RData\n.Rproj.user/\n\n# Python virtual environment (use requirements.txt instead)\n.venv/\nvenv/\n\n# Compiled bytecode\n__pycache__/\n*.pyc\n\n# Jupyter notebook checkpoints\n.ipynb_checkpoints/\n\n# OS clutter\n.DS_Store"
+  },
+  {
+    "objectID": "index.html#analysis-plan-first",
+    "href": "index.html#analysis-plan-first",
+    "title": "reproducibility-in-R",
+    "section": "Analysis Plan First",
+    "text": "Analysis Plan First\nWrite the plan before you write the code\nWhy it matters:\n\nPrevents p-hacking — decisions made after seeing results inflate false positive rates\nForces clarity on the research questions and makes collaboration easier\nMakes coding easier!!!!\n\nWhat to include:\n\nResearch question, hypotheses, endpoints\nCohort definition\nStatistical methods and model specifications (e.g how to handle missing data)\nPlanned sensitivity analyses, expected outputs/tables/figures"
+  },
+  {
     "objectID": "index.html#literate-programming",
     "href": "index.html#literate-programming",
     "title": "reproducibility-in-R",
     "section": "Literate Programming",
-    "text": "Literate Programming\nAvoid ‘by hand’ steps used in the analysis\n\nDon’t clean by hand in Excel. All analysis steps should be done in code and saved in well-documented scripts.\nIf any ‘non-scriptable’ steps are unavoidable, document those steps very clearly\nDNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)"
+    "text": "Literate Programming\nAvoid ‘by hand’ steps used in the analysis\n\n\n\nDon’t clean by hand in Excel. All analysis steps should be done in code and saved in scripts. If any ‘non-scriptable’ steps are unavoidable, document those steps very clearly.\nWrite code comments and maintain a good README\nConsider efficiency / readibility trade-off\nDNR (Do Not Repeat) - if you do it more than 3 times, consider writing a function\nUse reproducible reporting practices for analyses (e.g. Rmd, quarto, Jupyter notebook, inline text stats)\n\n\n\n📁 my-project/\n├── 📁 raw-data/\n├── 📁 data/\n├── 📁 scripts/\n│   ├── 📄 01-clean.R\n│   └── 📄 02-analysis.R\n├── 📁 outputs/\n├── 📁 admin/\n├── 📄 README.md\n└── 📄 my-project.Rproj"
   },
   {
     "objectID": "index.html#reproducible-reporting-1",
@@ -54,6 +124,13 @@
     "title": "reproducibility-in-R",
     "section": "Reproducible Reporting",
     "text": "Reproducible Reporting\n\nR Markdown, Quarto and Jupyter are tools for integrating code and narrative text into a single executable document\nCan be rendered into various output formats (HTML, PDF, Word, and slides)\nDetailed code and data analysis steps are included in one document, encouraging transparency and providing a complete record of the research process\nDocuments automatically update when data or code changes, reducing errors and maintaining consistency.\nVersion-control compatible"
+  },
+  {
+    "objectID": "index.html#quarto-vs.-jupyter-notebooks",
+    "href": "index.html#quarto-vs.-jupyter-notebooks",
+    "title": "reproducibility-in-R",
+    "section": "Quarto vs. Jupyter Notebooks",
+    "text": "Quarto vs. Jupyter Notebooks\n\n\nQuarto (.qmd)\n\nNative R, Python, Julia, support\nPlain-text Markdown + code instructions — no stored outputs\nGit-friendly — diffs are clean and meaningful\nEasy to turn analysis into formal report: Renders to HTML, PDF, Word, slides, websites, etc\n\n\nJupyter (.ipynb)\n\nPrimarily Python-first; widely used in data science and ML\nJSON container storing code, text, and outputs — Results are visible on reopen\nCell execution order can be non-linear (a reproducibility risk)\nGit diffs can be messy\n\n\n\n\n\n\n\n\nTip\n\n\nThe hidden risk of ipynb: Jupyter lets you run cells out of order. Results can depend on state you forgot you created earlier. The notebook looks coherent, but a fresh top-to-bottom run may not reproduce the same story. Quarto rendering enforces clean execution and exposes that quickly."
   },
   {
     "objectID": "index.html#quarto-features-callouts-and-comments",
@@ -73,8 +150,8 @@
     "objectID": "index.html#gtsummary",
     "href": "index.html#gtsummary",
     "title": "reproducibility-in-R",
-    "section": "gtsummary",
-    "text": "gtsummary\n\n{gtsummary} - Tools to create publication-ready analytical and summary tables using the R programming language.\nSummarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities."
+    "section": "{gtsummary}",
+    "text": "{gtsummary}\n\n{gtsummary} - Tools to create publication-ready analytical and summary tables using the R programming language.\nSummarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities."
   },
   {
     "objectID": "index.html#gtsummary-overview",
@@ -91,67 +168,11 @@
     "text": "Basic tbl_summary()\n\n\nsm_trial &lt;- trial %&gt;% \n  select(trt, age, grade, response)\n\nsm_trial %&gt;%\n  select(-trt) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 2001\n\n\n\n\nAge\n47 (38, 57)\n\n\n    Unknown\n11\n\n\nGrade\n\n\n\n\n    I\n68 (34%)\n\n\n    II\n68 (34%)\n\n\n    III\n64 (32%)\n\n\nTumor Response\n61 (32%)\n\n\n    Unknown\n7\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\n\nFour types of summaries: continuous, continuous2, categorical, and dichotomous\nVariables coded 0/1, TRUE/FALSE, Yes/No treated as dichotomous\nStatistics are median (IQR) for continuous, n (%) for categorical/dichotomous\nLists NA values under “Unknown”\nLabel attributes are printed automatically"
   },
   {
-    "objectID": "index.html#survival-outcomes-with-tbl_survfit",
-    "href": "index.html#survival-outcomes-with-tbl_survfit",
-    "title": "reproducibility-in-R",
-    "section": "Survival outcomes with tbl_survfit()",
-    "text": "Survival outcomes with tbl_survfit()\nlibrary(survival)\nfit &lt;- survfit(Surv(ttdeath, death) ~ trt, trial)\ntbl_survfit(\n  fit, \n  times = c(12, 24),\n  label_header = \"**{time} Month**\"\n) %&gt;%\n  add_p()\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n12 Month\n24 Month\np-value1\n\n\n\n\nChemotherapy Treatment\n\n\n\n\n0.2\n\n\n    Drug A\n91% (85%, 97%)\n47% (38%, 58%)\n\n\n\n\n    Drug B\n86% (80%, 93%)\n41% (33%, 52%)\n\n\n\n\n\n1 Log-rank test\n\n\n\n\n\n\n\nAlso, regression (and more) models with tbl_regression() and tbl_uvregression()"
-  },
-  {
-    "objectID": "index.html#gtsummary-formulas",
-    "href": "index.html#gtsummary-formulas",
-    "title": "reproducibility-in-R",
-    "section": "{gtsummary} + formulas",
-    "text": "{gtsummary} + formulas"
-  },
-  {
-    "objectID": "index.html#customize-using-add-on-functions",
-    "href": "index.html#customize-using-add-on-functions",
-    "title": "reproducibility-in-R",
-    "section": "Customize Using Add-on Functions",
-    "text": "Customize Using Add-on Functions\nSummary tables can be further updated using helper functions:\n\n\nadd_*() add additional column of statistics or information, e.g. p-values, q-values, overall statistics, treatment differences, N obs., and more\nmodify_*() modify table headers, spanning headers, footnotes, and more\nbold_()/italicize_() style labels, variable levels, significant p-values"
-  },
-  {
-    "objectID": "index.html#advanced-tips-update-tbl_summary-with-modify_",
-    "href": "index.html#advanced-tips-update-tbl_summary-with-modify_",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: Update tbl_summary() with modify_*()",
-    "text": "Advanced Tips: Update tbl_summary() with modify_*()\n\n\nsm_trial %&gt;% \n  tbl_summary(\n    by = trt, missing = \"no\"\n  ) %&gt;%\n  modify_header(\n      stat_1 ~ \"**Group A**\",\n      stat_2 ~ \"**Group B**\"\n  ) %&gt;% \n  modify_spanning_header(\n    all_stat_cols() ~ \"**Drug**\") %&gt;% \n  modify_footnote(\n    all_stat_cols() ~ \n      paste(\"median (IQR) for continuous;\",\n            \"n (%) for categorical\")\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nDrug\n\n\n\nGroup A1\nGroup B1\n\n\n\n\nAge\n46 (37, 60)\n48 (39, 56)\n\n\nGrade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 (29%)\n33 (34%)\n\n\n\n1 median (IQR) for continuous; n (%) for categorical\n\n\n\n\n\n\n\n\nUse show_header_names() to see the internal header names available for use in modify_header()"
-  },
-  {
-    "objectID": "index.html#advanced-tips-continuous2-digits",
-    "href": "index.html#advanced-tips-continuous2-digits",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: continuous2 & digits",
-    "text": "Advanced Tips: continuous2 & digits\n\n\ntbl_summary(\n  sm_trial,\n  by = trt,\n  type = age ~ \"continuous2\",\n  statistic = \n    list(\n      age ~ c(\"{mean} ({sd})\", \n              \"{min}, {max}\"), \n      response ~ \"{n} / {N} ({p}%)\"\n    ),\n  label = \n    grade ~ \"Pathologic tumor grade\",\n  digits = age ~ 1\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nAge\n\n\n\n\n\n\n    Mean (SD)\n47.0 (14.7)\n47.4 (14.0)\n\n\n    Min, Max\n6.0, 78.0\n9.0, 83.0\n\n\n    Unknown\n7\n4\n\n\nPathologic tumor grade\n\n\n\n\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n    III\n31 (32%)\n33 (32%)\n\n\nTumor Response\n28 / 95 (29%)\n33 / 98 (34%)\n\n\n    Unknown\n3\n4\n\n\n\n1 n (%); n / N (%)\n\n\n\n\n\n\n\n\n\n\n\ntype: specifies the summary type as continuous2\ndigits: specify the number of decimal places for rounding"
-  },
-  {
-    "objectID": "index.html#advanced-tips-tbl_continuous",
-    "href": "index.html#advanced-tips-tbl_continuous",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: tbl_continuous()",
-    "text": "Advanced Tips: tbl_continuous()\nSummarize a continuous variable within categories and across different strata.\n\n\ntbl_continuous(\n  data = trial,\n  variable = age,\n  by = trt,\n  include = c(grade, response)\n)\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\n\n\n\n\nGrade\n\n\n\n\n\n\n    I\n46 (36, 60)\n48 (42, 55)\n\n\n    II\n45 (31, 55)\n51 (42, 58)\n\n\n    III\n52 (42, 61)\n45 (36, 52)\n\n\nTumor Response\n\n\n\n\n\n\n    0\n46 (36, 60)\n47 (37, 54)\n\n\n    1\n48 (41, 61)\n49 (43, 59)\n\n\n\n1 Age: Median (Q1, Q3)"
-  },
-  {
-    "objectID": "index.html#advanced-tips-custom-p-value-functions",
-    "href": "index.html#advanced-tips-custom-p-value-functions",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tips: Custom p-value functions",
-    "text": "Advanced Tips: Custom p-value functions\n\nMany tests available by default: https://www.danieldsjoberg.com/gtsummary/reference/tests.html\nIf you need one not on the list, create a custom function (use broom tidy at the end)\n\n\n\n# define function (need to use these arguments)\ncalculate_prop_test &lt;- function(data, variable, by, ...) {\n  data &lt;- tidyr::drop_na(data, dplyr::all_of(c(variable, by)))\n  prop.trend.test(\n    x = table(data[[variable]], data[[by]])[2, ], # get the second row (the positive row)\n    n = table(data[[by]])) |&gt; \n    broom::tidy()\n}\n\ntrial[c(\"grade\", \"trt\")] %&gt;%\n  tbl_summary(by = trt) %&gt;%\n  add_p(test = grade ~ \"calculate_prop_test\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nDrug A N = 981\nDrug B N = 1021\np-value2\n\n\n\n\nGrade\n\n\n\n\n0.7\n\n\n    I\n35 (36%)\n33 (32%)\n\n\n\n\n    II\n32 (33%)\n36 (35%)\n\n\n\n\n    III\n31 (32%)\n33 (32%)\n\n\n\n\n\n1 n (%)\n\n\n2 Chi-squared Test for Trend in Proportions"
-  },
-  {
     "objectID": "index.html#advanced-tips-tbl_uvregression-with-formula",
     "href": "index.html#advanced-tips-tbl_uvregression-with-formula",
     "title": "reproducibility-in-R",
     "section": "Advanced Tips: tbl_uvregression() with formula",
-    "text": "Advanced Tips: tbl_uvregression() with formula\n\nformula argument is powerful! You can adjust for variables, or pass mixed model formats (e.g. \"{y} ~ {x} + (1 | gear)\")\nAdditionally, add_global_p() can be useful\n\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    formula = \"{y} ~ {x} + age\",\n    include = -c(age), \n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels() %&gt;%\n  add_global_p()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n183\n\n\n\n\n0.7\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.13\n0.60, 2.13\n\n\n\n\nGrade\n183\n\n\n\n\n0.9\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.85\n0.39, 1.85\n\n\n\n\n    III\n\n\n1.01\n0.47, 2.16\n\n\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval"
-  },
-  {
-    "objectID": "index.html#advanced-tip-tbl_merge",
-    "href": "index.html#advanced-tip-tbl_merge",
-    "title": "reproducibility-in-R",
-    "section": "Advanced Tip: tbl_merge()",
-    "text": "Advanced Tip: tbl_merge()\nOften it’s useful to put summary stats and model estimates side by side\n\n\nt3 &lt;- trial[c(\"age\", \"grade\", \"response\")] %&gt;%\n  tbl_summary(missing = \"no\") %&gt;%\n  add_n() %&gt;%\n  modify_header(stat_0 ~ \"**Summary Statistics**\")\n\nt4 &lt;- tbl_uvregression(\n    trial[c(\"ttdeath\", \"death\", \"age\", \"grade\", \"response\")],\n    method = coxph,\n    y = Surv(ttdeath, death),\n    exponentiate = TRUE,\n    hide_n = TRUE)\n\ntbl_merge(tbls = list(t3, t4)) %&gt;%\n  modify_spanning_header(everything() ~ NA_character_)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nSummary Statistics1\nHR2\n95% CI2\np-value\n\n\n\n\nAge\n189\n47 (38, 57)\n1.01\n0.99, 1.02\n0.3\n\n\nGrade\n200\n\n\n\n\n\n\n\n\n\n\n    I\n\n\n68 (34%)\n—\n—\n\n\n\n\n    II\n\n\n68 (34%)\n1.28\n0.80, 2.05\n0.3\n\n\n    III\n\n\n64 (32%)\n1.69\n1.07, 2.66\n0.024\n\n\nTumor Response\n193\n61 (32%)\n0.50\n0.31, 0.78\n0.003\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n2 HR = Hazard Ratio, CI = Confidence Interval"
+    "text": "Advanced Tips: tbl_uvregression() with formula\n\nformula argument is powerful! You can adjust for variables, or pass mixed model formats (e.g. \"{y} ~ {x} + (1 | gear)\")\nAdditionally, add_global_p() can be useful\n\n\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    formula = \"{y} ~ {x} + age\",\n    include = -c(age), \n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels() %&gt;%\n  add_global_p()\n\nError in `add_global_p()`:\n! There was an error running `anova_fun` for variable \"trt\". See message\n  below.\n✖ The package \"parameters\" (&gt;= 0.20.2) is required.\ntbl_uvreg\nError:\n! object 'tbl_uvreg' not found"
   },
   {
     "objectID": "index.html#advanced-tip-gtsummary-themes",
@@ -161,20 +182,6 @@
     "text": "Advanced Tip: gtsummary Themes\n\nThemes control many aspects of how a table is printed. Function defaults can be controlled with themes, as well as other aspects that are not modifiable with function arguments.\nThe {gtsummary} package comes with a few themes, and we welcome user-contributed themes as well!\nMost commonly used theme: gtsummary::theme_gtsummary_compact()\nMore info: https://www.danieldsjoberg.com/gtsummary/articles/themes.html"
   },
   {
-    "objectID": "index.html#other-useful-functions",
-    "href": "index.html#other-useful-functions",
-    "title": "reproducibility-in-R",
-    "section": "Other Useful Functions",
-    "text": "Other Useful Functions\ntbl_listing()\nProblem: You &lt;3 {gtsummary} themes, but you have a non-{gtsummary} table included your analysis report and it doesn’t match your beautiful {gtsummary} tables.\nSolution: tbl_listing() from the {gtreg} package turns any table into a {gtsummary} class table. Now {gtsummary} themes can be applied to any table in your report."
-  },
-  {
-    "objectID": "index.html#other-useful-functions-1",
-    "href": "index.html#other-useful-functions-1",
-    "title": "reproducibility-in-R",
-    "section": "Other Useful Functions",
-    "text": "Other Useful Functions\ngtreg::tbl_listing()"
-  },
-  {
     "objectID": "index.html#other-customizations",
     "href": "index.html#other-customizations",
     "title": "reproducibility-in-R",
@@ -182,39 +189,18 @@
     "text": "Other Customizations\nMany more customization available!\n\nSee the documentation at http://www.danieldsjoberg.com/gtsummary/reference/index.html\nAnd a detailed tbl_summary() vignette at http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html"
   },
   {
+    "objectID": "index.html#report-reproducible-statistics-with-gtsummaryinline_text",
+    "href": "index.html#report-reproducible-statistics-with-gtsummaryinline_text",
+    "title": "reproducibility-in-R",
+    "section": "Report Reproducible Statistics with gtsummary::inline_text()",
+    "text": "Report Reproducible Statistics with gtsummary::inline_text()\n\nTables are important, but we often need to report results in-line in a report.\nAny statistic reported in a {gtsummary} table can be extracted and reported in-line in an R Markdown document with the inline_text() function.\nThe pattern of what is reported can be modified with the pattern = argument.\nDefault is pattern = \"{estimate} ({conf.level*100}% CI {conf.low}, {conf.high}; {p.value})\""
+  },
+  {
     "objectID": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text",
     "href": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text",
     "title": "reproducibility-in-R",
     "section": "Report Reproducbile Statistics with gtsummary::inline_text()",
-    "text": "Report Reproducbile Statistics with gtsummary::inline_text()\n\nTables are important, but we often need to report results in-line in a report.\nAny statistic reported in a {gtsummary} table can be extracted and reported in-line in an R Markdown document with the inline_text() function.\nThe pattern of what is reported can be modified with the pattern = argument.\nDefault is pattern = \"{estimate} ({conf.level*100}% CI {conf.low}, {conf.high}; {p.value})\""
-  },
-  {
-    "objectID": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text-1",
-    "href": "index.html#report-reproducbile-statistics-with-gtsummaryinline_text-1",
-    "title": "reproducibility-in-R",
-    "section": "Report Reproducbile Statistics with gtsummary::inline_text()",
-    "text": "Report Reproducbile Statistics with gtsummary::inline_text()\n\n\nlibrary(gtsummary)\n\ntbl_uvreg &lt;- sm_trial %&gt;% \n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR1\n95% CI1\np-value\n\n\n\n\nChemotherapy Treatment\n193\n\n\n\n\n\n\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.21\n0.66, 2.24\n0.5\n\n\nAge\n183\n1.02\n1.00, 1.04\n0.10\n\n\nGrade\n193\n\n\n\n\n\n\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.95\n0.45, 2.00\n0.9\n\n\n    III\n\n\n1.10\n0.52, 2.29\n0.8\n\n\n\n1 OR = Odds Ratio, CI = Confidence Interval\n\n\n\n\n\n\n\nIn Code: The odds ratio for age is ‘inline_text(tbl_uvreg, variable = age)’\nIn Report: The odds ratio for age is 1.02 (95% CI 1.00, 1.04; p=0.10)"
-  },
-  {
-    "objectID": "index.html#bstfun",
-    "href": "index.html#bstfun",
-    "title": "reproducibility-in-R",
-    "section": "{bstfun}",
-    "text": "{bstfun}\n\nA shared space for department members to add functions that may be useful to others\nHouses individual member’s project templates and function to start projects (create_bst_project(): will be discussed in further training)\nDiverse functions for various analysis-related tasks, {bstfun} Reference Index: https://mskcc-epi-bio.github.io/bstfun/"
-  },
-  {
-    "objectID": "index.html#bstfun-useful-functions",
-    "href": "index.html#bstfun-useful-functions",
-    "title": "reproducibility-in-R",
-    "section": "{bstfun} Useful Functions",
-    "text": "{bstfun} Useful Functions\nclean_mrn()\nMRNs follows specific formatting rules:\n\nMust be character\nMust contain only numeric components\nMust be eight characters long and include leading zeros.\n\nThis function converts numeric MRNs to character and ensures it follows MRN conventions. Character MRNs can also be passed, and leading zeros will be appended and checked for consistency.\nfake_mrn &lt;- c(\"00100\", \"100\", \"0100\")\n\nfake_mrn %&gt;%\n  bstfun::clean_mrn()\n[1] “00000100” “00000100” “00000100”"
-  },
-  {
-    "objectID": "index.html#bstfun-useful-functions-1",
-    "href": "index.html#bstfun-useful-functions-1",
-    "title": "reproducibility-in-R",
-    "section": "{bstfun} Useful Functions",
-    "text": "{bstfun} Useful Functions\nuse_varnames_as_labels()\nAutomatically add labels to your data based on column names\n\n\nBefore:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  tbl_summary() \n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nmpg\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nvs\n14 (44%)\n\n\nam\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)\n\n\n\n\n\n\n\nAfter:\nmtcars %&gt;%\n  select(mpg, cyl, vs, am) %&gt;%\n  bstfun::use_varnames_as_labels(caps = c(mpg, vs), exclude = cyl) %&gt;%\n  tbl_summary()\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 321\n\n\n\n\nMPG\n19.2 (15.4, 22.8)\n\n\ncyl\n\n\n\n\n    4\n11 (34%)\n\n\n    6\n7 (22%)\n\n\n    8\n14 (44%)\n\n\nVS\n14 (44%)\n\n\nAm\n13 (41%)\n\n\n\n1 Median (Q1, Q3); n (%)"
+    "text": "Report Reproducbile Statistics with gtsummary::inline_text()\n\n\nlibrary(gtsummary)\n\ntbl_uvreg &lt;- sm_trial %&gt;%\n  tbl_uvregression(\n    method = glm,\n    y = response,\n    method.args = list(family = binomial),\n    exponentiate = TRUE\n  ) %&gt;%\n  bold_labels()\n\ntbl_uvreg\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN\nOR\n95% CI\np-value\n\n\n\n\nChemotherapy Treatment\n193\n\n\n\n\n\n\n\n\n    Drug A\n\n\n—\n—\n\n\n\n\n    Drug B\n\n\n1.21\n0.66, 2.24\n0.5\n\n\nAge\n183\n1.02\n1.00, 1.04\n0.10\n\n\nGrade\n193\n\n\n\n\n\n\n\n\n    I\n\n\n—\n—\n\n\n\n\n    II\n\n\n0.95\n0.45, 2.00\n0.9\n\n\n    III\n\n\n1.10\n0.52, 2.29\n0.8\n\n\n\nAbbreviations: CI = Confidence Interval, OR = Odds Ratio\n\n\n\n\n\n\n\nIn Code: The odds ratio for age is ‘inline_text(tbl_uvreg, variable = age)’\nIn Report: The odds ratio for age is 1.02 (95% CI 1.00, 1.04; p=0.10)"
   },
   {
     "objectID": "index.html#lubridate",
@@ -229,6 +215,69 @@
     "title": "reproducibility-in-R",
     "section": "Five Pillars Of Reproducibility",
     "text": "Five Pillars Of Reproducibility\n\n\n\n\n\nhttps://pubmed.ncbi.nlm.nih.gov/37870287/"
+  },
+  {
+    "objectID": "index.html#ai-in-coding-opportunities-risks",
+    "href": "index.html#ai-in-coding-opportunities-risks",
+    "title": "reproducibility-in-R",
+    "section": "AI in Coding: Opportunities & Risks",
+    "text": "AI in Coding: Opportunities & Risks\n\n\nPros\n\nHelps scaffold - Speeds up boilerplate code and complex code pipelines\nHelps translate between R and Python\nDebugging\nDocumentation - Generates documentation and inline comments\nCode review\n\n\nCons\n\nPHI risk\nHallucinations - AI confidently generates plausible but incorrect code\nReproducibility gap — if you can’t explain what the code does, you can’t defend the analysis\nOutdated training data - limited knowledge of niche packages\n\n\n\n\n\n\n\n\nWarning\n\n\nMSK policy: Use only approved institutional tools. These are currently web & browser based only."
+  },
+  {
+    "objectID": "index.html#ai-tips-stay-close-to-code-during-data-qa",
+    "href": "index.html#ai-tips-stay-close-to-code-during-data-qa",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Stay Close to Code During Data QA",
+    "text": "AI Tips: Stay Close to Code During Data QA\n\n\nKnow your data. AI cannot catch errors it doesn’t know to look for.\n\n❌ Don’t : Let an LLM take over QA. Don’t let it write code on unchecked variables.\n✅ Do : Check variable types and levels, missingness, and ranges yourself before handing off to an AI tool. Make sure you understand every variable needed to execute the analysis plan"
+  },
+  {
+    "objectID": "index.html#ai-tips-dont-outsource-your-statistical-judgment",
+    "href": "index.html#ai-tips-dont-outsource-your-statistical-judgment",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Don’t Outsource Your Statistical Judgment",
+    "text": "AI Tips: Don’t Outsource Your Statistical Judgment\n\n\n❌ Don’t : Let an LLM write a statistical plan for you.\n✅ Do : Let an LLM clean up and format a statistical plan you’ve already written. Ask it to review it for gaps or inconsistencies, but make sure you understand and can defend every decision in the plan yourself."
+  },
+  {
+    "objectID": "index.html#ai-tips-dont-outsource-your-statistical-judgment-1",
+    "href": "index.html#ai-tips-dont-outsource-your-statistical-judgment-1",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Don’t Outsource Your Statistical Judgment",
+    "text": "AI Tips: Don’t Outsource Your Statistical Judgment\n\n\n❌ Don’t : Let an LLM pick the most appropriate statistical test or models for your analysis.\n✅ Do: Get help with syntax, but make the decisions yourself. If you don’t understand why a test or model is appropriate for your data and question, see if the LLM can help explain it to you in simple terms (I’ve had varying success with this last point)."
+  },
+  {
+    "objectID": "index.html#ai-tips-think-systematically",
+    "href": "index.html#ai-tips-think-systematically",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Think Systematically",
+    "text": "AI Tips: Think Systematically\n\n❌ Don’t : Tell an LLM to produce a figure based on a dataset you input.\n✅ Do : Provide context on the structure of your data (which variables you want to use), and the specifications of the plot you would like to make. Then, ask it to generate readable and well-commented code to produce the plot, and explain the code to you line by line."
+  },
+  {
+    "objectID": "index.html#ai-tips-think-systematically-example",
+    "href": "index.html#ai-tips-think-systematically-example",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Think Systematically — Example",
+    "text": "AI Tips: Think Systematically — Example\n\n\n❌ Vague prompt:\n“Here is my dataset. Make a survival curve.”\n\nLLM has to guess variable names, event coding, grouping variable\nOutput may use wrong packages or defaults\nHard to verify or adapt the code you get back\n\n\n✅ Specific prompt:\n“I have a data frame trial with: ttdeath (time to death in months), death (1 = event, 0 = censored), trt (‘Drug A’ / ‘Drug B’). Using {survival} and {ggsurvfit}, write well-commented R code to plot Kaplan-Meier curves by treatment group with a risk table. Then explain each step.”\n\nLLM produces code you can read and verify\nExplanation helps you catch mistakes and learn\nYou stay in control of the analytical decisions"
+  },
+  {
+    "objectID": "index.html#ai-tips-dont-let-your-code-base-get-away-from-you",
+    "href": "index.html#ai-tips-dont-let-your-code-base-get-away-from-you",
+    "title": "reproducibility-in-R",
+    "section": "AI Tips: Don’t Let Your Code Base Get Away From You",
+    "text": "AI Tips: Don’t Let Your Code Base Get Away From You\n\n❌ Don’t : Let AI take over your codebase without understanding and verifying every line of code it produces.\n✅ Do : Use AI to scaffold, debug, and explain code. Use it to help organize, functionalize and modularize your code (eg. helping with the ‘do not repeat 3 times’ rule)\n\n\n\n\n\n\nWarning\n\n\nYou are still responsible for understanding and maintaining this codebase. Stay in control — treat AI suggestions like code review, not ground truth."
+  },
+  {
+    "objectID": "index.html#example-ai-assisted-pipeline-review",
+    "href": "index.html#example-ai-assisted-pipeline-review",
+    "title": "reproducibility-in-R",
+    "section": "Example: AI-Assisted Pipeline Review",
+    "text": "Example: AI-Assisted Pipeline Review\nAsk AI to review your code systematically — bugs, performance, and structure all at once\n\n\n\n\n\n\nTip\n\n\nPrompt: “Review this pipeline for bugs, efficiency and parameter consistency across scripts. Suggest areas to speed up the code. List findings by priority and suggest specific fixes with file and line references.”\n\n\n\n# Pipeline Review: run-pipeline.R and Related Scripts\n\n## Findings\n\n### Bugs / Errors\n\n- Sequential bootstrap loop — parallel cluster is set up but never used\n  Fix: Replace `for` loop in `run_bootstrap()` with `foreach %dopar%`\n\n- `prep-data.R` uses hardcoded parameters duplicated from `run-pipeline.R`\n  Fix: Source shared parameters from a single config file\n\n- Pipeline assumes `data/model-data.RData` exists — fails with cryptic error if missing\n  Fix: Check if file exists; source `prep-data.R` first if not\n\n- Potential syntax bug in `preprocess-functions.R` line ~57: `[, , drop = FALSE]`\n  Fix: Verify intent and replace with proper indexing\n\n### Performance Improvements\n\n1. Parallelize the bootstrap loop (biggest gain) — swap `for` → `foreach %dopar%`\n2. Batch file writes — collect rows during loop, write once at the end\n3. Replace `do.call(cbind, ...)` with `dplyr::bind_cols()` — faster for wide data\n\n### Verification Plan\n\n- Run local mode with NBOOT=5, confirm no errors end-to-end\n- Confirm parallelized and sequential bootstrap give same AUC distributions (same seed)\n- Unit test the indexing fix on a small data slice"
+  },
+  {
+    "objectID": "index.html#other-ai-tips",
+    "href": "index.html#other-ai-tips",
+    "title": "reproducibility-in-R",
+    "section": "Other AI Tips",
+    "text": "Other AI Tips\n\n✅ Do : Use AI to write documentation\n✅ Do : Use AI for code review and improving code efficiency\n✅ Do : Use context/project/skill files to specify style, preferred packages, compute constraints, etc.\n✅ Do : Input cluster guidelines as context for cluster computing scripts\n✅ Do : Use Plan mode and iterate several times for larger code refactors\n✅ Do : Use it to build/organize larger pipelines, but make sure you understand which code/functions depend on which scripts, etc."
   },
   {
     "objectID": "index.html#resources",
